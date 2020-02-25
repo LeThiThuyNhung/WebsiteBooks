@@ -11,11 +11,13 @@ namespace S3Train.Controllers
     {
         private readonly IProductService _productService;
         private readonly IProductAdvertisementService _productAdvertisementService;
+        private readonly ICategoryService _categoryService;
 
-        public HomeController(IProductService productService, IProductAdvertisementService productAdvertisementService)
+        public HomeController(IProductService productService, IProductAdvertisementService productAdvertisementService, ICategoryService categoryService)
         {
             _productService = productService;
             _productAdvertisementService = productAdvertisementService;
+            _categoryService = categoryService;
         }
 
         public ActionResult Index()
@@ -23,7 +25,8 @@ namespace S3Train.Controllers
             var model = new HomeViewModel
             {
                 SliderItems = GetHomeSlider(_productAdvertisementService.GetSliderItems()),
-                Products = GetHomeProducts(_productService.SelectAll())
+                Products = GetHomeProducts(_productService.SelectAll()),
+                CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
             };
 
             return View(model);
@@ -49,6 +52,15 @@ namespace S3Train.Controllers
                 ImagePath = x.ImagePath,
                 Title = x.Title
             }).ToList();
+        }
+
+        private static IList<CategoryViewModel> GetHomeCategory(IList<Category> category)
+        {
+            return category.Select(x => new CategoryViewModel
+            {
+                Name = x.Name
+            }).ToList();
+
         }
 
         public ActionResult About()
