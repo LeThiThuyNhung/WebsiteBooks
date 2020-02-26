@@ -54,18 +54,39 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CategoryId,PublisherId,Name,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product)
+        public ActionResult Create([Bind(Include = "Id,CategoryId,PublisherId,Name,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", product.PublisherId);
+
+            if (fileUpload == null)
+            {
+                ViewBag.Notification = "Choose image";
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
+                //Luu ten file
+                var fileName = Path.GetFileName(fileUpload.FileName);
+                //Luu duong dan
+                var path = Path.Combine(Server.MapPath("~/ImagePD"), fileName);
+                //KT HINH ANH TON TAI CHUA
+                if (System.IO.File.Exists(path))
+                {
+                    ViewBag.Notification = "Image already exists";
+                }
+                else
+                {
+                    fileUpload.SaveAs(path);
+                }
+                product.ImagePath = fileName;
                 product.Id = Guid.NewGuid();
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", product.PublisherId);
+            
             return View(product);
         }
 
