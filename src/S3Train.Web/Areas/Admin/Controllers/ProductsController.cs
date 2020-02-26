@@ -54,6 +54,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,CategoryId,PublisherId,Name,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
@@ -80,8 +81,8 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 {
                     fileUpload.SaveAs(path);
                 }
-                product.ImagePath = fileName;
                 product.Id = Guid.NewGuid();
+                product.ImagePath = fileName;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");

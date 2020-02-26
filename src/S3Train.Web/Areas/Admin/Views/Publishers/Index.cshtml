@@ -1,48 +1,21 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@model PagedList.PagedList<S3Train.Domain.Product>
+@model PagedList.PagedList<S3Train.Domain.Publisher>
 
 @{
-    ViewBag.Title = "Book";
+    ViewBag.Title = "Publishes";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>BOOKS</h2>
+<h2>PUBLISHERS</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered">
+<table class="table">
     <tr>
         <th>
-            Category
-        </th>
-        <th>
-            Publisher
-        </th>
-        <th>
             Name
-        </th>
-        <th>
-            Summary
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Image
-        </th>
-        <th>
-            Barcode
-        </th>
-        <th>
-           Release Year
-        </th>
-        <th>
-            Amount
-        </th>
-        <th>
-            Rating
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().CreatedDate)
@@ -51,7 +24,7 @@
             @Html.DisplayNameFor(model => model.First().UpdatedDate)
         </th>
         <th>
-            Active
+            @Html.DisplayNameFor(model => model.First().IsActive)
         </th>
         <th></th>
     </tr>
@@ -59,34 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Publisher.Name)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Summary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            <img src="@Url.Content("~/ImagePD/"+item.ImagePath)" width="50" height="50" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Barcode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseYear)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedDate)
