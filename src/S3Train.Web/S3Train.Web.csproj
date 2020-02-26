@@ -222,6 +222,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
@@ -395,6 +396,45 @@
     <Content Include="Content\TemplateAdmin\typography.html" />
     <Content Include="Content\TemplateAdmin\ui.html" />
     <Content Include="Content\TemplateAdmin\widgets.html" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\categories.css" />
+    <Content Include="Content\css\etalage.css" />
+    <Content Include="Content\css\form.css" />
+    <Content Include="Content\css\product.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\images\a-star.png" />
+    <Content Include="Content\images\arrow1.png" />
+    <Content Include="Content\images\arrow2.png" />
+    <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\images\b-arrow.png" />
+    <Content Include="Content\images\book1.png" />
+    <Content Include="Content\images\book2.jpg" />
+    <Content Include="Content\images\book3.jpg" />
+    <Content Include="Content\images\book4.png" />
+    <Content Include="Content\images\book5.jpg" />
+    <Content Include="Content\images\category.png" />
+    <Content Include="Content\images\category1.png" />
+    <Content Include="Content\images\gpluse.png" />
+    <Content Include="Content\images\img-sprite.png" />
+    <Content Include="Content\images\label_new.png" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo1.jpg" />
+    <Content Include="Content\images\review.png" />
+    <Content Include="Content\images\rss.png" />
+    <Content Include="Content\images\search1.png" />
+    <Content Include="Content\images\star.png" />
+    <Content Include="Content\images\tick1.png" />
+    <Content Include="Content\js\categories.js" />
+    <Content Include="Content\js\jquery-1.11.1.min.js" />
+    <Content Include="Content\js\jquery.etalage.min.js" />
+    <Content Include="Content\js\jquery.flexisel.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\jquery.wmuSlider.js" />
+    <Content Include="Content\js\product.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -414,6 +454,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css.map" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css.map" />
@@ -531,8 +572,10 @@
     <Content Include="Views\Shared\_ProductItem.cshtml" />
     <Content Include="Views\Home\_HomeSlider.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Home\_Categories.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="ImagePD\" />
   </ItemGroup>

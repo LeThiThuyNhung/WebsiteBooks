@@ -1,4 +1,4 @@
-﻿@using S3Train.Models;
+﻿@*@using S3Train.Models;
 @model HomeViewModel
 
 @{
@@ -6,9 +6,9 @@
 }
 
 
-<div class="container">
+<div class="container">*@
 
-    <div class="row">
+    @*<div class="row">
 
         <div class="col-lg-3">
             <h1 class="my-4">Shop Name</h1>
@@ -17,8 +17,13 @@
                 <a href="#" class="list-group-item">Category 2</a>
                 <a href="#" class="list-group-item">Category 3</a>
             </div>
-        </div>
-        <!-- /.col-lg-3 -->
+        </div>*@
+
+    @*@foreach(var item in Model.CategoryItems)
+    { 
+        Html.RenderPartial("_Categories", item);
+    }*@
+        @* /.col-lg-3
 
         <div class="col-lg-9">
             @{
@@ -39,6 +44,6 @@
         <!-- /.col-lg-9 -->
 
     </div>
-    <!-- /.row -->
+    <!-- /.row -->*@
 
-</div>
+@*</div>*@
