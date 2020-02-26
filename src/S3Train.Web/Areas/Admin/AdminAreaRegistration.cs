@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace S3Train.Areas.Admin
+namespace S3Train.Web.Areas.Admin
 {
     public class AdminAreaRegistration : AreaRegistration 
     {
