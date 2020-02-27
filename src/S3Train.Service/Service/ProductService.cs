@@ -11,5 +11,9 @@ namespace S3Train.Service
         public ProductService(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
+        public IList<Product> GetProductItems()
+        {
+            return this.EntityDbSet.ToList();
+        }
     }
 }
