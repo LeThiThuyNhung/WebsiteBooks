@@ -2,6 +2,8 @@ body {
     background: #fff;
     font-family: 'Open Sans', sans-serif;
     width:100%;
+    margin:0px;
+   
 }
 
     body a {
@@ -16,6 +18,7 @@ body {
     background: #F97E76;
     padding: 0.1em 0;
     height: 55px;
+
 }
 
 .top-header-left {

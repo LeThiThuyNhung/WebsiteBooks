@@ -20,34 +20,38 @@
         </div>*@
 
     @*@foreach(var item in Model.CategoryItems)
-    { 
-        Html.RenderPartial("_Categories", item);
-    }*@
-        @* /.col-lg-3
+        {
+            Html.RenderPartial("_Categories", item);
+        }*@
+    @* /.col-lg-3
 
-        <div class="col-lg-9">
-            @{
-                Html.RenderPartial("_HomeSlider", Model.SliderItems);
-            }
-
-            <div class="row">
-
-                @foreach (var item in Model.Products)
-                {
-                    Html.RenderPartial("_ProductItem", item);
+            <div class="col-lg-9">
+                @{
+                    Html.RenderPartial("_HomeSlider", Model.SliderItems);
                 }
 
+                <div class="row">
+
+                    @foreach (var item in Model.Products)
+                    {
+                        Html.RenderPartial("_ProductItem", item);
+                    }
+
+                </div>
+                <!-- /.row -->
+
             </div>
-            <!-- /.row -->
+            <!-- /.col-lg-9 -->
 
         </div>
-        <!-- /.col-lg-9 -->
-
-    </div>
-    <!-- /.row -->*@
+        <!-- /.row -->*@
     @{
-     Html.RenderPartial("_Product", Model.Products);
-    }
+        Html.RenderPartial("_Product", Model.Products );
+        }
+        
+        @{ 
+            Html.RenderPartial("_HomeSlider", Model.SliderItems);
+        }
 
 
 </div>
