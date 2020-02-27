@@ -14,6 +14,8 @@ namespace S3Train.Domain
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductAdvertisement> ProductAdvertisements { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -44,9 +46,22 @@ namespace S3Train.Domain
             modelBuilder.Entity<ProductAdvertisement>().ToTable("ProductAdvertisement");
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.EventUrl).HasMaxLength(50).IsRequired();
-            modelBuilder.Entity<ProductAdvertisement>().Property(x => x.EventUrlCaption).HasMaxLength(10).IsOptional();
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.Title).HasMaxLength(100).IsOptional();
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.Description).HasMaxLength(500).IsOptional();
+
+            modelBuilder.Entity<Staff>().ToTable("Staff");
+            modelBuilder.Entity<Staff>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.ImagePath).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Address).HasMaxLength(200).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Sex).HasMaxLength(3).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.DateOfBirth).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.PhoneNumber).HasMaxLength(10).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Email).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Password).HasMaxLength(100).IsRequired();
+
+            modelBuilder.Entity<Position>().ToTable("Position");
+            modelBuilder.Entity<Position>().HasMany(c => c.Staffs).WithRequired(p => p.Position);
+            modelBuilder.Entity<Position>().Property(x => x.Name).HasMaxLength(100).IsRequired();
         }
         
     }
