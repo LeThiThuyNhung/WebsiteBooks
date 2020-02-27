@@ -623,6 +623,9 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\tinymce.min.js" />
     <Content Include="tinymce_4.2.7\tinymce\LICENSE.TXT" />
     <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -669,6 +672,8 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Views\Product\_Detail.cshtml" />
+    <Content Include="Views\Home\_Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
