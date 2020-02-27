@@ -13,6 +13,7 @@ namespace S3Train.Domain
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductAdvertisement> ProductAdvertisements { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -28,11 +29,17 @@ namespace S3Train.Domain
             modelBuilder.Entity<Product>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Price).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Barcode).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.ReleaseYear).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Amount).IsRequired();
 
             modelBuilder.Entity<Category>().ToTable("Category");
             modelBuilder.Entity<Category>().HasMany(c => c.Products).WithRequired(p => p.Category);
             modelBuilder.Entity<Category>().Property(x => x.Name).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Category>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
+
+            modelBuilder.Entity<Publisher>().ToTable("Publisher");
+            modelBuilder.Entity<Publisher>().HasMany(c => c.Products).WithRequired(p => p.Publisher);
+            modelBuilder.Entity<Publisher>().Property(x => x.Name).HasMaxLength(100).IsRequired();
 
             modelBuilder.Entity<ProductAdvertisement>().ToTable("ProductAdvertisement");
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
@@ -41,5 +48,6 @@ namespace S3Train.Domain
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.Title).HasMaxLength(100).IsOptional();
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.Description).HasMaxLength(500).IsOptional();
         }
+        
     }
 }

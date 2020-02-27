@@ -73,25 +73,31 @@ namespace S3Train.Migrations
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-            
+
             CreateTable(
                 "dbo.Product",
                 c => new
-                    {
-                        Id = c.Guid(nullable: false),
-                        CategoryId = c.Guid(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 100),
-                        Summary = c.String(nullable: false, maxLength: 500),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        ImagePath = c.String(nullable: false, maxLength: 200),
-                        Rating = c.Int(),
-                        CreatedDate = c.DateTime(nullable: false),
-                        UpdatedDate = c.DateTime(),
-                        IsActive = c.Boolean(nullable: false),
-                    })
+                {
+                    Id = c.Guid(nullable: false),
+                    CategoryId = c.Guid(nullable: false),
+                    PublisherId = c.Guid(nullable: false),
+                    Name = c.String(nullable: false, maxLength: 100),
+                    Summary = c.String(nullable: false, maxLength: 500),
+                    Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    ImagePath = c.String(nullable: false, maxLength: 200),
+                    Barcode = c.String(nullable: false, maxLength: 100),
+                    ReleaseYear = c.Int(nullable: false),
+                    Amount = c.Int(nullable: false),
+                    Rating = c.Int(),
+                    CreatedDate = c.DateTime(nullable: false),
+                    UpdatedDate = c.DateTime(),
+                    IsActive = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Category", t => t.CategoryId, cascadeDelete: true)
-                .Index(t => t.CategoryId);
+                .ForeignKey("dbo.Publisher", t => t.PublisherId, cascadeDelete: true)
+                .Index(t => t.CategoryId)
+                .Index(t => t.PublisherId);
             
             CreateTable(
                 "dbo.Category",
@@ -99,11 +105,22 @@ namespace S3Train.Migrations
                     {
                         Id = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 100),
-                        Summary = c.String(nullable: false, maxLength: 500),
                         CreatedDate = c.DateTime(nullable: false),
                         UpdatedDate = c.DateTime(),
                         IsActive = c.Boolean(nullable: false),
                     })
+                .PrimaryKey(t => t.Id);
+
+            CreateTable(
+                "dbo.Publisher",
+                c => new
+                {
+                    Id = c.Guid(nullable: false),
+                    Name = c.String(nullable: false, maxLength: 100),
+                    CreatedDate = c.DateTime(nullable: false),
+                    UpdatedDate = c.DateTime(),
+                    IsActive = c.Boolean(nullable: false),
+                })
                 .PrimaryKey(t => t.Id);
             
         }
@@ -111,11 +128,13 @@ namespace S3Train.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Product", "CategoryId", "dbo.Category");
+            DropForeignKey("dbo.Product", "PublisherId", "dbo.Publisher");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropIndex("dbo.Product", new[] { "CategoryId" });
+            DropIndex("dbo.Product", new[] { "PublisherId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -123,6 +142,7 @@ namespace S3Train.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropTable("dbo.Category");
+            DropTable("dbo.Publisher");
             DropTable("dbo.Product");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
