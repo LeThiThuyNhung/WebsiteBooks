@@ -40,8 +40,7 @@ namespace S3Train.Controllers
                 ImagePath = x.ImagePath,
                 Name = x.Name,
                 DisplayPrice = $"${x.Price}",
-                Rating = x.Rating ?? 0,
-                Summary = x.Summary
+                Rating = x.Rating ?? 0
             }).ToList();
         }
 

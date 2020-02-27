@@ -10,5 +10,6 @@ namespace S3Train.Models
         public string Summary { get; set; }
         public string DisplayPrice { get; set; }
         public int Rating { get; set; }
+        public Decimal Price { get; set; }
     }
 }
