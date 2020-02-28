@@ -8,6 +8,10 @@
 
 <div class="container">
 
+    @{
+        Html.RenderPartial("_HomeSlider", Model.SliderItems);
+    }
+
     @*<div class="row">
 
         <div class="col-lg-3">
@@ -49,9 +53,7 @@
         Html.RenderPartial("_Product", Model.Products );
         }
         
-        @{ 
-            Html.RenderPartial("_HomeSlider", Model.SliderItems);
-        }
+     
 
 
 </div>
