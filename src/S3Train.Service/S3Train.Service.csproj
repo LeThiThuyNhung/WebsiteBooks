@@ -80,6 +80,7 @@
     <Compile Include="GenenicServiceBase.cs" />
     <Compile Include="IGenenicServiceBase.cs" />
     <Compile Include="Service\CategoryService.cs" />
+    <Compile Include="Service\DetailProductService.cs" />
     <Compile Include="Service\ProductAdvertisementService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

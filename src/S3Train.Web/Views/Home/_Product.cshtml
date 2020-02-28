@@ -19,9 +19,17 @@
                                 <div class="item @activeClass">
                                     <div class="row">
                                         @foreach (var item in group)
-                                        {
+                                       {
                                             <div class="col-md-3">
-                                                <div>@item.Name</div>
+                                                <div class="thumbnail">
+
+                                                    <img src="@Url.Content("~/ImagePD/"+item.ImagePath)" />
+                                                    <div class="caption">
+                                                        <h5 >item.Name</h5>
+                                                        <p><a class="btn btn-primary" role="button">item.DisplayPrice</a><a style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         }
 
@@ -371,3 +379,18 @@
 
 </div>
 <div class="clearfix"> </div>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+<script>
+        $('#myCarousel').carousel({
+            interval: 0
+        });
+        $('#myCarousel1').carousel({
+            interval: 0
+        });
+        $('#myCarousel2').carousel({
+            interval: 0
+        });
+        $('#myCarousel3').carousel({
+            interval: 0
+        });
+</script>

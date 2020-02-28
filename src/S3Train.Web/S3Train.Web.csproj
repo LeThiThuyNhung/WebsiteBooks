@@ -225,6 +225,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\DetailProductViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
@@ -233,11 +234,27 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\site.css" />
+    <Content Include="Content\css\clndr.css" />
+    <Content Include="Content\css\component.css" />
+    <Content Include="Content\css\detail.css" />
+    <Content Include="Content\css\easy-responsive-tabs.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\js\cbpFWTabs.js" />
+    <Content Include="Content\js\clndr.js" />
+    <Content Include="Content\js\easing.js" />
+    <Content Include="Content\js\easyResponsiveTabs.js" />
+    <Content Include="Content\js\jquery-1.11.0.min.js" />
+    <Content Include="Content\js\jquery-1.9.0.min.js" />
+    <Content Include="Content\js\jquery.openCarousel.js" />
+    <Content Include="Content\js\moment-2.2.1.js" />
+    <Content Include="Content\js\move-top.js" />
+    <Content Include="Content\js\navigation.js" />
+    <Content Include="Content\js\site.js" />
+    <Content Include="Content\js\star-rating.js" />
+    <Content Include="Content\js\underscore-min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TemplateAdmin\calendar.html" />
     <Content Include="Content\TemplateAdmin\chart.html" />
@@ -430,7 +447,6 @@
     <Content Include="Content\js\jquery.flexisel.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\jquery.wmuSlider.js" />
-    <Content Include="Content\js\product.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />

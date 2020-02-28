@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using S3Train.Contract;
 using S3Train.Domain;
 using S3Train.Models;
+using S3Train.Web.Models;
 
 namespace S3Train.Controllers
 {
@@ -50,7 +51,9 @@ namespace S3Train.Controllers
             return productAds.Select(x => new SliderItemViewModel
             {
                 ImagePath = x.ImagePath,
-                Title = x.Title
+                Title = x.Title,
+                Description = x.Description,
+                EventUrl = x.EventUrl,
             }).ToList();
         }
 
@@ -62,6 +65,8 @@ namespace S3Train.Controllers
             }).ToList();
 
         }
+
+       
 
         public ActionResult About()
         {
