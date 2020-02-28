@@ -205,11 +205,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Code\SessionHelper.cs" />
+    <Compile Include="Areas\Admin\Code\UserSession.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdvertisementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PublishersController.cs" />
+    <Compile Include="Areas\Admin\Data\Login.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -231,6 +234,18 @@
     <Compile Include="Migrations\202002270859586_AddTableStaff.cs" />
     <Compile Include="Migrations\202002270859586_AddTableStaff.Designer.cs">
       <DependentUpon>202002270859586_AddTableStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281015220_AddAuthor.cs" />
+    <Compile Include="Migrations\202002281015220_AddAuthor.Designer.cs">
+      <DependentUpon>202002281015220_AddAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281019438_AddAP.cs" />
+    <Compile Include="Migrations\202002281019438_AddAP.Designer.cs">
+      <DependentUpon>202002281019438_AddAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281027541_AddFK.cs" />
+    <Compile Include="Migrations\202002281027541_AddFK.Designer.cs">
+      <DependentUpon>202002281027541_AddFK.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -823,7 +838,6 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="ImagePD\" />
   </ItemGroup>
   <ItemGroup>
@@ -847,6 +861,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002270859586_AddTableStaff.resx">
       <DependentUpon>202002270859586_AddTableStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281015220_AddAuthor.resx">
+      <DependentUpon>202002281015220_AddAuthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281019438_AddAP.resx">
+      <DependentUpon>202002281019438_AddAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281027541_AddFK.resx">
+      <DependentUpon>202002281027541_AddFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -60,6 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Author.cs" />
+    <Compile Include="Author_Product.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Enum.cs" />
