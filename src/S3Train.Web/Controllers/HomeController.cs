@@ -32,16 +32,17 @@ namespace S3Train.Controllers
             return View(model);
         }
 
-        private static IList<ProductViewModel> GetHomeProducts(IList<Product> products)
+        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeProducts(IList<Product> products)
         {
-            return products.Select(x => new ProductViewModel
+            return products.Select((x, i) => new ProductViewModel
             {
                 Id = x.Id,
                 ImagePath = x.ImagePath,
                 Name = x.Name,
                 DisplayPrice = $"${x.Price}",
-                Rating = x.Rating ?? 0
-            }).ToList();
+                Rating = x.Rating ?? 0,
+                Grouping = i / 4
+            }).GroupBy(e => e.Grouping).ToList();
         }
 
         private static IList<SliderItemViewModel> GetHomeSlider(IList<ProductAdvertisement> productAds)

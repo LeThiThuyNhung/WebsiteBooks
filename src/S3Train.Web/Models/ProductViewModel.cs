@@ -11,5 +11,6 @@ namespace S3Train.Models
         public string DisplayPrice { get; set; }
         public int Rating { get; set; }
         public decimal Price { get; set; }
+        public int Grouping { get; set; }
     }
 }
