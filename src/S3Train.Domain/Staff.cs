@@ -9,7 +9,7 @@ namespace S3Train.Domain
     public class Staff : EntityBase
     {
         public Guid PositionId { get; set; }
-        public string Name { get; set; }
+        public string NameStaff { get; set; }
         public string ImagePath { get; set; }
         public string Address { get; set; }
         public string Sex { get; set; }

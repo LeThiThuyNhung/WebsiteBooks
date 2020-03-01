@@ -59,13 +59,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
+            @Html.DisplayFor(modelItem => item.Category.NameCategory)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Publisher.Name)
+            @Html.DisplayFor(modelItem => item.Publisher.NamePublisher)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.NameProduct)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Summary)

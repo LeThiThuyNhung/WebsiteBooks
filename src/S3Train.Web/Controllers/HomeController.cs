@@ -38,7 +38,7 @@ namespace S3Train.Controllers
             {
                 Id = x.Id,
                 ImagePath = x.ImagePath,
-                Name = x.Name,
+                Name = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
                 Rating = x.Rating ?? 0,
                 Summary = x.Summary
@@ -58,7 +58,7 @@ namespace S3Train.Controllers
         {
             return category.Select(x => new CategoryViewModel
             {
-                Name = x.Name
+                Name = x.NameCategory
             }).ToList();
 
         }

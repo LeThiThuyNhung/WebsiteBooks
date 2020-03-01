@@ -1,21 +1,46 @@
-﻿@model S3Train.Domain.Publisher
+﻿@model S3Train.Domain.Author_Product
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>DETAIL OF PUBLISHER</h2>
+<h2>Details</h2>
 
 <div>
+    <h4>Author_Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Name
+            @Html.DisplayNameFor(model => model.Author.NameAuthor)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NamePublisher)
+            @Html.DisplayFor(model => model.Author.NameAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.NameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.NameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
         </dd>
 
         <dt>

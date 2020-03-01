@@ -50,7 +50,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
+        public ActionResult Create([Bind(Include = "Id,NamePublisher,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
+        public ActionResult Edit([Bind(Include = "Id,NamePublisher,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
         {
             if (ModelState.IsValid)
             {

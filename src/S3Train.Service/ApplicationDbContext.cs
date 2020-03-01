@@ -30,7 +30,7 @@ namespace S3Train.Domain
 
             modelBuilder.Entity<Product>().ToTable("Product");
             modelBuilder.Entity<Product>().HasMany(c => c.Author_Products).WithRequired(p => p.Product);
-            modelBuilder.Entity<Product>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.NameProduct).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Price).IsRequired();
@@ -40,11 +40,11 @@ namespace S3Train.Domain
 
             modelBuilder.Entity<Category>().ToTable("Category");
             modelBuilder.Entity<Category>().HasMany(c => c.Products).WithRequired(p => p.Category);
-            modelBuilder.Entity<Category>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Category>().Property(x => x.NameCategory).HasMaxLength(100).IsRequired();
 
             modelBuilder.Entity<Publisher>().ToTable("Publisher");
             modelBuilder.Entity<Publisher>().HasMany(c => c.Products).WithRequired(p => p.Publisher);
-            modelBuilder.Entity<Publisher>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Publisher>().Property(x => x.NamePublisher).HasMaxLength(100).IsRequired();
 
             modelBuilder.Entity<ProductAdvertisement>().ToTable("ProductAdvertisement");
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
@@ -53,7 +53,7 @@ namespace S3Train.Domain
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.Description).HasMaxLength(500).IsOptional();
 
             modelBuilder.Entity<Staff>().ToTable("Staff");
-            modelBuilder.Entity<Staff>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.NameStaff).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.ImagePath).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.Address).HasMaxLength(200).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.Sex).HasMaxLength(3).IsRequired();
@@ -64,11 +64,11 @@ namespace S3Train.Domain
 
             modelBuilder.Entity<Position>().ToTable("Position");
             modelBuilder.Entity<Position>().HasMany(c => c.Staffs).WithRequired(p => p.Position);
-            modelBuilder.Entity<Position>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Position>().Property(x => x.NamePosition).HasMaxLength(100).IsRequired();
 
             modelBuilder.Entity<Author>().ToTable("Author");
             modelBuilder.Entity<Author>().HasMany(c => c.Author_Products).WithRequired(p => p.Author);
-            modelBuilder.Entity<Author>().Property(x => x.Name).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Author>().Property(x => x.NameAuthor).HasMaxLength(100).IsRequired();
 
             modelBuilder.Entity<Author_Product>().ToTable("Author_Product");
             modelBuilder.Entity<Author_Product>().Property(x => x.Role).HasMaxLength(100).IsRequired();

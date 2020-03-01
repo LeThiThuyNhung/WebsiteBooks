@@ -44,8 +44,8 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory");
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher");
             return View();
         }
 
@@ -55,10 +55,10 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,CategoryId,PublisherId,Name,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
+        public ActionResult Create([Bind(Include = "Id,CategoryId,PublisherId,NameProduct,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", product.PublisherId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory", product.CategoryId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher", product.PublisherId);
 
             if (fileUpload == null)
             {
@@ -103,8 +103,8 @@ namespace S3Train.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", product.PublisherId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory", product.CategoryId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher", product.PublisherId);
             return View(product);
         }
 
@@ -114,10 +114,10 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,CategoryId,PublisherId,Name,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
+        public ActionResult Edit([Bind(Include = "Id,CategoryId,PublisherId,NameProduct,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "Name", product.PublisherId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory", product.CategoryId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher", product.PublisherId);
 
             if (ModelState.IsValid)
             {

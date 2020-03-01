@@ -8,7 +8,7 @@ namespace S3Train.Domain
 {
     public class Position : EntityBase
     {
-        public string Name { get; set; }
+        public string NamePosition { get; set; }
         public virtual ICollection<Staff> Staffs { get; set; }
     }
 }

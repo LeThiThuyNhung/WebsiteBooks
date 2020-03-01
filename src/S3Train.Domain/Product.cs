@@ -7,7 +7,7 @@ namespace S3Train.Domain
     {
         public Guid CategoryId { get; set; }
         public Guid PublisherId { get; set; }
-        public string Name { get; set; }
+        public string NameProduct { get; set; }
         public string Summary { get; set; }
         public decimal Price { get; set; }
         public string ImagePath { get; set; }

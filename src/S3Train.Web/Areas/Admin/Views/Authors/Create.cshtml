@@ -1,11 +1,11 @@
-﻿@model S3Train.Domain.Publisher
+﻿@model S3Train.Domain.Author
 
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>CREATE A NEW PUBLISHER</h2>
+<h2>CREATE A NEW AUTHOR</h2>
 
 
 @using (Html.BeginForm()) 
@@ -18,8 +18,8 @@
         <div class="form-group">
             @Html.Label("Name", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.NamePublisher, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NamePublisher, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.NameAuthor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NameAuthor, "", new { @class = "text-danger" })
             </div>
         </div>
         <br />

@@ -8,7 +8,7 @@ namespace S3Train.Domain
 {
     public class Author : EntityBase
     {
-        public string Name { get; set; }
+        public string NameAuthor { get; set; }
         public virtual ICollection<Author_Product> Author_Products { get; set; }
     }
 }
