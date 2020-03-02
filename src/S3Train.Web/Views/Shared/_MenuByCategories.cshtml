@@ -2,13 +2,11 @@
 @using S3Train.Web.Models;
 @model IList<CategoryViewModel>
 
-<div id='cssmenu'>
-    <ul>
-        <li class='home'><span class='close-menu' style='font-size:26px;font-weight:400;position:relative' title='Close'>&#8801; <span style='font-size:18px;font-weight:700;position:absolute;top:17px;left:33px'>Categories</span></span></li>
-        @foreach (var item in Model)
-        {
-            <li><a href='/' title='Home'><span>@item.Name</span></a></li>
-        }
-    </ul>
 
-</div>
+<ul>
+    <li class='home'><span class='close-menu' style='font-size:26px;font-weight:400;position:relative' title='Close'>&#8801; <span style='font-size:18px;font-weight:700;position:absolute;top:17px;left:33px'>Categories</span></span></li>
+    @foreach (var item in Model)
+    {
+        <li><a href='/' title='Home'><span>@item.Name</span></a></li>
+    }
+</ul>
