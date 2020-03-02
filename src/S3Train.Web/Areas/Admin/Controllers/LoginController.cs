@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace S3Train.Web.Areas.Admin.Controllers
 {
@@ -22,21 +23,24 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(Login model)
         {
-            var result = new Account().Login(model.Email, model.Password);
-            if(result && ModelState.IsValid)
+            //var result = new Account().Login(model.Email, model.Password);
+            if(Membership.ValidateUser(model.Email, model.Password) && ModelState.IsValid)
             {
-                SessionHelper.SetSession(new UserSession() { Email = model.Email });
-                return RedirectToAction("Index", "Products");
-            }
-            else if(!result)
-            {
-                ModelState.AddModelError("", "Username or password wrong!");
+                //SessionHelper.SetSession(new UserSession() { Email = model.Email });
+                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                return RedirectToAction("Index", "HomeAdmin");
             }
             else
             {
                 ModelState.AddModelError("", "Username or password wrong!");
             }
             return View(model);
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

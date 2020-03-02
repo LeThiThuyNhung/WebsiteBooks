@@ -15,6 +15,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
 {
     public class ProductsController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/Products

@@ -9,7 +9,7 @@ using S3Train.Models;
 
 namespace S3Train.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

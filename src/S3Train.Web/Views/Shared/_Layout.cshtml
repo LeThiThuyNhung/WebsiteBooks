@@ -76,6 +76,7 @@
 </head>
 <body>
     @RenderBody()
+    @RenderSection("scripts", required: false)
     <!--header-->
     <div class="header">
         <div class="top-header">
@@ -108,7 +109,7 @@
                     <div id='cssmenu'>
                         <ul>
                             <li class='home'><span class='close-menu' style='font-size:26px;font-weight:400;position:relative' title='Close'>&#8801; <span style='font-size:18px;font-weight:700;position:absolute;top:17px;left:33px'>Categories</span></span></li>
-                            @Html.Partial("_Categories")
+                            @Html.Partial("~/Views/Home/_Categories.cshtml")
                         </ul>
                     </div>
                 </div>
