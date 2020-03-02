@@ -211,6 +211,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,7 +227,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
-    <Compile Include="Models\DetailProductViewModel.cs" />
+    <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
@@ -570,6 +572,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="tinymce_4.2.7\tinymce\changelog.txt" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\license.txt" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
@@ -689,7 +692,6 @@
     <Content Include="Views\Shared\_ProductItem.cshtml" />
     <Content Include="Views\Home\_HomeSlider.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
-    <Content Include="Views\Home\_Categories.cshtml" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\langs\readme.md" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
@@ -697,11 +699,13 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
-    <Content Include="Views\Product\_Detail.cshtml" />
     <Content Include="Views\Home\_Product.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Shared\_MenuByCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

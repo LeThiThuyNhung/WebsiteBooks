@@ -5,7 +5,7 @@ using System.Web;
 
 namespace S3Train.Web.Models
 {
-    public class DetailProductViewModel
+    public class ProductDetailViewModel
     {
         public Guid Id { get; set; }
         public string ImagePath { get; set; }

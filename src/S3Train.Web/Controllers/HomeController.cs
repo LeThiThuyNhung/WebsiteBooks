@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using S3Train.Contract;
 using S3Train.Domain;
-using S3Train.Models;
 using S3Train.Web.Models;
 
 namespace S3Train.Controllers
@@ -27,7 +26,7 @@ namespace S3Train.Controllers
             {
                 SliderItems = GetHomeSlider(_productAdvertisementService.GetSliderItems()),
                 Products = GetHomeProducts(_productService.SelectAll()),
-                CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
+                //CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
             };
 
             return View(model);
@@ -39,7 +38,7 @@ namespace S3Train.Controllers
             {
                 Id = x.Id,
                 ImagePath = x.ImagePath,
-                Name = x.Name,
+                NameProduct = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
                 Rating = x.Rating ?? 0,
                 Grouping = i / 4
@@ -61,7 +60,7 @@ namespace S3Train.Controllers
         {
             return category.Select(x => new CategoryViewModel
             {
-                Name = x.Name
+                Name = x.NameCategory
             }).ToList();
 
         }

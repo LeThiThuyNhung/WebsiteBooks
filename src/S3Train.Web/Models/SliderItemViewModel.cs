@@ -1,4 +1,5 @@
-﻿namespace S3Train.Models
+﻿
+namespace S3Train.Web.Models
 {
     public class SliderItemViewModel
     {

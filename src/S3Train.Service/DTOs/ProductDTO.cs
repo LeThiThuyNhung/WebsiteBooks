@@ -1,8 +1,13 @@
-﻿using System;
+﻿using S3Train.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace S3Train.Domain
+namespace S3Train.DTOs
 {
-    public class Product : EntityBase
+    public class ProductDTO
     {
         public Guid CategoryId { get; set; }
         public Guid PublisherId { get; set; }
@@ -15,7 +20,6 @@ namespace S3Train.Domain
         public int Amount { get; set; }
         public int? Rating { get; set; }
 
-        public virtual Category Category { get; set; }
-        public virtual Publisher Publisher { get; set; }
+        public PublisherDTO Publisher { get; set; }
     }
 }

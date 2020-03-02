@@ -1,5 +1,4 @@
-﻿@using S3Train.Models;
-@model HomeViewModel
+﻿
 <!--header-->
 <div class="header">
     <div class="top-header">
@@ -30,13 +29,6 @@
 
             <div id='css-menu'>
                 <div id='cssmenu'>
-                    <ul>
-                        <li class='home'><span class='close-menu' style='font-size:26px;font-weight:400;position:relative' title='Close'>&#8801; <span style='font-size:18px;font-weight:700;position:absolute;top:17px;left:33px'>Categories</span></span></li>
-                        @foreach (var item in Model.CategoryItems)
-                        {
-                            <li><a href='/' title='Home'><span>@item.Name</span></a></li>
-                        }
-                    </ul>
                 </div>
             </div>
             <div class="logo">
