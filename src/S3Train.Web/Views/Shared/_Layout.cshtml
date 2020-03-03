@@ -1,54 +1,4 @@
-﻿@*<!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>Shop Homepage - Start Bootstrap Template</title>
-
-        <!-- Bootstrap core CSS -->
-        <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <!-- Custom styles for this template -->
-        <link href="~/Content/css/site.css" rel="stylesheet" />
-
-        <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
-        <!--theme-style-->
-
-        <link href="~/Content/css/style.css" rel="stylesheet" />
-        <!--//theme-style-->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-        <!--fonts-->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-        <!--//fonts-->
-        <script src="~/Content/js/jquery.min.js"></script>
-        <!--script-->
-    </head>
-
-    <body>
-        <!-- Navigation -->
-        @Html.Partial("_VerticleNavbar")
-
-        <!-- Page Content -->
-        @RenderBody()
-        <!-- /.container -->
-        <!-- Footer -->
-        @Html.Partial("_Footer")
-
-        <!-- Bootstrap core JavaScript -->
-        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
-        <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        @RenderSection("scripts", required: false)
-    </body>
-
-    </html>*@
-
-
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +21,7 @@
     <script src="~/Content/js/jquery.min.js"></script>
     <script src="~/Content/js/categories.js"></script>
     <script src="~/Content/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
     <script src="~/Content/jsDetail/easyResponsiveTabs.js"></script>
     <!--script-->
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
@@ -92,11 +43,8 @@
     <!---->
    @Html.Partial("_Footer")
 
-    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
-    <script src="~/Content/js/jquery.openCarousel.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/easing.js"></script>
-    <script type="text/javascript" src="js/move-top.js"></script>
-    <script src="~/Scripts/site.js"></script>
+   
+    @*<script src="~/Scripts/site.js"></script>*@
    
 </body>
 </html>

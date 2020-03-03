@@ -1,23 +1,23 @@
 ﻿
 .well {
-    margin-right:25px;
+   
 }
 #myCarousel .thumbnail {
     margin-bottom: 0;
+    height: 400px;
 }
 
 #myCarousel img {
-    width: 200px;
-    height: 250px;
+    width: 244px;
+    height: 280px;
 }
 
-#myCarousel h5{
-    margin-left:2em;
-    width:200px;
+
+#myCarousel h5 {
+    width: 245px;
+    height:25px;
 }
-#myCarousel a{
-    float:right;
-}
+
 .carousel-control.left, .carousel-control.right {
     background-image: none !important;
     color: #fff;
