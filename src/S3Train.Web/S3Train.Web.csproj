@@ -236,27 +236,33 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\cssDetail\bootstrap.css" />
+    <Content Include="Content\cssDetail\component.css" />
+    <Content Include="Content\cssDetail\easy-responsive-tabs.css" />
+    <Content Include="Content\cssDetail\etalage.css" />
+    <Content Include="Content\cssDetail\form.css" />
+    <Content Include="Content\cssDetail\megamenu.css" />
+    <Content Include="Content\cssDetail\normalize.css" />
+    <Content Include="Content\cssDetail\style.css" />
     <Content Include="Content\css\clndr.css" />
     <Content Include="Content\css\component.css" />
-    <Content Include="Content\css\detail.css" />
     <Content Include="Content\css\easy-responsive-tabs.css" />
+    <Content Include="Content\css\global.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
-    <Content Include="Content\js\cbpFWTabs.js" />
-    <Content Include="Content\js\clndr.js" />
-    <Content Include="Content\js\easing.js" />
-    <Content Include="Content\js\easyResponsiveTabs.js" />
+    <Content Include="Content\jsDetail\easyResponsiveTabs.js" />
+    <Content Include="Content\jsDetail\jquery.easydropdown.js" />
+    <Content Include="Content\jsDetail\jquery.etalage.min.js" />
+    <Content Include="Content\jsDetail\jquery.min.js" />
+    <Content Include="Content\jsDetail\megamenu.js" />
+    <Content Include="Content\jsDetail\modernizr.custom.js" />
+    <Content Include="Content\jsDetail\simpleCart.min.js" />
     <Content Include="Content\js\jquery-1.11.0.min.js" />
     <Content Include="Content\js\jquery-1.9.0.min.js" />
-    <Content Include="Content\js\jquery.openCarousel.js" />
-    <Content Include="Content\js\moment-2.2.1.js" />
-    <Content Include="Content\js\move-top.js" />
-    <Content Include="Content\js\navigation.js" />
+    <Content Include="Content\js\jquery.flexisel.js" />
     <Content Include="Content\js\site.js" />
-    <Content Include="Content\js\star-rating.js" />
-    <Content Include="Content\js\underscore-min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TemplateAdmin\calendar.html" />
     <Content Include="Content\TemplateAdmin\chart.html" />
@@ -446,7 +452,6 @@
     <Content Include="Content\js\categories.js" />
     <Content Include="Content\js\jquery-1.11.1.min.js" />
     <Content Include="Content\js\jquery.etalage.min.js" />
-    <Content Include="Content\js\jquery.flexisel.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\jquery.wmuSlider.js" />
     <Content Include="Content\Site.css" />
@@ -702,10 +707,10 @@
     <Content Include="Views\Home\_Product.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Shared\_MenuByCategories.cshtml" />
+    <Content Include="Views\Menu\CategoriesMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
