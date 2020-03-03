@@ -17,8 +17,16 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Author_Product
         public ActionResult Index()
         {
-            var author_Products = db.Author_Products.Include(a => a.Author).Include(a => a.Product);
-            return View(author_Products.ToList());
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                var author_Products = db.Author_Products.Include(a => a.Author).Include(a => a.Product);
+                return View(author_Products.ToList());
+            }
+            
         }
 
         // GET: Admin/Author_Product/Details/5
@@ -39,9 +47,17 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Author_Product/Create
         public ActionResult Create()
         {
-            ViewBag.AuthorId = new SelectList(db.Authors, "Id", "NameAuthor");
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewBag.AuthorId = new SelectList(db.Authors, "Id", "NameAuthor");
+                ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
+                return View();
+            }
+            
         }
 
         // POST: Admin/Author_Product/Create

@@ -21,10 +21,18 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index(int? page)
         {
-            var products = db.Products.Include(p => p.Category).Include(p => p.Publisher);
-            int pageNumber = (page ?? 1);
-            int pageSize = 10;
-            return View(products.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                var products = db.Products.Include(p => p.Category).Include(p => p.Publisher);
+                int pageNumber = (page ?? 1);
+                int pageSize = 10;
+                return View(products.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            }
+            
         }
 
         // GET: Admin/Products/Details/5
@@ -45,9 +53,16 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory");
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher");
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory");
+                ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher");
+                return View();
+            }
         }
 
         // POST: Admin/Products/Create
@@ -117,32 +132,31 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,CategoryId,PublisherId,NameProduct,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory", product.CategoryId);
-            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher", product.PublisherId);
-
             if (ModelState.IsValid)
             {
-                if (fileUpload == null)
-                {
-                    //Luu ten file
-                    var fileName = Path.GetFileName(fileUpload.FileName);
-                    //Luu duong dan
-                    var path = Path.Combine(Server.MapPath("~/ImagePD"), fileName);
-                    //KT HINH ANH TON TAI CHUA
-                    if (System.IO.File.Exists(path))
-                    {
-                        ViewBag.Notification = "Image already exists";
-                    }
-                    else
-                    {
-                        fileUpload.SaveAs(path);
-                    }
-                    product.ImagePath = fileName;
-                }
+                //if (fileUpload != null)
+                //{
+                //    //Luu ten file
+                //    var fileName = Path.GetFileName(fileUpload.FileName);
+                //    //Luu duong dan
+                //    var path = Path.Combine(Server.MapPath("~/ImagePD"), fileName);
+                //    //KT HINH ANH TON TAI CHUA
+                //    if (System.IO.File.Exists(path))
+                //    {
+                //        ViewBag.Notification = "Image already exists";
+                //    }
+                //    else
+                //    {
+                //        fileUpload.SaveAs(path);
+                //    }
+                //    product.ImagePath = fileName;
+                //}
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory", product.CategoryId);
+            ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher", product.PublisherId);
             return View(product);
         }
 

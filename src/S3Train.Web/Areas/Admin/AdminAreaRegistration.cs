@@ -17,7 +17,7 @@ namespace S3Train.Web.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { Controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

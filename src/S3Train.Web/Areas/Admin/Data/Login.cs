@@ -8,9 +8,9 @@ namespace S3Train.Web.Areas.Admin.Data
 {
     public class Login
     {
-        [Required(ErrorMessage = "Must not be empty")]
+        [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Must not be empty")]
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
     }

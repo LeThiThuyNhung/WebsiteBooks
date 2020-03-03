@@ -79,7 +79,6 @@
     <Compile Include="Contract\IProductService.cs" />
     <Compile Include="GenenicServiceBase.cs" />
     <Compile Include="IGenenicServiceBase.cs" />
-    <Compile Include="Service\Account.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\ProductAdvertisementService.cs" />
     <Compile Include="Service\ProductService.cs" />

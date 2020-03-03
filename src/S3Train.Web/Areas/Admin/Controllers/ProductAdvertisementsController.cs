@@ -20,30 +20,44 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/ProductAdvertisements
         public ActionResult Index(int? page)
         {
-            int pageNumber = (page ?? 1);
-            int pageSize = 10;
-            return View(db.ProductAdvertisements.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                int pageNumber = (page ?? 1);
+                int pageSize = 10;
+                return View(db.ProductAdvertisements.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            }
         }
 
         // GET: Admin/ProductAdvertisements/Details/5
-        //public ActionResult Details(Guid? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    ProductAdvertisement productAdvertisement = db.ProductAdvertisements.Find(id);
-        //    if (productAdvertisement == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(productAdvertisement);
-        //}
+        public ActionResult Details(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProductAdvertisement productAdvertisement = db.ProductAdvertisements.Find(id);
+            if (productAdvertisement == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productAdvertisement);
+        }
 
         // GET: Admin/ProductAdvertisements/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Admin/ProductAdvertisements/Create

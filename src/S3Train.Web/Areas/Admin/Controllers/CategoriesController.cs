@@ -19,9 +19,16 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Categories
         public ActionResult Index(int? page)
         {
-            int pageNumber = (page ?? 1);
-            int pageSize = 10;
-            return View(db.Categories.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                int pageNumber = (page ?? 1);
+                int pageSize = 10;
+                return View(db.Categories.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            }
         }
 
         // GET: Admin/Categories/Details/5
@@ -42,7 +49,14 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Categories/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Admin/Categories/Create

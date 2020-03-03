@@ -12,7 +12,15 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/HomeAdmin
         public ActionResult Index()
         {
-            return View();
+            if(Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
     }
 }
