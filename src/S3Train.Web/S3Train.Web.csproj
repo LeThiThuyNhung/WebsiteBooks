@@ -257,6 +257,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CSProductViewModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -894,11 +895,10 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Shared\_MenuByCategories.cshtml" />
     <Content Include="Views\Menu\CategoriesMenu.cshtml" />
+    <Content Include="Views\Home\_NewProduct.cshtml" />
+    <Content Include="Views\Home\_CSProduct.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="ImagePD\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

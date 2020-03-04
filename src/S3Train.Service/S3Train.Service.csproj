@@ -79,6 +79,7 @@
     <Compile Include="Contract\IProductDetailService.cs" />
     <Compile Include="Contract\IProductAdvertisementService.cs" />
     <Compile Include="Contract\IProductService.cs" />
+    <Compile Include="DTOs\CSProductDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\PublisherDTO.cs" />
     <Compile Include="GenenicServiceBase.cs" />

@@ -15,9 +15,10 @@ namespace S3Train.Web.Controllers
         public ProductController(IProductDetailService detailProductService)
         {
             _detailProductService = detailProductService;
+
         }
 
-        public ActionResult Detail (Guid id)
+        public ActionResult Detail(Guid id)
         {
             var prodDetail = _detailProductService.GetProductDetail(id);
 
@@ -32,19 +33,7 @@ namespace S3Train.Web.Controllers
 
             return View(productDetailViewModel);
         }
-
-        private static ProductDetailViewModel GetDetailProduct(Product product)
-        {
-            return new ProductDetailViewModel
-            {
-                Id = product.Id,
-                ImagePath = product.ImagePath,
-                Name = product.NameProduct,
-                DisplayPrice = $"{product.Price}",
-                Rating = product.Rating ?? 0,
-                NamePublisher = product.Publisher.NamePublisher,
-
-            };
-        }
     }
+
+       
 }

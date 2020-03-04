@@ -12,9 +12,9 @@ namespace S3Train.Controllers
         private readonly IProductService _newProductService;
         private readonly IProductAdvertisementService _productAdvertisementService;
         private readonly ICategoryService _categoryService;
-        private readonly IProductService _cSProductService;
+        private readonly ICSProductService _cSProductService;
 
-        public HomeController(IProductService newProductService, IProductAdvertisementService productAdvertisementService, ICategoryService categoryService, IProductService cSProductSerVice)
+        public HomeController(IProductService newProductService, IProductAdvertisementService productAdvertisementService, ICategoryService categoryService, ICSProductService cSProductSerVice)
         {
             _newProductService = newProductService;
             _productAdvertisementService = productAdvertisementService;
@@ -29,7 +29,7 @@ namespace S3Train.Controllers
                 SliderItems = GetHomeSlider(_productAdvertisementService.GetSliderItems()),
                 NewProducts = GetHomeNewProducts(_newProductService.GetNewProductItems()),
                 //CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
-                //CSProducts = GetHomeCSProducts(_cSProductService.GetCSProductItems()),
+                CSProducts = GetHomeCSProducts(_cSProductService.GetCSProductItems()),
             };
 
             return View(model);
@@ -43,20 +43,18 @@ namespace S3Train.Controllers
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
-                Rating = x.Rating ?? 0,
                 Grouping = i / 4
             }).GroupBy(e => e.Grouping).ToList();
         }
 
-        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeCSProducts(IList<Product> products)
+        private static IEnumerable<IGrouping<int, CSProductViewModel>> GetHomeCSProducts(IList<Product> products)
         {
-            return products.Select((x, i) => new ProductViewModel
+            return products.Select((x, i) => new CSProductViewModel
             {
                 Id = x.Id,
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
-                Rating = x.Rating ?? 0,
                 Grouping = i / 4
             }).GroupBy(e => e.Grouping).ToList();
         }
