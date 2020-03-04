@@ -14,6 +14,10 @@ namespace S3Train.Domain
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductAdvertisement> ProductAdvertisements { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Position> Positions { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Author_Product> Author_Products { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -25,7 +29,8 @@ namespace S3Train.Domain
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Product>().ToTable("Product");
-            modelBuilder.Entity<Product>().Property(x => x.NameProduct).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Product>().HasMany(c => c.Author_Products).WithRequired(p => p.Product);
+            modelBuilder.Entity<Product>().Property(x => x.NameProduct).HasMaxLength(300).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Price).IsRequired();
@@ -46,6 +51,28 @@ namespace S3Train.Domain
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.EventUrl).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.Title).HasMaxLength(100).IsOptional();
             modelBuilder.Entity<ProductAdvertisement>().Property(x => x.Description).HasMaxLength(500).IsOptional();
+
+            modelBuilder.Entity<Staff>().ToTable("Staff");
+            modelBuilder.Entity<Staff>().Property(x => x.NameStaff).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.ImagePath).HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Address).HasMaxLength(200).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Sex).HasMaxLength(3).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.DateOfBirth).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.PhoneNumber).HasMaxLength(10).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Email).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Password).HasMaxLength(100).IsRequired();
+
+            modelBuilder.Entity<Position>().ToTable("Position");
+            modelBuilder.Entity<Position>().HasMany(c => c.Staffs).WithRequired(p => p.Position);
+            modelBuilder.Entity<Position>().Property(x => x.NamePosition).HasMaxLength(100).IsRequired();
+
+            modelBuilder.Entity<Author>().ToTable("Author");
+            modelBuilder.Entity<Author>().HasMany(c => c.Author_Products).WithRequired(p => p.Author);
+            modelBuilder.Entity<Author>().Property(x => x.NameAuthor).HasMaxLength(100).IsRequired();
+
+            modelBuilder.Entity<Author_Product>().ToTable("Author_Product");
+            modelBuilder.Entity<Author_Product>().Property(x => x.Role).HasMaxLength(100);
+            modelBuilder.Entity<Author_Product>().Property(x => x.Location).HasMaxLength(100);
         }
         
     }

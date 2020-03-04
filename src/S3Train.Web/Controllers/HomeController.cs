@@ -60,7 +60,7 @@ namespace S3Train.Controllers
         {
             return category.Select(x => new CategoryViewModel
             {
-                Name = x.NameCategory
+                Name = x.Name
             }).ToList();
 
         }
