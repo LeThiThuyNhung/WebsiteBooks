@@ -25,7 +25,7 @@ namespace S3Train.Controllers
             var model = new HomeViewModel
             {
                 SliderItems = GetHomeSlider(_productAdvertisementService.GetSliderItems()),
-                Products = GetHomeProducts(_productService.SelectAll()),
+                Products = GetHomeProducts(_productService.GetNewProductItems()),
                 //CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
             };
 

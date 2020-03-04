@@ -252,13 +252,17 @@
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\images\price-rating.png" />
+    <Content Include="Content\images\tag.png" />
     <Content Include="Content\jsDetail\easyResponsiveTabs.js" />
+    <Content Include="Content\jsDetail\jquery-1.9.0.min.js" />
     <Content Include="Content\jsDetail\jquery.easydropdown.js" />
     <Content Include="Content\jsDetail\jquery.etalage.min.js" />
     <Content Include="Content\jsDetail\jquery.min.js" />
     <Content Include="Content\jsDetail\megamenu.js" />
     <Content Include="Content\jsDetail\modernizr.custom.js" />
     <Content Include="Content\jsDetail\simpleCart.min.js" />
+    <Content Include="Content\jsDetail\star-rating.js" />
     <Content Include="Content\js\jquery-1.11.0.min.js" />
     <Content Include="Content\js\jquery-1.9.0.min.js" />
     <Content Include="Content\js\jquery.flexisel.js" />

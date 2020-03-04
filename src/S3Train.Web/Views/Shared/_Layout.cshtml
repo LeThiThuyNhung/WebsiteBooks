@@ -18,17 +18,30 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,600,800,700,500,300,100,900' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Arimo:400,700,700italic' rel='stylesheet' type='text/css'>
     <!--//fonts-->
-    <script src="~/Content/js/jquery.min.js"></script>
+    @*<script src="~/Content/js/jquery.min.js"></script>*@
     <script src="~/Content/js/categories.js"></script>
     <script src="~/Content/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
     <script src="~/Content/jsDetail/easyResponsiveTabs.js"></script>
+    
     <!--script-->
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
     <link href="~/Content/cssDetail/easy-responsive-tabs.css" rel="stylesheet" />
     <link href="~/Content/cssDetail/style.css" rel="stylesheet" />
+ 
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#horizontalTab').easyResponsiveTabs({
+                type: 'default', //Types: default, vertical, accordion
+                width: 'auto', //auto or any width like 600px
+                fit: true   // 100% fit in a container
+            });
+        });
+    </script>
+    <script src="~/Content/jsDetail/star-rating.js"></script>
 </head>
 <body>
     
