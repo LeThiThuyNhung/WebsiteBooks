@@ -17,6 +17,7 @@ namespace S3Train.Domain
         public int? Rating { get; set; }
 
         public virtual ICollection<Author_Product> Author_Products { get; set; }
+        public virtual ICollection<PromotionDetail> PromotionDetails { get; set; }
         public virtual Category Category { get; set; }
         public virtual Publisher Publisher { get; set; }
     }
