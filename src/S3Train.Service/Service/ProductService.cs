@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using S3Train.Contract;
 using S3Train.Domain;
-using S3Train.DTOs;
+
 
 namespace S3Train.Service
 {
@@ -32,18 +32,6 @@ namespace S3Train.Service
             return book;
         }
 
-        public IList<Product> GetCSProductItems()
-        {
-            
-            var csbook = DbContext.Products
-                .Where(x => x.CreatedDate == null)
-                .Select(n => new Product
-            {
-                NameProduct = n.NameProduct,
-                ImagePath = n.ImagePath,
-                Price = n.Price,
-            }).ToList();
-            return csbook;
-        }
+       
     }
 }

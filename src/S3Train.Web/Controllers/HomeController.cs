@@ -9,15 +9,17 @@ namespace S3Train.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProductService _productService;
+        private readonly IProductService _newProductService;
         private readonly IProductAdvertisementService _productAdvertisementService;
         private readonly ICategoryService _categoryService;
+        private readonly IProductService _cSProductService;
 
-        public HomeController(IProductService productService, IProductAdvertisementService productAdvertisementService, ICategoryService categoryService)
+        public HomeController(IProductService newProductService, IProductAdvertisementService productAdvertisementService, ICategoryService categoryService, IProductService cSProductSerVice)
         {
-            _productService = productService;
+            _newProductService = newProductService;
             _productAdvertisementService = productAdvertisementService;
             _categoryService = categoryService;
+            _cSProductService = cSProductSerVice;
         }
 
         public ActionResult Index()
@@ -25,14 +27,28 @@ namespace S3Train.Controllers
             var model = new HomeViewModel
             {
                 SliderItems = GetHomeSlider(_productAdvertisementService.GetSliderItems()),
-                Products = GetHomeProducts(_productService.GetNewProductItems()),
+                NewProducts = GetHomeNewProducts(_newProductService.GetNewProductItems()),
                 //CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
+                //CSProducts = GetHomeCSProducts(_cSProductService.GetCSProductItems()),
             };
 
             return View(model);
         }
 
-        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeProducts(IList<Product> products)
+        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeNewProducts(IList<Product> products)
+        {
+            return products.Select((x, i) => new ProductViewModel
+            {
+                Id = x.Id,
+                ImagePath = x.ImagePath,
+                NameProduct = x.NameProduct,
+                DisplayPrice = $"${x.Price}",
+                Rating = x.Rating ?? 0,
+                Grouping = i / 4
+            }).GroupBy(e => e.Grouping).ToList();
+        }
+
+        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeCSProducts(IList<Product> products)
         {
             return products.Select((x, i) => new ProductViewModel
             {
@@ -60,7 +76,7 @@ namespace S3Train.Controllers
         {
             return category.Select(x => new CategoryViewModel
             {
-                Name = x.Name
+                NameCategory = x.NameCategory
             }).ToList();
 
         }

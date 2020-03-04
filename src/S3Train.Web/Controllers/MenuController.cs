@@ -24,7 +24,7 @@ namespace S3Train.Web.Controllers
             var categories = _categoryService.GetCategoryItems()
                 .Select(x => new CategoryViewModel
                 {
-                    Name = x.NameCategory
+                    NameCategory = x.NameCategory
                 }).ToList();
 
             return PartialView("_MenuByCategories", categories);
