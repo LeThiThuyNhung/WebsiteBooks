@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using S3Train.Domain;
+using PagedList;
 
 namespace S3Train.Web.Areas.Admin.Controllers
 {
@@ -15,7 +16,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin/Author_Product
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             if (Session["Email"] == null)
             {
@@ -24,7 +25,9 @@ namespace S3Train.Web.Areas.Admin.Controllers
             else
             {
                 var author_Products = db.Author_Products.Include(a => a.Author).Include(a => a.Product);
-                return View(author_Products.ToList());
+                int pageNumber = (page ?? 1);
+                int pageSize = 10;
+                return View(author_Products.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
             }
             
         }
