@@ -33,6 +33,7 @@ namespace S3Train.Domain
             modelBuilder.Entity<Product>().ToTable("Product");
             modelBuilder.Entity<Product>().HasMany(c => c.Author_Products).WithRequired(p => p.Product);
             modelBuilder.Entity<Product>().HasMany(c => c.PromotionDetails).WithRequired(p => p.Product);
+            modelBuilder.Entity<Product>().HasMany(c => c.ProductAdvertisement).WithRequired(p => p.Product);
             modelBuilder.Entity<Product>().Property(x => x.NameProduct).HasMaxLength(300).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
@@ -59,7 +60,7 @@ namespace S3Train.Domain
             modelBuilder.Entity<Staff>().Property(x => x.NameStaff).HasMaxLength(100).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.ImagePath).HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.Address).HasMaxLength(200).IsRequired();
-            modelBuilder.Entity<Staff>().Property(x => x.Sex).HasMaxLength(3).IsRequired();
+            modelBuilder.Entity<Staff>().Property(x => x.Sex).HasMaxLength(10).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.DateOfBirth).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.PhoneNumber).HasMaxLength(10).IsRequired();
             modelBuilder.Entity<Staff>().Property(x => x.Email).HasMaxLength(100).IsRequired();

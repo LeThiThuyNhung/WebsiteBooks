@@ -1,13 +1,13 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@model PagedList.PagedList<S3Train.Domain.ProductAdvertisement>
+@model PagedList.PagedList<S3Train.Domain.Promotion>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<h2>PRODUCT ADVERTISEMENTS</h2>
+<h2>PROMOTIONS</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,22 +15,13 @@
 <table class="table table-bordered">
     <tr>
         <th>
-            Book
+            Promotion Name
         </th>
         <th>
-            Title
+            Start Time
         </th>
         <th>
-            Description
-        </th>
-        <th>
-            Event Url
-        </th>
-        <th>
-            Image
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().AdType)
+            End Time
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().CreatedDate)
@@ -47,22 +38,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Product.NameProduct)
+            @Html.DisplayFor(modelItem => item.PromotionName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.StartTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EventUrl)
-        </td>
-        <td>
-            <img src="@Url.Content("~/ImagePD/"+item.ImagePath)" width="50" height="50" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdType)
+            @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedDate)
