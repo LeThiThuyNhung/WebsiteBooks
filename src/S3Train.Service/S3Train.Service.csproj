@@ -79,7 +79,9 @@
     <Compile Include="Contract\IProductDetailService.cs" />
     <Compile Include="Contract\IProductAdvertisementService.cs" />
     <Compile Include="Contract\IProductService.cs" />
+    <Compile Include="Contract\IPromotionDetailService.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
+    <Compile Include="DTOs\PromotionDetailDTO.cs" />
     <Compile Include="DTOs\PublisherDTO.cs" />
     <Compile Include="GenenicServiceBase.cs" />
     <Compile Include="IGenenicServiceBase.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Service\ProductAdvertisementService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\PromotionDetailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\S3Train.Core\S3Train.Core.csproj">

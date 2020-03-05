@@ -34,6 +34,7 @@ namespace S3Train.Domain
             modelBuilder.Entity<Product>().HasMany(c => c.Author_Products).WithRequired(p => p.Product);
             modelBuilder.Entity<Product>().HasMany(c => c.PromotionDetails).WithRequired(p => p.Product);
             modelBuilder.Entity<Product>().HasMany(c => c.ProductAdvertisement).WithRequired(p => p.Product);
+
             modelBuilder.Entity<Product>().Property(x => x.NameProduct).HasMaxLength(300).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
