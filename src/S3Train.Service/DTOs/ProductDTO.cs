@@ -1,5 +1,4 @@
-﻿using S3Train.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,7 @@ namespace S3Train.DTOs
 {
     public class ProductDTO
     {
+        public Guid ProductId { get; set; }
         public Guid CategoryId { get; set; }
         public Guid PublisherId { get; set; }
         public string NameProduct { get; set; }
@@ -20,6 +20,6 @@ namespace S3Train.DTOs
         public int Amount { get; set; }
         public int? Rating { get; set; }
 
-        public PublisherDTO Publisher { get; set; }
+        public PublisherDTO Publisher  { get; set; }
     }
 }

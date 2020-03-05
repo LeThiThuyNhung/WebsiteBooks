@@ -15,10 +15,27 @@
 
 #myCarousel h5 {
     width: 220px;
-    height:45px;
+    height:50px;
     margin-left:2px;
 }
 
+
+#myCarousel1 .thumbnail {
+    margin-bottom: 0;
+    height: 400px;
+}
+
+#myCarousel1 img {
+    width: 225px;
+    height: 260px;
+}
+
+
+#myCarousel1 h5 {
+    width: 220px;
+    height: 50px;
+    margin-left: 2px;
+}
 .carousel-control.left, .carousel-control.right {
     background-image: none !important;
     color: #fff;

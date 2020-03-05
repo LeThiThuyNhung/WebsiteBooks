@@ -28,6 +28,7 @@ namespace S3Train.Web.Controllers
                 ImagePath = prodDetail.ImagePath,
                 DisplayPrice = $"{prodDetail.Price}",
                 Rating = prodDetail.Rating ?? 0,
+                Summary = prodDetail.Summary,
                 NamePublisher = prodDetail.Publisher.NamePublisher,
             };
 

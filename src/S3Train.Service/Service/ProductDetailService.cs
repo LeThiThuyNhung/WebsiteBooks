@@ -24,6 +24,7 @@ namespace S3Train.Service
                     ImagePath = n.ImagePath,
                     Price = n.Price,
                     Rating = n.Rating,
+                    Summary = n.Summary,
                     Publisher = new PublisherDTO {
                         NamePublisher = n.Publisher.NamePublisher
                     }

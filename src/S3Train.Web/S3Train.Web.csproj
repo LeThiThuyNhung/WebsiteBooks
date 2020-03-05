@@ -262,6 +262,7 @@
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\PromotionProductViewModel.cs" />
     <Compile Include="Models\SliderItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -544,19 +545,42 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="ImagePD\0.png" />
+    <Content Include="ImagePD\comic1.PNG" />
+    <Content Include="ImagePD\comic2.PNG" />
+    <Content Include="ImagePD\comic3.PNG" />
+    <Content Include="ImagePD\comic4.PNG" />
+    <Content Include="ImagePD\comic5.PNG" />
+    <Content Include="ImagePD\cook1.PNG" />
     <Content Include="ImagePD\Dictionary1.PNG" />
     <Content Include="ImagePD\Dictionary2.PNG" />
     <Content Include="ImagePD\Dictionnary3.PNG" />
     <Content Include="ImagePD\h.PNG" />
+    <Content Include="ImagePD\LOGIN.PNG" />
     <Content Include="ImagePD\magazine1.PNG" />
+    <Content Include="ImagePD\magazine2.PNG" />
+    <Content Include="ImagePD\magazine3.PNG" />
+    <Content Include="ImagePD\magazine4.PNG" />
+    <Content Include="ImagePD\novel1.PNG" />
+    <Content Include="ImagePD\novel2.PNG" />
     <Content Include="ImagePD\ph.PNG" />
+    <Content Include="ImagePD\psychology1.PNG" />
+    <Content Include="ImagePD\psychology2.PNG" />
+    <Content Include="ImagePD\science1.PNG" />
+    <Content Include="ImagePD\science2.PNG" />
     <Content Include="ImagePD\search.PNG" />
+    <Content Include="ImagePD\short1.PNG" />
+    <Content Include="ImagePD\short2.PNG" />
     <Content Include="ImagePD\SIGNUP.PNG" />
     <Content Include="ImagePD\slide1.png" />
     <Content Include="ImagePD\slide2.jpg" />
+    <Content Include="ImagePD\slide2.PNG" />
     <Content Include="ImagePD\slide3.jpg" />
     <Content Include="ImagePD\slide4.png" />
     <Content Include="ImagePD\slide5.jpg" />
+    <Content Include="ImagePD\slider1.png" />
+    <Content Include="ImagePD\thriller1.PNG" />
+    <Content Include="ImagePD\thriller2.PNG" />
+    <Content Include="ImagePD\thriller3.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -897,6 +921,7 @@
     <Content Include="Views\Menu\CategoriesMenu.cshtml" />
     <Content Include="Views\Home\_NewProduct.cshtml" />
     <Content Include="Views\Home\_CSProduct.cshtml" />
+    <Content Include="Views\Home\_PromotionProduct.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

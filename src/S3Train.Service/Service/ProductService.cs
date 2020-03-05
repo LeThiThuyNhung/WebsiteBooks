@@ -15,6 +15,7 @@ namespace S3Train.Service
         public IList<Product> GetNewProductItems()
         {
             var newbook = (from c in DbContext.Products
+                           where c.UpdatedDate != null
                            orderby c.CreatedDate descending
                            select new
                            {
@@ -23,8 +24,10 @@ namespace S3Train.Service
                                c.Price,
                                c.ImagePath,
                            }).Take(8).ToList();
-            var book = newbook.Select(n => new Product
+            var book = newbook
+                .Select(n => new Product
                {
+                   Id =n.Id,
                    NameProduct = n.NameProduct,
                    ImagePath = n.ImagePath,
                    Price = n.Price,
