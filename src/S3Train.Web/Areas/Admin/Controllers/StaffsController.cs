@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using S3Train.Domain;
-using System.IO;
 using PagedList;
-using PagedList.Mvc;
+using S3Train.Domain;
 
 namespace S3Train.Web.Areas.Admin.Controllers
 {
-    public class ProductAdvertisementsController : Controller
+    public class StaffsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Admin/ProductAdvertisements
+        // GET: Admin/Staffs
         public ActionResult Index(int? page)
         {
             if (Session["Email"] == null)
@@ -26,29 +25,29 @@ namespace S3Train.Web.Areas.Admin.Controllers
             }
             else
             {
-                var productadvertisments = db.ProductAdvertisements.Include(p => p.Product);
+                var staffs = db.Staffs.Include(s => s.Position);
                 int pageNumber = (page ?? 1);
                 int pageSize = 10;
-                return View(db.ProductAdvertisements.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+                return View(staffs.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
             }
         }
 
-        // GET: Admin/ProductAdvertisements/Details/5
+        // GET: Admin/Staffs/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductAdvertisement productAdvertisement = db.ProductAdvertisements.Find(id);
-            if (productAdvertisement == null)
+            Staff staff = db.Staffs.Find(id);
+            if (staff == null)
             {
                 return HttpNotFound();
             }
-            return View(productAdvertisement);
+            return View(staff);
         }
 
-        // GET: Admin/ProductAdvertisements/Create
+        // GET: Admin/Staffs/Create
         public ActionResult Create()
         {
             if (Session["Email"] == null)
@@ -57,26 +56,25 @@ namespace S3Train.Web.Areas.Admin.Controllers
             }
             else
             {
-                ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
+                ViewBag.PositionId = new SelectList(db.Positions, "Id", "NamePosition");
                 return View();
             }
         }
 
-        // POST: Admin/ProductAdvertisements/Create
+        // POST: Admin/Staffs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,ProductId,Title,Description,EventUrl,ImagePath,AdType,CreatedDate,UpdatedDate,IsActive")] ProductAdvertisement productAdvertisement, HttpPostedFileBase fileUpload)
+        public ActionResult Create([Bind(Include = "Id,PositionId,NameStaff,ImagePath,Address,Sex,DateOfBirth,PhoneNumber,Email,Password,CreatedDate,UpdatedDate,IsActive")] Staff staff, HttpPostedFileBase fileUpload)
         {
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
+            ViewBag.PositionId = new SelectList(db.Positions, "Id", "NamePosition", staff.PositionId);
             if (fileUpload == null)
             {
                 ViewBag.Notification = "Choose image";
                 return View();
             }
-
             if (ModelState.IsValid)
             {
                 //Luu ten file
@@ -92,39 +90,39 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 {
                     fileUpload.SaveAs(path);
                 }
-                productAdvertisement.Id = Guid.NewGuid();
-                productAdvertisement.ImagePath = fileName;
-                db.ProductAdvertisements.Add(productAdvertisement);
+                staff.Id = Guid.NewGuid();
+                staff.ImagePath = fileName;
+                db.Staffs.Add(staff);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(productAdvertisement);
+            
+            return View(staff);
         }
 
-        // GET: Admin/ProductAdvertisements/Edit/5
+        // GET: Admin/Staffs/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductAdvertisement productAdvertisement = db.ProductAdvertisements.Find(id);
-            if (productAdvertisement == null)
+            Staff staff = db.Staffs.Find(id);
+            if (staff == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
-            return View(productAdvertisement);
+            ViewBag.PositionId = new SelectList(db.Positions, "Id", "NamePosition", staff.PositionId);
+            return View(staff);
         }
 
-        // POST: Admin/ProductAdvertisements/Edit/5
+        // POST: Admin/Staffs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,ProductId,Title,Description,EventUrl,ImagePath,AdType,CreatedDate,UpdatedDate,IsActive")] ProductAdvertisement productAdvertisement, HttpPostedFileBase fileUpload)
+        public ActionResult Edit([Bind(Include = "Id,PositionId,NameStaff,ImagePath,Address,Sex,DateOfBirth,PhoneNumber,Email,Password,CreatedDate,UpdatedDate,IsActive")] Staff staff, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
@@ -143,38 +141,38 @@ namespace S3Train.Web.Areas.Admin.Controllers
                     {
                         fileUpload.SaveAs(path);
                     }
-                    productAdvertisement.ImagePath = fileName;
+                    staff.ImagePath = fileName;
                 }
-                db.Entry(productAdvertisement).State = EntityState.Modified;
+                db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
-            return View(productAdvertisement);
+            ViewBag.PositionId = new SelectList(db.Positions, "Id", "NamePosition", staff.PositionId);
+            return View(staff);
         }
 
-        // GET: Admin/ProductAdvertisements/Delete/5
+        // GET: Admin/Staffs/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductAdvertisement productAdvertisement = db.ProductAdvertisements.Find(id);
-            if (productAdvertisement == null)
+            Staff staff = db.Staffs.Find(id);
+            if (staff == null)
             {
                 return HttpNotFound();
             }
-            return View(productAdvertisement);
+            return View(staff);
         }
 
-        // POST: Admin/ProductAdvertisements/Delete/5
+        // POST: Admin/Staffs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            ProductAdvertisement productAdvertisement = db.ProductAdvertisements.Find(id);
-            db.ProductAdvertisements.Remove(productAdvertisement);
+            Staff staff = db.Staffs.Find(id);
+            db.Staffs.Remove(staff);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -210,9 +210,13 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PositionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdvertisementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PublishersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StaffsController.cs" />
     <Compile Include="Areas\Admin\Data\Login.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -253,6 +257,14 @@
     <Compile Include="Migrations\202003040244219_AllowNull.cs" />
     <Compile Include="Migrations\202003040244219_AllowNull.Designer.cs">
       <DependentUpon>202003040244219_AllowNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003041849598_addpromotion.cs" />
+    <Compile Include="Migrations\202003041849598_addpromotion.Designer.cs">
+      <DependentUpon>202003041849598_addpromotion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003050343192_addfkpd.cs" />
+    <Compile Include="Migrations\202003050343192_addfkpd.Designer.cs">
+      <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -775,6 +787,26 @@
     <Content Include="Areas\Admin\Views\Author_Product\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Author_Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -957,6 +989,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003040244219_AllowNull.resx">
       <DependentUpon>202003040244219_AllowNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003041849598_addpromotion.resx">
+      <DependentUpon>202003041849598_addpromotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003050343192_addfkpd.resx">
+      <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

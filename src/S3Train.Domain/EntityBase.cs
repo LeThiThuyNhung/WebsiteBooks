@@ -9,7 +9,9 @@ namespace S3Train.Domain
     public abstract class EntityBase
     {
         public Guid Id { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? CreatedDate { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? UpdatedDate { get; set; }
         public bool IsActive { get; set; }
     }
