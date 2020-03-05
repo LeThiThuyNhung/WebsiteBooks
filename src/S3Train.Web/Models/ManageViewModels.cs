@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace S3Train.Models
+
+namespace S3Train.Web.Models
 {
     public class IndexViewModel
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace S3Train.Models
+namespace S3Train.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

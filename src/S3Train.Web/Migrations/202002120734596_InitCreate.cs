@@ -89,7 +89,7 @@ namespace S3Train.Migrations
                     ReleaseYear = c.Int(nullable: false),
                     Amount = c.Int(nullable: false),
                     Rating = c.Int(),
-                    CreatedDate = c.DateTime(nullable: false),
+                    CreatedDate = c.DateTime(),
                     UpdatedDate = c.DateTime(),
                     IsActive = c.Boolean(nullable: false),
                 })
