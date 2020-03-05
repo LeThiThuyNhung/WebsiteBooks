@@ -45,10 +45,10 @@
             Rating
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().CreatedDate)
+            Created Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().UpdatedDate)
+            Updated Date
         </th>
         <th>
             Active
@@ -59,19 +59,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
+            @Html.DisplayFor(modelItem => item.Category.NameCategory)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Publisher.Name)
+            @Html.DisplayFor(modelItem => item.Publisher.NamePublisher)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.NameProduct)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Summary)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            $@Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
             <img src="@Url.Content("~/ImagePD/"+item.ImagePath)" width="50" height="50" />
@@ -99,7 +99,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

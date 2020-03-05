@@ -241,6 +241,7 @@ body {
 	border: none;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
+    width: auto;
 }
 
 a {
@@ -1849,6 +1850,7 @@ fieldset[disabled] .btn-link:focus {
   -webkit-border-radius: 0px !important;
 	 -moz-border-radius: 0px !important;
           border-radius: 0px !important;
+          margin-left:-20px;
 }
 
 .table-bordered th,

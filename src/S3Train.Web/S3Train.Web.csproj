@@ -205,12 +205,24 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthorsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Author_ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PositionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAdvertisementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PublishersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StaffsController.cs" />
+    <Compile Include="Areas\Admin\Data\Login.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -222,22 +234,84 @@
     <Compile Include="Migrations\202002121038332_AddProductAdvertisementTable.Designer.cs">
       <DependentUpon>202002121038332_AddProductAdvertisementTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002270338254_DeleteColumnEventUrlCaption.cs" />
+    <Compile Include="Migrations\202002270338254_DeleteColumnEventUrlCaption.Designer.cs">
+      <DependentUpon>202002270338254_DeleteColumnEventUrlCaption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002270859586_AddTableStaff.cs" />
+    <Compile Include="Migrations\202002270859586_AddTableStaff.Designer.cs">
+      <DependentUpon>202002270859586_AddTableStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281015220_AddAuthor.cs" />
+    <Compile Include="Migrations\202002281015220_AddAuthor.Designer.cs">
+      <DependentUpon>202002281015220_AddAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281019438_AddAP.cs" />
+    <Compile Include="Migrations\202002281019438_AddAP.Designer.cs">
+      <DependentUpon>202002281019438_AddAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281027541_AddFK.cs" />
+    <Compile Include="Migrations\202002281027541_AddFK.Designer.cs">
+      <DependentUpon>202002281027541_AddFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003040244219_AllowNull.cs" />
+    <Compile Include="Migrations\202003040244219_AllowNull.Designer.cs">
+      <DependentUpon>202003040244219_AllowNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003041849598_addpromotion.cs" />
+    <Compile Include="Migrations\202003041849598_addpromotion.Designer.cs">
+      <DependentUpon>202003041849598_addpromotion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003050343192_addfkpd.cs" />
+    <Compile Include="Migrations\202003050343192_addfkpd.Designer.cs">
+      <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CSProductViewModel.cs" />
+    <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\PromotionProductViewModel.cs" />
     <Compile Include="Models\SliderItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\site.css" />
+    <Content Include="Content\cssDetail\bootstrap.css" />
+    <Content Include="Content\cssDetail\component.css" />
+    <Content Include="Content\cssDetail\easy-responsive-tabs.css" />
+    <Content Include="Content\cssDetail\etalage.css" />
+    <Content Include="Content\cssDetail\form.css" />
+    <Content Include="Content\cssDetail\megamenu.css" />
+    <Content Include="Content\cssDetail\normalize.css" />
+    <Content Include="Content\cssDetail\style.css" />
+    <Content Include="Content\css\clndr.css" />
+    <Content Include="Content\css\component.css" />
+    <Content Include="Content\css\easy-responsive-tabs.css" />
+    <Content Include="Content\css\global.css" />
+    <Content Include="Content\css\util.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\images\price-rating.png" />
+    <Content Include="Content\images\tag.png" />
+    <Content Include="Content\jsDetail\easyResponsiveTabs.js" />
+    <Content Include="Content\jsDetail\jquery-1.9.0.min.js" />
+    <Content Include="Content\jsDetail\jquery.easydropdown.js" />
+    <Content Include="Content\jsDetail\jquery.etalage.min.js" />
+    <Content Include="Content\jsDetail\jquery.min.js" />
+    <Content Include="Content\jsDetail\megamenu.js" />
+    <Content Include="Content\jsDetail\modernizr.custom.js" />
+    <Content Include="Content\jsDetail\simpleCart.min.js" />
+    <Content Include="Content\jsDetail\star-rating.js" />
+    <Content Include="Content\js\jquery-1.11.0.min.js" />
+    <Content Include="Content\js\jquery-1.9.0.min.js" />
+    <Content Include="Content\js\jquery.flexisel.js" />
+    <Content Include="Content\js\site.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TemplateAdmin\calendar.html" />
     <Content Include="Content\TemplateAdmin\chart.html" />
@@ -260,18 +334,33 @@
     <Content Include="Content\TemplateAdmin\css\jquery.gritter.css" />
     <Content Include="Content\TemplateAdmin\css\jquery.iphone.toggle.css" />
     <Content Include="Content\TemplateAdmin\css\jquery.noty.css" />
+    <Content Include="Content\TemplateAdmin\css\main.css" />
     <Content Include="Content\TemplateAdmin\css\noty_theme_default.css" />
     <Content Include="Content\TemplateAdmin\css\style-forms.css" />
     <Content Include="Content\TemplateAdmin\css\style-responsive.css" />
     <Content Include="Content\TemplateAdmin\css\style.css" />
     <Content Include="Content\TemplateAdmin\css\uniform.default.css" />
     <Content Include="Content\TemplateAdmin\css\uploadify.css" />
+    <Content Include="Content\TemplateAdmin\css\util.css" />
     <Content Include="Content\TemplateAdmin\file-manager.html" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="Content\TemplateAdmin\font\glyphicons-regular.svg" />
     <Content Include="Content\TemplateAdmin\font\glyphiconshalflings-regular.svg" />
+    <Content Include="Content\TemplateAdmin\font\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Content\TemplateAdmin\font\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\OFL.txt" />
+    <Content Include="Content\TemplateAdmin\font\raleway\OFL.txt" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\UFL.txt" />
     <Content Include="Content\TemplateAdmin\form.html" />
     <Content Include="Content\TemplateAdmin\gallery.html" />
     <Content Include="Content\TemplateAdmin\icon.html" />
+    <Content Include="Content\TemplateAdmin\images\icons\favicon.ico" />
+    <Content Include="Content\TemplateAdmin\images\icons\icon-google.png" />
+    <Content Include="Content\TemplateAdmin\images\icons\map-marker.png" />
+    <Content Include="Content\TemplateAdmin\images\icons\symbol-01.png" />
     <Content Include="Content\TemplateAdmin\img\arrows-active.png" />
     <Content Include="Content\TemplateAdmin\img\arrows-normal.png" />
     <Content Include="Content\TemplateAdmin\img\avatar.jpg" />
@@ -386,6 +475,7 @@
     <Content Include="Content\TemplateAdmin\js\jquery.ui.touch-punch.js" />
     <Content Include="Content\TemplateAdmin\js\jquery.uniform.min.js" />
     <Content Include="Content\TemplateAdmin\js\jquery.uploadify-3.1.min.js" />
+    <Content Include="Content\TemplateAdmin\js\main.js" />
     <Content Include="Content\TemplateAdmin\js\modernizr.js" />
     <Content Include="Content\TemplateAdmin\js\retina.js" />
     <Content Include="Content\TemplateAdmin\login.html" />
@@ -411,11 +501,6 @@
     <Content Include="Content\images\arrow2.png" />
     <Content Include="Content\images\avatar.png" />
     <Content Include="Content\images\b-arrow.png" />
-    <Content Include="Content\images\book1.png" />
-    <Content Include="Content\images\book2.jpg" />
-    <Content Include="Content\images\book3.jpg" />
-    <Content Include="Content\images\book4.png" />
-    <Content Include="Content\images\book5.jpg" />
     <Content Include="Content\images\category.png" />
     <Content Include="Content\images\category1.png" />
     <Content Include="Content\images\gpluse.png" />
@@ -432,11 +517,14 @@
     <Content Include="Content\js\categories.js" />
     <Content Include="Content\js\jquery-1.11.1.min.js" />
     <Content Include="Content\js\jquery.etalage.min.js" />
-    <Content Include="Content\js\jquery.flexisel.js" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\jquery.wmuSlider.js" />
-    <Content Include="Content\js\product.js" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\vendor\animate\animate.css" />
+    <Content Include="Content\vendor\animsition\css\animsition.css" />
+    <Content Include="Content\vendor\animsition\css\animsition.min.css" />
+    <Content Include="Content\vendor\animsition\js\animsition.js" />
+    <Content Include="Content\vendor\animsition\js\animsition.min.js" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-reboot.css" />
@@ -447,13 +535,64 @@
     <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.js" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\vendor\bootstrap\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\vendor\countdowntime\countdowntime.js" />
+    <Content Include="Content\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\vendor\daterangepicker\moment.js" />
+    <Content Include="Content\vendor\daterangepicker\moment.min.js" />
     <Content Include="Content\vendor\jquery\jquery.js" />
     <Content Include="Content\vendor\jquery\jquery.min.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Content\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\vendor\select2\select2.css" />
+    <Content Include="Content\vendor\select2\select2.js" />
+    <Content Include="Content\vendor\select2\select2.min.css" />
+    <Content Include="Content\vendor\select2\select2.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="ImagePD\0.png" />
+    <Content Include="ImagePD\comic1.PNG" />
+    <Content Include="ImagePD\comic2.PNG" />
+    <Content Include="ImagePD\comic3.PNG" />
+    <Content Include="ImagePD\comic4.PNG" />
+    <Content Include="ImagePD\comic5.PNG" />
+    <Content Include="ImagePD\cook1.PNG" />
+    <Content Include="ImagePD\Dictionary1.PNG" />
+    <Content Include="ImagePD\Dictionary2.PNG" />
+    <Content Include="ImagePD\Dictionnary3.PNG" />
+    <Content Include="ImagePD\h.PNG" />
+    <Content Include="ImagePD\LOGIN.PNG" />
+    <Content Include="ImagePD\magazine1.PNG" />
+    <Content Include="ImagePD\magazine2.PNG" />
+    <Content Include="ImagePD\magazine3.PNG" />
+    <Content Include="ImagePD\magazine4.PNG" />
+    <Content Include="ImagePD\novel1.PNG" />
+    <Content Include="ImagePD\novel2.PNG" />
+    <Content Include="ImagePD\ph.PNG" />
+    <Content Include="ImagePD\psychology1.PNG" />
+    <Content Include="ImagePD\psychology2.PNG" />
+    <Content Include="ImagePD\science1.PNG" />
+    <Content Include="ImagePD\science2.PNG" />
+    <Content Include="ImagePD\search.PNG" />
+    <Content Include="ImagePD\short1.PNG" />
+    <Content Include="ImagePD\short2.PNG" />
+    <Content Include="ImagePD\SIGNUP.PNG" />
+    <Content Include="ImagePD\slide1.png" />
+    <Content Include="ImagePD\slide2.jpg" />
+    <Content Include="ImagePD\slide2.PNG" />
+    <Content Include="ImagePD\slide3.jpg" />
+    <Content Include="ImagePD\slide4.png" />
+    <Content Include="ImagePD\slide5.jpg" />
+    <Content Include="ImagePD\slider1.png" />
+    <Content Include="ImagePD\thriller1.PNG" />
+    <Content Include="ImagePD\thriller2.PNG" />
+    <Content Include="ImagePD\thriller3.PNG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -532,6 +671,142 @@
     <Content Include="Areas\Admin\Views\Publishers\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Publishers\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Publishers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdvertisements\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdvertisements\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdvertisements\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdvertisements\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdvertisements\Index.cshtml" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\TemplateAdmin\font\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\TemplateAdmin\font\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="Content\TemplateAdmin\font\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="Content\TemplateAdmin\font\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="Content\TemplateAdmin\font\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-Black.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-Light.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="Content\TemplateAdmin\font\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\TemplateAdmin\font\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-Black.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-BlackItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-Bold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-BoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-ExtraBold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-ExtraBoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-ExtraLight.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-ExtraLightItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-Italic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-Light.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-LightItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-Medium.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-MediumItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-Regular.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-SemiBold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-SemiBoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-Thin.ttf" />
+    <Content Include="Content\TemplateAdmin\font\raleway\Raleway-ThinItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-Bold.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-BoldItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-Italic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-Light.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-LightItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-Medium.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-MediumItalic.ttf" />
+    <Content Include="Content\TemplateAdmin\font\ubuntu\Ubuntu-Regular.ttf" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Authors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Author_Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Author_Product\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Author_Product\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Author_Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Author_Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -545,6 +820,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="tinymce_4.2.7\tinymce\changelog.txt" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\license.txt" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
@@ -623,6 +899,9 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\tinymce.min.js" />
     <Content Include="tinymce_4.2.7\tinymce\LICENSE.TXT" />
     <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -661,7 +940,6 @@
     <Content Include="Views\Shared\_ProductItem.cshtml" />
     <Content Include="Views\Home\_HomeSlider.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
-    <Content Include="Views\Home\_Categories.cshtml" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\langs\readme.md" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
@@ -669,11 +947,15 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Views\Home\_Product.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Shared\_MenuByCategories.cshtml" />
+    <Content Include="Views\Menu\CategoriesMenu.cshtml" />
+    <Content Include="Views\Home\_NewProduct.cshtml" />
+    <Content Include="Views\Home\_CSProduct.cshtml" />
+    <Content Include="Views\Home\_PromotionProduct.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="ImagePD\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -689,6 +971,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002121038332_AddProductAdvertisementTable.resx">
       <DependentUpon>202002121038332_AddProductAdvertisementTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002270338254_DeleteColumnEventUrlCaption.resx">
+      <DependentUpon>202002270338254_DeleteColumnEventUrlCaption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002270859586_AddTableStaff.resx">
+      <DependentUpon>202002270859586_AddTableStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281015220_AddAuthor.resx">
+      <DependentUpon>202002281015220_AddAuthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281019438_AddAP.resx">
+      <DependentUpon>202002281019438_AddAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281027541_AddFK.resx">
+      <DependentUpon>202002281027541_AddFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003040244219_AllowNull.resx">
+      <DependentUpon>202003040244219_AllowNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003041849598_addpromotion.resx">
+      <DependentUpon>202003041849598_addpromotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003050343192_addfkpd.resx">
+      <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
