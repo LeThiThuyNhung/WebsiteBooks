@@ -64,7 +64,7 @@ namespace S3Train.Controllers
             }).GroupBy(e => e.Grouping).ToList();
         }
 
-        private static IEnumerable<IGrouping<int, PromotionProductViewModel>> GetHomeBestSellerProducts(IList<PromotionDetailDTO> promotionDetail)
+        private static IEnumerable<IGrouping<int, PromotionProductViewModel>> GetHomeBestSellerProducts(IList<ProductDTO> promotionDetail)
         {
             return promotionDetail.Select((x, i) => new PromotionProductViewModel
             {

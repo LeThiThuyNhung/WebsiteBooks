@@ -29,11 +29,11 @@
                             <a href="cart.html">Add to cart</a>
                         </div>
                         <div class="flower-type">
-                            <p>Mobel  ::<a href="#">Dress</a></p>
-                            <p>Brand  ::<a href="#">Pellentesque</a></p>
+                            <p>Author  ::@Model.AuthorName</p>
+                            <p>Bacode  ::@Model.Barcode</p>
                         </div>
                         <h5>Description  ::</h5>
-                        <p class="desc">@Model.DisplayPrice</p>
+                        <p class="desc">@Model.Summary</p>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -62,20 +62,16 @@
                                 <td>@Model.NamePublisher</td>
                             </tr>
                             <tr>
-                                <td>Supplier</td>
-                                <td>Jacob</td>
+                                <td>Barcode</td>
+                                <td>@Model.Barcode</td>
                             </tr>
                             <tr>
-                                <td>Weight</td>
-                                <td>Jacob</td>
-                            </tr>
-                            <tr>
-                                <td>Release date</td>
-                                <td>Jacob</td>
+                                <td>Release year</td>
+                                <td>@Model.ReleaseYear</td>
                             </tr>
                             <tr>
                                 <td>Category</td>
-                                <td>Jacob</td>
+                                <td><a href="#">@Model.CategoryName</a></td>
                             </tr>
                             
                         </tbody>

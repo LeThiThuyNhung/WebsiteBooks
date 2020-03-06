@@ -21,5 +21,8 @@ namespace S3Train.DTOs
         public int? Rating { get; set; }
 
         public PublisherDTO Publisher  { get; set; }
+        public IList<AuthorDTO> Author { get; set; }
+        public CategoryDTO Category { get; set; }
+        public IList<PromotionDTO> Promotion { get; set; }
     }
 }
