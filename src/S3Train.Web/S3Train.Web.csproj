@@ -197,7 +197,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\AppControllerBase.cs" />
+    <Compile Include="App_Code\AppControllerBase.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -217,6 +217,7 @@
     <Compile Include="Areas\Admin\Controllers\PromotionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PublishersController.cs" />
     <Compile Include="Areas\Admin\Controllers\StaffsController.cs" />
+    <Compile Include="Areas\Admin\Data\Encryptor.cs" />
     <Compile Include="Areas\Admin\Data\Login.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -265,6 +266,10 @@
     <Compile Include="Migrations\202003050343192_addfkpd.cs" />
     <Compile Include="Migrations\202003050343192_addfkpd.Designer.cs">
       <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003060320543_deletelocation.cs" />
+    <Compile Include="Migrations\202003060320543_deletelocation.Designer.cs">
+      <DependentUpon>202003060320543_deletelocation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -556,7 +561,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="ImagePD\0.png" />
     <Content Include="ImagePD\comic1.PNG" />
     <Content Include="ImagePD\comic2.PNG" />
     <Content Include="ImagePD\comic3.PNG" />
@@ -574,7 +578,6 @@
     <Content Include="ImagePD\magazine4.PNG" />
     <Content Include="ImagePD\novel1.PNG" />
     <Content Include="ImagePD\novel2.PNG" />
-    <Content Include="ImagePD\ph.PNG" />
     <Content Include="ImagePD\psychology1.PNG" />
     <Content Include="ImagePD\psychology2.PNG" />
     <Content Include="ImagePD\science1.PNG" />
@@ -582,7 +585,6 @@
     <Content Include="ImagePD\search.PNG" />
     <Content Include="ImagePD\short1.PNG" />
     <Content Include="ImagePD\short2.PNG" />
-    <Content Include="ImagePD\SIGNUP.PNG" />
     <Content Include="ImagePD\slide1.png" />
     <Content Include="ImagePD\slide2.jpg" />
     <Content Include="ImagePD\slide2.PNG" />
@@ -807,6 +809,7 @@
     <Content Include="Areas\Admin\Views\PromotionDetails\Details.cshtml" />
     <Content Include="Areas\Admin\Views\PromotionDetails\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\PromotionDetails\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -898,7 +901,6 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\themes\modern\theme.min.js" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\tinymce.min.js" />
     <Content Include="tinymce_4.2.7\tinymce\LICENSE.TXT" />
-    <Content Include="Web.config" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -996,6 +998,9 @@
     <EmbeddedResource Include="Migrations\202003050343192_addfkpd.resx">
       <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003060320543_deletelocation.resx">
+      <DependentUpon>202003060320543_deletelocation.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\S3Train.Core\S3Train.Core.csproj">
@@ -1036,7 +1041,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52437</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44304/</IISUrl>
+          <IISUrl>http://localhost:44304/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -64,8 +64,8 @@ namespace S3Train.Web.Areas.Admin.Controllers
                     cookie.Expires = DateTime.Now.AddDays(-1);
                     HttpContext.Response.Cookies.Add(cookie);
                 }
-
-                var row = db.Staffs.Where(m => m.Email == l.Email && m.Password == l.Password).FirstOrDefault();
+                var str = Encryptor.MD5Hash(l.Password);
+                var row = db.Staffs.Where(m => m.Email == l.Email && m.Password == str).FirstOrDefault();
                 if(row != null)
                 {
                     Session["Email"] = l.Email;

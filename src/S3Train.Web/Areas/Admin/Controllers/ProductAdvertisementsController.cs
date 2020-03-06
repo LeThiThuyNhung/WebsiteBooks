@@ -29,7 +29,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 var productadvertisments = db.ProductAdvertisements.Include(p => p.Product);
                 int pageNumber = (page ?? 1);
                 int pageSize = 10;
-                return View(db.ProductAdvertisements.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+                return View(db.ProductAdvertisements.ToList().OrderBy(t => t.CreatedDate).ToPagedList(pageNumber, pageSize));
             }
         }
 

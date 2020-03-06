@@ -77,7 +77,6 @@ namespace S3Train.Domain
 
             modelBuilder.Entity<Author_Product>().ToTable("Author_Product");
             modelBuilder.Entity<Author_Product>().Property(x => x.Role).HasMaxLength(100);
-            modelBuilder.Entity<Author_Product>().Property(x => x.Location).HasMaxLength(100);
 
             modelBuilder.Entity<Promotion>().ToTable("Promotion");
             modelBuilder.Entity<Promotion>().HasMany(c => c.PromotionDetails).WithRequired(p => p.Promotion);
