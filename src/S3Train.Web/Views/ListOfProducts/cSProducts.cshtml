@@ -1,0 +1,42 @@
+﻿@using S3Train.Web.Models;
+@model HomeViewModel
+@{
+    ViewBag.Title = "cSProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="shop">
+    <div class="container">
+        <div class="roses-head">
+            <h2>BOOK COMING SOON</h2>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="container">
+    <div id="myCarousel" class="carousel slide">
+        @foreach (var item in Model.csProducts)
+        {
+
+            <div class="col-md-3">
+                <div class="thumbnail">
+
+                    <a href="@Url.Action("Detail", "Product",new { @id = item.Id} )">
+                        <img src="@Url.Content("~/ImagePD/"+item.ImagePath)" />
+                    </a>
+                    <div class="caption">
+                        <a href="@Url.Action("Detail", "Product",new { @id = item.Id } )"><h5>@item.NameProduct</h5></a>
+                        <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
+                    </div>
+
+                </div>
+                <br />
+                <br />
+                <br />
+            </div>
+
+        }
+
+    </div>
+
+</div>

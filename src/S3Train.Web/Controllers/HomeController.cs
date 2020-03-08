@@ -31,7 +31,6 @@ namespace S3Train.Controllers
             {
                 SliderItems = GetHomeSlider(_productAdvertisementService.GetSliderItems()),
                 NewProducts = GetHomeNewProducts(_newProductService.GetNewProductItems()),
-                //CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
                 CSProducts = GetHomeCSProducts(_cSProductService.GetCSProductItems()),
                 PromotionProducts = GetHomeBestSellerProducts(_promotionProductService.GetPromotionDetail()),
             };
