@@ -40,12 +40,14 @@ namespace S3Train.App_Start
         private static void RegisterDependencyMappingOverrides(ContainerBuilder builder)
         {
             builder.RegisterType<ApplicationDbContext>();
-            builder.RegisterType<ProductService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<NewProductService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ProductAdvertisementService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CategoryService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ProductDetailService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<CSProductService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PromotionDetailService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ProductsByCategoryService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<SearchProductsForNameService>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

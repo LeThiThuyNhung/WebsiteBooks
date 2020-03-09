@@ -18,7 +18,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44304</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -221,9 +222,12 @@
     <Compile Include="Areas\Admin\Data\Login.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListOfProductsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ProductsSearchForNameController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +282,7 @@
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductsSearchForNameViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\PromotionProductViewModel.cs" />
     <Compile Include="Models\SliderItemViewModel.cs" />
@@ -901,9 +906,7 @@
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\themes\modern\theme.min.js" />
     <Content Include="tinymce_4.2.7\tinymce\js\tinymce\tinymce.min.js" />
     <Content Include="tinymce_4.2.7\tinymce\LICENSE.TXT" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -956,6 +959,11 @@
     <Content Include="Views\Home\_NewProduct.cshtml" />
     <Content Include="Views\Home\_CSProduct.cshtml" />
     <Content Include="Views\Home\_PromotionProduct.cshtml" />
+    <Content Include="Views\Category\ProductsByCategory.cshtml" />
+    <Content Include="Views\ListOfProducts\NewProducts.cshtml" />
+    <Content Include="Views\ListOfProducts\cSProducts.cshtml" />
+    <Content Include="Views\ListOfProducts\bestSellerProducts.cshtml" />
+    <Content Include="Views\ProductsSearchForName\ProductsSearchForName.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -7,9 +7,9 @@ using S3Train.Domain;
 
 namespace S3Train.Service
 {
-    public class ProductService : GenenicServiceBase<Product>, IProductService
+    public class NewProductService : GenenicServiceBase<Product>, IProductService
     {
-        public ProductService(ApplicationDbContext dbContext) : base(dbContext)
+        public NewProductService(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
         public IList<Product> GetNewProductItems()

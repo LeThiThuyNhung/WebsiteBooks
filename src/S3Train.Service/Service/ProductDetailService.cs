@@ -16,7 +16,7 @@ namespace S3Train.Service
         }
         public ProductDTO GetProductDetail(Guid id)
         {
-            var productDetail = DbContext.Products.Include("Publisher")
+            var productDetail = DbContext.Products.Include("Publisher").Include("Author")
                 .Where(u => u.Id == id)
                 .Select(n => new ProductDTO
                 {
@@ -25,11 +25,21 @@ namespace S3Train.Service
                     Price = n.Price,
                     Rating = n.Rating,
                     Summary = n.Summary,
-                    Publisher = new PublisherDTO {
+                    Barcode = n.Barcode,
+                    ReleaseYear = n.ReleaseYear,
+                    Publisher = new PublisherDTO
+                    {
                         NamePublisher = n.Publisher.NamePublisher
-                    }
+                    },
+                    Author = n.Author_Products.Select(q => new AuthorDTO { NameAuthor = q.Author.NameAuthor }).ToList(),
+                    Category = new CategoryDTO
+                    {
+                        CategoryName = n.Category.NameCategory
+                    },
+                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO { PromotionPercent = x.PromotionPercent}).ToList(),
                 }).SingleOrDefault();
             return productDetail;
+
         }
     }
 }
