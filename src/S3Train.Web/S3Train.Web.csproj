@@ -222,6 +222,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ProductsSearchForNameController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -264,6 +265,7 @@
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductsSearchForNameViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\PromotionProductViewModel.cs" />
     <Compile Include="Models\SliderItemViewModel.cs" />
@@ -926,6 +928,7 @@
     <Content Include="Views\ListOfProducts\NewProducts.cshtml" />
     <Content Include="Views\ListOfProducts\cSProducts.cshtml" />
     <Content Include="Views\ListOfProducts\bestSellerProducts.cshtml" />
+    <Content Include="Views\ProductsSearchForName\ProductsSearchForName.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

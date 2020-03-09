@@ -81,6 +81,7 @@
     <Compile Include="Contract\IProductsByCategoryService.cs" />
     <Compile Include="Contract\IProductService.cs" />
     <Compile Include="Contract\IPromotionDetailService.cs" />
+    <Compile Include="Contract\ISearchProductsForNameService.cs" />
     <Compile Include="DTOs\AuthorDTO.cs" />
     <Compile Include="DTOs\CategoryDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ProductsByCategoryService.cs" />
     <Compile Include="Service\PromotionDetailService.cs" />
+    <Compile Include="Service\SearchProductsForNameService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\S3Train.Core\S3Train.Core.csproj">

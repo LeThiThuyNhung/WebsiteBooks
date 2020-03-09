@@ -12,8 +12,9 @@ namespace S3Train.Web.Models
         public IEnumerable<IGrouping<int, CSProductViewModel>> CSProducts { get; set; }
         public IEnumerable<IGrouping<int, PromotionProductViewModel>> PromotionProducts { get; set; }
         public IList<CategoryViewModel> productsByCategory { get; set; }
-        public IList< ProductViewModel> newProducts { get; set; }
+        public IList<ProductViewModel> newProducts { get; set; }
         public IList<CSProductViewModel> csProducts { get; set; }
         public IList<PromotionProductViewModel> bestSellerProducts { get; set; }
+        public IList<ProductsSearchForNameViewModel> productsSearchForName { get; set; }
     }
 }
