@@ -26,9 +26,10 @@ namespace S3Train.Web.Areas.Admin.Controllers
             }
             else
             {
+                var productadvertisments = db.ProductAdvertisements.Include(p => p.Product);
                 int pageNumber = (page ?? 1);
                 int pageSize = 10;
-                return View(db.ProductAdvertisements.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+                return View(db.ProductAdvertisements.ToList().OrderBy(t => t.CreatedDate).ToPagedList(pageNumber, pageSize));
             }
         }
 
@@ -56,6 +57,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
             }
             else
             {
+                ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
                 return View();
             }
         }
@@ -66,8 +68,9 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,EventUrl,ImagePath,AdType,CreatedDate,UpdatedDate,IsActive")] ProductAdvertisement productAdvertisement, HttpPostedFileBase fileUpload)
+        public ActionResult Create([Bind(Include = "Id,ProductId,Title,Description,EventUrl,ImagePath,AdType,CreatedDate,UpdatedDate,IsActive")] ProductAdvertisement productAdvertisement, HttpPostedFileBase fileUpload)
         {
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
             if (fileUpload == null)
             {
                 ViewBag.Notification = "Choose image";
@@ -111,6 +114,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
             return View(productAdvertisement);
         }
 
@@ -120,7 +124,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,EventUrl,ImagePath,AdType,CreatedDate,UpdatedDate,IsActive")] ProductAdvertisement productAdvertisement, HttpPostedFileBase fileUpload)
+        public ActionResult Edit([Bind(Include = "Id,ProductId,Title,Description,EventUrl,ImagePath,AdType,CreatedDate,UpdatedDate,IsActive")] ProductAdvertisement productAdvertisement, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
@@ -145,6 +149,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ProductId = new SelectList(db.Products, "Id", "NameProduct");
             return View(productAdvertisement);
         }
 

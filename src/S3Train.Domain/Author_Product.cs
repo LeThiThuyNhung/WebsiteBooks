@@ -11,7 +11,6 @@ namespace S3Train.Domain
         public Guid AuthorId { get; set; }
         public Guid ProductId { get; set; }
         public string Role { get; set; }
-        public string Location { get; set; }
         public virtual Author Author { get; set; }
         public virtual Product Product { get; set; }
     }

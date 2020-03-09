@@ -198,7 +198,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\AppControllerBase.cs" />
+    <Compile Include="App_Code\AppControllerBase.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -211,9 +211,14 @@
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PositionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdvertisementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PromotionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PublishersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StaffsController.cs" />
+    <Compile Include="Areas\Admin\Data\Encryptor.cs" />
     <Compile Include="Areas\Admin\Data\Login.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -256,6 +261,18 @@
     <Compile Include="Migrations\202003040244219_AllowNull.cs" />
     <Compile Include="Migrations\202003040244219_AllowNull.Designer.cs">
       <DependentUpon>202003040244219_AllowNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003041849598_addpromotion.cs" />
+    <Compile Include="Migrations\202003041849598_addpromotion.Designer.cs">
+      <DependentUpon>202003041849598_addpromotion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003050343192_addfkpd.cs" />
+    <Compile Include="Migrations\202003050343192_addfkpd.Designer.cs">
+      <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003060320543_deletelocation.cs" />
+    <Compile Include="Migrations\202003060320543_deletelocation.Designer.cs">
+      <DependentUpon>202003060320543_deletelocation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -547,7 +564,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="ImagePD\0.png" />
     <Content Include="ImagePD\comic1.PNG" />
     <Content Include="ImagePD\comic2.PNG" />
     <Content Include="ImagePD\comic3.PNG" />
@@ -565,7 +581,6 @@
     <Content Include="ImagePD\magazine4.PNG" />
     <Content Include="ImagePD\novel1.PNG" />
     <Content Include="ImagePD\novel2.PNG" />
-    <Content Include="ImagePD\ph.PNG" />
     <Content Include="ImagePD\psychology1.PNG" />
     <Content Include="ImagePD\psychology2.PNG" />
     <Content Include="ImagePD\science1.PNG" />
@@ -573,7 +588,6 @@
     <Content Include="ImagePD\search.PNG" />
     <Content Include="ImagePD\short1.PNG" />
     <Content Include="ImagePD\short2.PNG" />
-    <Content Include="ImagePD\SIGNUP.PNG" />
     <Content Include="ImagePD\slide1.png" />
     <Content Include="ImagePD\slide2.jpg" />
     <Content Include="ImagePD\slide2.PNG" />
@@ -778,6 +792,27 @@
     <Content Include="Areas\Admin\Views\Author_Product\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Author_Product\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Positions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Staffs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Promotions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PromotionDetails\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -961,6 +996,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003040244219_AllowNull.resx">
       <DependentUpon>202003040244219_AllowNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003041849598_addpromotion.resx">
+      <DependentUpon>202003041849598_addpromotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003050343192_addfkpd.resx">
+      <DependentUpon>202003050343192_addfkpd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003060320543_deletelocation.resx">
+      <DependentUpon>202003060320543_deletelocation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
