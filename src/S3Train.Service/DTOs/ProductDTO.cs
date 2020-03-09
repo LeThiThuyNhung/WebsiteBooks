@@ -25,7 +25,7 @@ namespace S3Train.DTOs
         public CategoryDTO Category { get; set; }
         public IList<PromotionDTO> Promotion { get; set; }
 
-        public ProductDTO RelatedProduct { get; set; }
+        public List<ProductDTO> RelatedProduct { get; set; }
     }
 
 }

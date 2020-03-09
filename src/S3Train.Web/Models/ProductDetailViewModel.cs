@@ -22,5 +22,7 @@ namespace S3Train.Web.Models
         public string AuthorName { get; set; }
         public string PromotionPercent { get; set; }
         public string CategoryName { get; set; }
+
+        public IList<ProductViewModel> RelatedProduct { get; set; }
     }
 }

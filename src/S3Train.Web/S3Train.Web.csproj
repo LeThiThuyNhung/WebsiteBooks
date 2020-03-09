@@ -18,8 +18,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44304</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -961,6 +960,7 @@
     <Content Include="Views\ListOfProducts\NewProducts.cshtml" />
     <Content Include="Views\ListOfProducts\cSProducts.cshtml" />
     <Content Include="Views\ListOfProducts\bestSellerProducts.cshtml" />
+    <Content Include="Views\Shared\_Login_Register.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

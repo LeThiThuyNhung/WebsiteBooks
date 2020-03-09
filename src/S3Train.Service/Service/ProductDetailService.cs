@@ -47,11 +47,13 @@ namespace S3Train.Service
 
             var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
 
-            var product1 = DbContext.Products.Include("Publisher").Include("Author")
-               .Where(u => u.Author_Products.Any(q => listAuthorId.Contains(q.AuthorId)));
-
-            var product2 = DbContext.Author_Products.Include("Product")
-                .Where(q => listAuthorId.Contains(q.AuthorId));
+            productDetail.RelatedProduct = DbContext.Author_Products.Include("Product")
+                .Where(q => listAuthorId.Contains(q.AuthorId)).Select(n => new ProductDTO {
+                    ProductId = n.Product.Id,
+                    NameProduct = n.Product.NameProduct,
+                    ImagePath = n.Product.ImagePath,
+                    Price = n.Product.Price
+                }).Distinct().ToList();
                
 
             return productDetail;
