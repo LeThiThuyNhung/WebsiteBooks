@@ -27,7 +27,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 var author_Products = db.Author_Products.Include(a => a.Author).Include(a => a.Product);
                 int pageNumber = (page ?? 1);
                 int pageSize = 10;
-                return View(author_Products.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+                return View(author_Products.ToList().OrderBy(t => t.ProductId).ToPagedList(pageNumber, pageSize));
             }
             
         }
