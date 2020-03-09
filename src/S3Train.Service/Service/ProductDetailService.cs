@@ -31,13 +31,29 @@ namespace S3Train.Service
                     {
                         NamePublisher = n.Publisher.NamePublisher
                     },
-                    Author = n.Author_Products.Select(q => new AuthorDTO { NameAuthor = q.Author.NameAuthor }).ToList(),
+                    Author = n.Author_Products.Select(q => new AuthorDTO
+                    {
+                        AuthorId = q.AuthorId,
+                        NameAuthor = q.Author.NameAuthor
+                    }).ToList(),
                     Category = new CategoryDTO
                     {
                         CategoryName = n.Category.NameCategory
                     },
-                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO { PromotionPercent = x.PromotionPercent}).ToList(),
+                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO {
+                        PromotionPercent = x.PromotionPercent
+                    }).ToList(),
                 }).SingleOrDefault();
+
+            var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
+
+            var product1 = DbContext.Products.Include("Publisher").Include("Author")
+               .Where(u => u.Author_Products.Any(q => listAuthorId.Contains(q.AuthorId)));
+
+            var product2 = DbContext.Author_Products.Include("Product")
+                .Where(q => listAuthorId.Contains(q.AuthorId));
+               
+
             return productDetail;
 
         }
