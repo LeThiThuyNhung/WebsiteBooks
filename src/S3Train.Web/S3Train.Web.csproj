@@ -287,6 +287,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\cssAccount\bootstrap.css" />
+    <Content Include="Content\cssAccount\main.css" />
+    <Content Include="Content\cssAccount\util.css" />
     <Content Include="Content\cssDetail\bootstrap.css" />
     <Content Include="Content\cssDetail\component.css" />
     <Content Include="Content\cssDetail\easy-responsive-tabs.css" />
@@ -299,6 +302,7 @@
     <Content Include="Content\css\component.css" />
     <Content Include="Content\css\easy-responsive-tabs.css" />
     <Content Include="Content\css\global.css" />
+    <Content Include="Content\cssAccount\LoginCSS.css" />
     <Content Include="Content\css\util.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -318,6 +322,7 @@
     <Content Include="Content\js\jquery-1.11.0.min.js" />
     <Content Include="Content\js\jquery-1.9.0.min.js" />
     <Content Include="Content\js\jquery.flexisel.js" />
+    <Content Include="Content\js\main.js" />
     <Content Include="Content\js\site.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TemplateAdmin\calendar.html" />
