@@ -48,12 +48,12 @@ namespace S3Train.Service
             var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
 
             productDetail.RelatedProduct = DbContext.Author_Products.Include("Product")
-                .Where(q => listAuthorId.Contains(q.AuthorId)).Select(n => new ProductDTO {
+                .Where(q => listAuthorId.Contains(q.AuthorId) && q.ProductId!= id).Select(n => new ProductDTO {
                     ProductId = n.Product.Id,
                     NameProduct = n.Product.NameProduct,
                     ImagePath = n.Product.ImagePath,
                     Price = n.Product.Price
-                }).Distinct().ToList();
+                }).ToList();
                
 
             return productDetail;

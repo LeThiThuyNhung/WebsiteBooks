@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Contract\ICartService.cs" />
     <Compile Include="Contract\ICategoryService.cs" />
     <Compile Include="Contract\ICSProductService.cs" />
     <Compile Include="Contract\IProductDetailService.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="DTOs\PublisherDTO.cs" />
     <Compile Include="GenenicServiceBase.cs" />
     <Compile Include="IGenenicServiceBase.cs" />
+    <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\CSProductService.cs" />
     <Compile Include="Service\ProductDetailService.cs" />
