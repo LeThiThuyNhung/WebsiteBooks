@@ -44,9 +44,9 @@
         </div>
         <div class="header-bottom-right">
             <div class="account">
-                <a href="#" data-toggle="modal" data-target="#exampleModal"><span> </span>YOUR ACCOUNT</a>      
+                <a href="#" data-toggle="modal" data-target="#exampleModal"><span> </span>@Html.Partial("_LoginPartial")</a>      
             </div>
-            @Html.Action("_Login", "Account")
+            @Html.Partial("Login")
             <ul class="login">
                 <li>
                     <a href="#" data-toggle="modal" data-target="#exampleModal"><span> </span>LOGIN</a>
