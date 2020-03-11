@@ -965,7 +965,8 @@
     <Content Include="Views\ListOfProducts\NewProducts.cshtml" />
     <Content Include="Views\ListOfProducts\cSProducts.cshtml" />
     <Content Include="Views\ListOfProducts\bestSellerProducts.cshtml" />
-    <Content Include="Views\Shared\_Login_Register.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Shared\_Register.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
