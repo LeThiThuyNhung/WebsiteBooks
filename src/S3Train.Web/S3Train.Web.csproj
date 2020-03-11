@@ -963,7 +963,7 @@
     <Content Include="Views\ListOfProducts\NewProducts.cshtml" />
     <Content Include="Views\ListOfProducts\cSProducts.cshtml" />
     <Content Include="Views\ListOfProducts\bestSellerProducts.cshtml" />
-    <Content Include="Views\ProductsSearchForName\ProductsSearchForName.cshtml" />
+    <Content Include="Views\ProductsSearchForName\ProductsSearchForAuthor.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

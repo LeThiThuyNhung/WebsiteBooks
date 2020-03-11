@@ -7,35 +7,31 @@ using S3Train.Web.Models;
 using System;
 using PagedList;
 using PagedList.Mvc;
+using S3Train.DTOs;
 
 namespace S3Train.Web.Controllers
 {
     public class ProductsSearchForNameController : Controller
     {
-        private readonly ISearchProductsForNameService _searchForName;
-        public ActionResult Index()
+        private readonly ISearchProductsForAuthorService _searchForAuthor;
+
+        public ProductsSearchForNameController(ISearchProductsForAuthorService searchForAuthor)
         {
-            return View();
+            _searchForAuthor = searchForAuthor;
         }
 
-        public ProductsSearchForNameController(ISearchProductsForNameService searchForName)
+        public ActionResult ProductsSearchForAuthor(string Name)
         {
-            _searchForName = searchForName;
-        }
-
-        public ActionResult ProductsSearchForName(string Name, int? page)
-        {
-
-            var productsSearchForName = new HomeViewModel
+            var productsSearchForAuthor = new HomeViewModel
             {
-                productsSearchForName = GetProductsSearchForName(_searchForName.GetProductsSearchForNameItems(Name))
+                productsSearchForName = GetProductsSearchForName(_searchForAuthor.GetProductsSearchForAuhtorItems(Name))
             };
-            return View(productsSearchForName);
+            return View(productsSearchForAuthor);
         }
 
-        private static IList<ProductsSearchForNameViewModel> GetProductsSearchForName(IList<Product> proForName)
+        private IList<ProductsSearchForNameViewModel> GetProductsSearchForName(IList<ProductDTO> proForAuthor)
         {
-            return proForName.Select(x => new ProductsSearchForNameViewModel
+            return proForAuthor.Select(x => new ProductsSearchForNameViewModel
             {
                 Id = x.Id,
                 ImagePath = x.ImagePath,

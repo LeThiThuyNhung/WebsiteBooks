@@ -52,9 +52,6 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 if(l.RememberMe == true)
                 {
                     cookie["email"] = l.Email;
-
-                    byte[] b = ASCIIEncoding.ASCII.GetBytes(l.Password);
-                    string EncryptedPassword = Convert.ToBase64String(b);
                     cookie["password"] = l.Password;
                     cookie.Expires = DateTime.Now.AddDays(2);
                     HttpContext.Response.Cookies.Add(cookie);
