@@ -35,10 +35,9 @@
                 <a href="@Url.Action("Index", "Home")"><img src="~/Content/images/logo1.jpg" width="250" height="70" alt=" " /></a>
             </div>
             <div class="search">
-            @using (Html.BeginForm("ProductsSearchForName", "ProductsSearchForName", FormMethod.Get))
+            @using (Html.BeginForm("ProductsSearchForAuthor", "ProductsSearchForName", FormMethod.Get))
             {
-                
-               @Html.TextBox("Name")                
+               @Html.TextBox("Name") 
                <input type="submit" value="SEARCH">
             }
             </div>
@@ -55,6 +54,5 @@
         </div>
         <div class="clearfix"> </div>
     </div>
-</div>
 </div>
 <!---->
