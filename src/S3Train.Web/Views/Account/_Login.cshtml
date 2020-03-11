@@ -1,6 +1,7 @@
-﻿
+﻿@using S3Train.Web.Models
+@model LoginViewModel
 @{
-    ViewBag.Title = "_Login";
+    ViewBag.Title = "Log in";
 }
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -16,11 +17,13 @@
                 <form action="#" method="post">
                     <div class="form-group">
                         <label class="col-form-label">Username</label>
-                        <input type="text" class="form-control" placeholder=" " name="Name" required="">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label class="col-form-label">Password</label>
-                        <input type="password" class="form-control" placeholder=" " name="Password" required="">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                     <div class="right-w3l">
                         <input type="submit" class="form-control" value="Log in">
@@ -32,16 +35,12 @@
                         </div>
                     </div>
                     <div class="txt1 text-center p-t-54 p-b-20">
-                        Or Sign Up Using
+                        Or Sign Up With
                     </div>
 
                     <div class="flex-c-m">
                         <a href="#" class="login100-social-item bg1">
                             <i class="fa fa-facebook"></i>
-                        </a>
-
-                        <a href="#" class="login100-social-item bg2">
-                            <i class="fa fa-twitter"></i>
                         </a>
 
                         <a href="#" class="login100-social-item bg3">

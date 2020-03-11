@@ -8,7 +8,7 @@ using Microsoft.Owin.Security;
 using S3Train.Domain;
 using S3Train.Web.Models;
 
-namespace S3Train.Controllers
+namespace S3Train.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller

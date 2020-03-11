@@ -89,7 +89,7 @@ color: #fff;
 .header-bottom-right {
     float: right;
     width: 430px;
-    text-align: center;
+    /*text-align: center;*/
     padding-top: 2em;
     padding-left: 40px;
 }
