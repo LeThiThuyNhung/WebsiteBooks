@@ -20,13 +20,13 @@ namespace S3Train.Web.Controllers
         // GET: Cart
         public ActionResult MyCart()
         {
-            var cart = Session[CartSession];
-            var list = new List<CartViewModel>();
-            if (cart != null)
-            {
-                list = (List<CartViewModel>)cart;
-            }
-                return View(list);
+            //var cart = Session[CartSession];
+            //var list = new List<CartViewModel>();
+            //if (cart != null)
+            //{
+            //    list = (List<CartViewModel>)cart;
+            //}
+                return View();
         }
 
         public ActionResult AddItems(Guid Id, int Quantity)
