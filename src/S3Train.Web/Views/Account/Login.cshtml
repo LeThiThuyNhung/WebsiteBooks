@@ -1,4 +1,5 @@
 ﻿@using S3Train.Web.Models
+
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
@@ -62,12 +63,12 @@
                                     <div class="form-group">
                                         <label class="col-form-label">Username</label>
                                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessageFor(m => m.Login.Email, "", new { @class = "text-danger" })*@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-form-label">Password</label>
                                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        @*@Html.ValidationMessageFor(m => m.Login.Password, "", new { @class = "text-danger" })*@
                                     </div>
                                     <div class="right-w3l">
                                         <input type="submit" class="form-control" value="Log in">

@@ -24,7 +24,7 @@ namespace S3Train.Web.Controllers
 
             var productsByCategory = new HomeViewModel
             {
-                productsByCategory = GetBroductsByCategory(_productsByCategory.GetProductsByCategoryItems(CategoryId))
+                ProductsByCategory = GetBroductsByCategory(_productsByCategory.GetProductsByCategoryItems(CategoryId))
             };
 
             return View(productsByCategory);

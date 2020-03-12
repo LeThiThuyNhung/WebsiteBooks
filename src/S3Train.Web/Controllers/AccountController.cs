@@ -56,7 +56,7 @@ namespace S3Train.Web.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return PartialView("Login");
         }
 
         //
@@ -68,7 +68,7 @@ namespace S3Train.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return PartialView("Login");
             }
 
             // This doesn't count login failures towards account lockout
@@ -85,7 +85,7 @@ namespace S3Train.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return PartialView("Login");
             }
         }
 

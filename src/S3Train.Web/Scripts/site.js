@@ -7,4 +7,11 @@
             console.log('category loaded successfully!');
         });
     }
+
+    var loginForm = $('#loginForm');
+    if (loginForm.length > 0) {
+        $(loginForm).load('/Account/Login', function () {
+            console.log('login form loaded successfully!');
+        });
+    }
 });
