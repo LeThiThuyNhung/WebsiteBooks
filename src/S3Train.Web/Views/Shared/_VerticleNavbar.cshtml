@@ -44,15 +44,27 @@
             <div class="clearfix"> </div>
         </div>
         <div class="header-bottom-right">
-            <div class="account"><a href="login.html"><span> </span>YOUR ACCOUNT</a></div>
+            <div class="account">
+                <a href="#" data-toggle="modal" data-target="#exampleModal"><span> </span>YOUR ACCOUNT</a>   
+                
+            </div>
+           @Html.Partial("_Login")
             <ul class="login">
-                <li><a href="login.html"><span> </span>LOGIN</a></li> |
-                <li><a href="register.html">SIGNUP</a></li>
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span> </span>LOGIN</a>
+                    
+                </li> |
+                <li><a href="#" data-toggle="modal" data-target="#exampleModal2">SIGNUP</a>
+                    
+                </li>
+               
             </ul>
-            <div class="cart"><a href="#"><span> </span>CART</a></div>
+           
+            <div class="cart"><a href="@Url.Action("MyCart", "Cart", null)"><span> </span>CART</a></div>
+
             <div class="clearfix"> </div>
+            @Html.Partial("_Register")
         </div>
         <div class="clearfix"> </div>
     </div>
 </div>
-<!---->

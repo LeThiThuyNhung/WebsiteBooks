@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Contract\ICartService.cs" />
     <Compile Include="Contract\ICategoryService.cs" />
     <Compile Include="Contract\ICSProductService.cs" />
     <Compile Include="Contract\IProductDetailService.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="Contract\IProductsByCategoryService.cs" />
     <Compile Include="Contract\IProductService.cs" />
     <Compile Include="Contract\IPromotionDetailService.cs" />
+    <Compile Include="Contract\IRelatedProductsService.cs" />
+    <Compile Include="Contract\RelatedproductsService.cs" />
     <Compile Include="Contract\ISearchProductsForAuthorService.cs" />
     <Compile Include="DTOs\AuthorDTO.cs" />
     <Compile Include="DTOs\CategoryDTO.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="DTOs\PublisherDTO.cs" />
     <Compile Include="GenenicServiceBase.cs" />
     <Compile Include="IGenenicServiceBase.cs" />
+    <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\CSProductService.cs" />
     <Compile Include="Service\ProductDetailService.cs" />
@@ -98,6 +102,7 @@
     <Compile Include="Service\ProductsByCategoryService.cs" />
     <Compile Include="Service\PromotionDetailService.cs" />
     <Compile Include="Service\SearchProductsForAuthorService.cs" />
+    <Compile Include="Service\RelatedProductsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\S3Train.Core\S3Train.Core.csproj">

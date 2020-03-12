@@ -8,6 +8,7 @@ namespace S3Train.DTOs
 {
     public class AuthorDTO
     {
+        public Guid AuthorId { get; set; }
         public string NameAuthor { get; set; }
         public IList<ProductDTO> Products { get; set; }
     }

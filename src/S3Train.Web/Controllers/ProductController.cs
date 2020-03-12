@@ -33,11 +33,19 @@ namespace S3Train.Web.Controllers
                 ReleaseYear = prodDetail.ReleaseYear,
                 NamePublisher = prodDetail.Publisher.NamePublisher,
                 CategoryName = prodDetail.Category.CategoryName,
-                AuthorName = String.Join(", ", prodDetail.Author.Select(x => x.NameAuthor))
-        };
+                AuthorName = String.Join(", ", prodDetail.Author.Select(x => x.NameAuthor)),
+                RelatedProduct = prodDetail.RelatedProduct.Select(q => new ProductViewModel
+                {
+                    Id = q.ProductId,
+                    NameProduct = q.NameProduct,
+                    ImagePath = q.ImagePath,
+                    DisplayPrice = q.Price.ToString()
+                }).ToList()
+            };
 
             return View(productDetailViewModel);
         }
+
     }
 
        

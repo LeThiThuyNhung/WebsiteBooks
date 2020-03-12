@@ -8,6 +8,7 @@ namespace S3Train.Web.Models
     public class ProductDetailViewModel
     {
         public Guid Id { get; set; }
+        public Guid AuthorId { get; set; }
         public string Name { get; set; }
         public string Summary { get; set; }
         public string DisplayPrice { get; set; }
@@ -21,5 +22,7 @@ namespace S3Train.Web.Models
         public string AuthorName { get; set; }
         public string PromotionPercent { get; set; }
         public string CategoryName { get; set; }
+
+        public IList<ProductViewModel> RelatedProduct { get; set; }
     }
 }
