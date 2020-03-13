@@ -23,7 +23,7 @@ p.qty {
     
 }
 
-.cart h2 {
+.cart h3 {
     font-size: 1.5em;
     margin-bottom: 1em;
 }
@@ -59,7 +59,7 @@ p.qty {
 }
 
     .cart-item-info h3 {
-        font-size: 1em;
+        font-size: 1.2em;
         font-weight: 600;
         margin-top: 1em;
     }
@@ -73,7 +73,7 @@ p.qty {
 
     .cart-item-info h4 {
         color: #000;
-        font-size: 1.8em;
+        font-size: 1.5em;
         margin: 2em 0 0.5em;
         font-weight: 500;
         display: inline-block;
