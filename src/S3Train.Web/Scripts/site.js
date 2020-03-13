@@ -14,4 +14,11 @@
             console.log('login form loaded successfully!');
         });
     }
+
+    var registerForm = $('#registerForm');
+    if (registerForm.length > 0) {
+        $(registerForm).load('/Account/Register', function () {
+            console.log('register form loaded successfully!')
+        });
+    }
 });

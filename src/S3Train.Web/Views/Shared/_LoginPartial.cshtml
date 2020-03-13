@@ -3,21 +3,58 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="account">
-        @*<li>*@
-            @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        @*</li>*@
-        <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-    </ul>
+        @*<ul class="account">
+                <li>
+                    @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            </ul>*@
+        <div class="header-bottom-right">
+            <div class="account">
+                <div class="nav-no-collapse header-nav">
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span> </span> @User.Identity.GetUserName()
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cart"><a href="#" ><span> </span>CART</a></div>
+        </div>
     }
 }
 else
 {
-    <ul class="account">
-        YOUR ACCOUNT
-        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
-        @*<li>@Html.ActionLink("Your Account", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
-    </ul>
+    <div class="header-bottom-right">
+        <div class="account">
+            <a href="#" data-toggle="modal" data-target="#exampleModal"><span> </span>YOUR ACCOUNT</a>
+        </div>
+        <div id='loginForm'>
+        </div>
+        
+        <div>
+            <div id='registerForm'>
+            </div>
+            <ul class="login">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span> </span>LOGIN</a>
+
+                </li> |
+                <li><a href="#" data-toggle="modal" data-target="#exampleModal2">SIGNUP</a></li>
+            </ul>
+        </div>
+        <div id='registerForm'>
+        </div>
+        <div class="cart"><a href="#" data-toggle="modal" data-target="#exampleModal2"><span> </span>CART</a></div>
+        <div class="clearfix"> </div>
+    </div>
+
 }

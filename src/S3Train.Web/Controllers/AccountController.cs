@@ -137,7 +137,7 @@ namespace S3Train.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return PartialView("Register");
         }
 
         //
