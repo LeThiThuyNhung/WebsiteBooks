@@ -105,9 +105,12 @@ account a p {
 }
 .cart {
     width: 24%;
-    margin: -30px 320px;
+    margin: -36px 320px;
 }
 
+    .cart a {
+        display: inline-block;
+    }
 .account a span {
     background: url(../images/img-sprite.png)-117px -30px;
     width: 26px;
@@ -131,10 +134,11 @@ account a p {
     vertical-align: middle;
 }
 
+
 ul.login {
     float: left;
     width: 36%;
-    margin: -30px 150px;
+    margin: -36px 150px;
 }
 
 ul.login li {

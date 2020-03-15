@@ -34,17 +34,13 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Register</h5>
+                        <h5 class="modal-title">Sign up</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form action="#" method="post">
-                            <div class="form-group">
-                                <label class="col-form-label">Your Name</label>
-                                <input type="text" class="form-control" placeholder=" " name="Name" required="">
-                            </div>
                             <div class="form-group">
                                 <label class="col-form-label">Email</label>
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
@@ -58,7 +54,7 @@
                                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                             </div>
                             <div class="right-w3l">
-                                <input type="submit" class="form-control" value="Register">
+                                <input type="submit" class="form-control" value="Sign up">
                             </div>
                             <div class="sub-w3l">
                                 <div class="custom-control custom-checkbox mr-sm-2">

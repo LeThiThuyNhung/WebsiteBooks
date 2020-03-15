@@ -20,8 +20,8 @@
                                 <span> </span> @User.Identity.GetUserName()
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                <li>@Html.ActionLink("Profile", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                             </ul>
                         </li>
                     </ul>
@@ -50,8 +50,6 @@ else
                 </li> |
                 <li><a href="#" data-toggle="modal" data-target="#exampleModal2">SIGNUP</a></li>
             </ul>
-        </div>
-        <div id='registerForm'>
         </div>
         <div class="cart"><a href="#" data-toggle="modal" data-target="#exampleModal2"><span> </span>CART</a></div>
         <div class="clearfix"> </div>

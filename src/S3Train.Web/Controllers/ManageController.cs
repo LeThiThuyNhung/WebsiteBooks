@@ -71,7 +71,7 @@ namespace S3Train.Web.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
-            return View(model);
+            return PartialView(model);
         }
 
         //
