@@ -21,9 +21,9 @@ else
         <div class="cart-top">
             <a href="index.html"><< home</a>
         </div>
-       
+
         <div class="col-md-9 cart-items">
-            <h2>My Shopping Bag (2)</h2>
+            <h2>My Shopping Bag (@Model.Count())</h2>
             <script>
                 $(document).ready(function (c) {
                     $('.close1').on('click', function (c) {
@@ -33,58 +33,75 @@ else
                     });
                 });
             </script>
-        @foreach (var item in Model)
-        {
-            <div class="cart-header">
-                <div class="close1"> </div>
-                <div class="cart-sec">
-               
-                    <div class="cart-item cyc">
-                        <img src="@Url.Content("~/ImagePD/"+item.Products.ImagePath)" width="100" height="150" />
-                    </div>
-                    <div class="cart-item-info">
-                        <h3>@item.Products.NameProduct<span>@item.Products.Barcode</span></h3>
-                        <h4>@item.Products.Price</h4>
-                        <p class="qty">Qty ::</p>
-                        <input min="1" type="number" id="quantity" name="quantity" value="@item.Amount" class="form-control1 input-small">
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="delivery">
-                        <p>Service Charges:: Rs.50.00</p>
-                        <span>Delivered in 2-3 bussiness days</span>
+            @foreach (var item in Model)
+            {
+                <div class="cart-header">
+                    <div class="close1"> </div>
+                    <div class="cart-sec">
+
+                        <div class="cart-item cyc">
+                            <img src="@Url.Content("~/ImagePD/"+item.Products.ImagePath)" width="100" height="150" />
+                        </div>
+                        <div class="cart-item-info">
+                            <h3>@item.Products.NameProduct<span>@item.Products.Barcode</span></h3>
+                            <h4>$@item.Products.Price</h4>
+                            <p class="qty">Qty ::</p>
+                            <input min="1" type="number" id="quantity" name="quantity" value="@item.Amount" class="form-control1 input-small">
+                        </div>
                         <div class="clearfix"></div>
+                        <div class="delivery">
+                            <p>ToTal::$@(item.Amount * item.Products.Price)</p>
+                            <span>Delivered in 2-3 bussiness days</span>
+                            <div class="clearfix"></div>
+                        </div>
+
                     </div>
-                
+                </div>
+            }
+
+        </div>
+      
+            <div class="col-md-3 cart-total">
+                <a class="continue" href="#">Continue to basket</a>
+                <div class="price-details">
+                    <h3>Price Details</h3>
+                    <span>Total</span>
+                    <span class="total">$@Model.Sum(m => m.Amount * m.Products.Price).ToString()</span>
+                    <span>Discount</span>
+                    <span class="total">---</span>
+                    <span>Delivery Charges</span>
+                    <span class="total">$20</span>
+                    <div class="clearfix"></div>
+                </div>
+                <h4 class="last-price">TOTAL</h4>
+                <span class="total final">$@(20+Model.Sum(m => m.Amount * m.Products.Price))</span>
+                <div class="clearfix"></div>
+                <a class="order" href="#">Place Order</a>
+                <div class="total-item">
+                    <h3>OPTIONS</h3>
+                    <h4>COUPONS</h4>
+                    <a class="cpns" href="#">Apply Coupons</a>
+                    <p><a href="#">Log In</a> to use accounts - linked coupons</p>
                 </div>
             </div>
-        }
-
+      
         </div>
-        <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Continue to basket</a>
-            <div class="price-details">
-                <h3>Price Details</h3>
-                <span>Total</span>
-                <span class="total">350.00</span>
-                <span>Discount</span>
-                <span class="total">---</span>
-                <span>Delivery Charges</span>
-                <span class="total">100.00</span>
-                <div class="clearfix"></div>
-            </div>
-            <h4 class="last-price">TOTAL</h4>
-            <span class="total final">450.00</span>
-            <div class="clearfix"></div>
-            <a class="order" href="#">Place Order</a>
-            <div class="total-item">
-                <h3>OPTIONS</h3>
-                <h4>COUPONS</h4>
-                <a class="cpns" href="#">Apply Coupons</a>
-                <p><a href="#">Log In</a> to use accounts - linked coupons</p>
-            </div>
-        </div>
-       
-    </div>
 }
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#quantity').keypress(function () {
+                var id = @Model.First().Products.Id;
+                var quantity = @Model.First().Amount;
+                $.ajax({
+                    type: "POST",
+                    url: '/Cart/UpdateQuantity',
+                    data: { Id: id, NewQuan: quantity },
+                    success: function (data) {
+                        
+                    }
+                });
+            });
+        });
+    </script>
 

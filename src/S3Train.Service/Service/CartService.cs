@@ -13,7 +13,7 @@ namespace S3Train.Service
         {
         }
 
-        public IList<ProductDTO> GetCart(Guid Id, int Quantity)
+        public ProductDTO GetCart(Guid Id, int Quantity)
         {
             var cart = DbContext.Products.Where(x => x.Id == Id)
                 .Select(n => new ProductDTO
@@ -23,7 +23,7 @@ namespace S3Train.Service
                     ImagePath = n.ImagePath,
                     Price = n.Price,
                     Barcode = n.Barcode,
-                }).ToList();
+                }).SingleOrDefault();
             return cart;
         }
     }
