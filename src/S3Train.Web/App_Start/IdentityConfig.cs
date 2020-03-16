@@ -7,6 +7,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using S3Train.Domain;
+using System.Net.Mail;
+using System.Net;
 
 namespace S3Train
 {
@@ -15,6 +17,27 @@ namespace S3Train
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
+            var client = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                UseDefaultCredentials = false,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential("thuy31081998@gmail.com", "01683314828"),
+                EnableSsl = true,
+            };
+
+            var from = new MailAddress("thuy31081998@gmail.com", "Thuy BN");
+            var to = new MailAddress(message.Destination);
+
+            var mail = new MailMessage(from, to)
+            {
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true,
+            };
+
+            client.Send(mail);
             return Task.FromResult(0);
         }
     }

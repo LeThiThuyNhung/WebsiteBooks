@@ -81,6 +81,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
@@ -273,8 +275,28 @@
     <Compile Include="Migrations\202003060320543_deletelocation.Designer.cs">
       <DependentUpon>202003060320543_deletelocation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003160305425_updateUsercolumn.cs" />
+    <Compile Include="Migrations\202003160305425_updateUsercolumn.Designer.cs">
+      <DependentUpon>202003160305425_updateUsercolumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003160411073_updateUser.cs" />
+    <Compile Include="Migrations\202003160411073_updateUser.Designer.cs">
+      <DependentUpon>202003160411073_updateUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>S3Train.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>S3Train.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>S3Train.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>S3Train.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CSProductViewModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
@@ -282,6 +304,21 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\PromotionProductViewModel.cs" />
+    <Compile Include="Models\S3Train.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>S3Train.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\S3Train.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>S3Train.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\S3Train.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>S3Train.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\SliderItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -602,6 +639,16 @@
     <Content Include="ImagePD\thriller1.PNG" />
     <Content Include="ImagePD\thriller2.PNG" />
     <Content Include="ImagePD\thriller3.PNG" />
+    <Content Include="Models\S3Train.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>S3Train.edmx</DependentUpon>
+      <LastGenOutput>S3Train.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\S3Train.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>S3Train.edmx</DependentUpon>
+      <LastGenOutput>S3Train.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -816,6 +863,13 @@
     <Content Include="Areas\Admin\Views\PromotionDetails\Details.cshtml" />
     <Content Include="Areas\Admin\Views\PromotionDetails\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\PromotionDetails\Index.cshtml" />
+    <EntityDeploy Include="Models\S3Train.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>S3Train.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\S3Train.edmx.diagram">
+      <DependentUpon>S3Train.edmx</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -968,7 +1022,9 @@
     <Content Include="Views\Account\_Login.cshtml" />
     <Content Include="Views\Shared\_Register.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1011,6 +1067,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003060320543_deletelocation.resx">
       <DependentUpon>202003060320543_deletelocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003160305425_updateUsercolumn.resx">
+      <DependentUpon>202003160305425_updateUsercolumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003160411073_updateUser.resx">
+      <DependentUpon>202003160411073_updateUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
