@@ -20,6 +20,7 @@ namespace S3Train.Service
                 .Where(u => u.Id == id)
                 .Select(n => new ProductDTO
                 {
+                    Id = n.Id,
                     NameProduct = n.NameProduct,
                     ImagePath = n.ImagePath,
                     Price = n.Price,

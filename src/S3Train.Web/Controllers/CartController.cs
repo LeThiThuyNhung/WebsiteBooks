@@ -1,5 +1,6 @@
 ﻿using S3Train.Contract;
 using S3Train.Domain;
+using S3Train.DTOs;
 using S3Train.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -21,50 +22,68 @@ namespace S3Train.Web.Controllers
         // GET: Cart
         public ActionResult MyCart()
         {
-            var cart = Session[CartSession];
-            var list  = new List<CartViewModel>();
-            if(cart != null)
-            {
-                list = (List<CartViewModel>)cart;
-            }
+            var cart = (List<CartViewModel>)Session[CartSession];
+          
             return View(cart);
         }
 
         public RedirectToRouteResult AddItems(Guid Id, int Quantity)
         {
             var CartItem = _cartService.GetCart(Id, Quantity);
-            var cart = Session[CartSession];
-            if(cart!= null)
+            var currentCartItems = (List<CartViewModel>)Session[CartSession] ?? new List<CartViewModel>(); ;
+            if (currentCartItems.Exists(x => x.Products.Id == Id))
             {
-                var list = (List<CartViewModel>)cart;
-                if(list.Exists(x => x.Product.Id == Id))
-                {
-                    foreach(var item in list)
-                    {
-                        if (item.Product.Id == Id)
-                        {
-                            item.Amount += Quantity;
-                        }
-                    }
-                }
-                else
-                {
-                    var newItem = new CartViewModel();
-                    newItem.Product.Id = CartItem.Id;
-                    newItem.Amount = Quantity;
-                    list.Add(newItem);
-                }
-                Session[CartSession] = list;
+                currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount += Quantity;
             }
             else
             {
-                var newItem = new CartViewModel();
-                newItem.Product.Id = CartItem.Id;
-                newItem.Amount = Quantity;
-                var list = new List<CartViewModel>();
-                list.Add(newItem);
-                Session[CartSession] = list;
+                currentCartItems.Add(new CartViewModel
+                {
+                    Products = new ProductDTO {
+                        Id = Id
+                    },
+                    Amount = Quantity
+
+                });
             }
+            Session[CartSession] = currentCartItems;
+
+
+            //var CartItem = _cartService.GetCart(Id, Quantity);
+            //var cart = Session[CartSession];
+            //if(cart!= null)
+            //{
+            //    var list = (List<CartViewModel>)cart;
+            //    if(list.Exists(x => x.Product.Id == Id))
+            //    {
+            //        foreach(var item in list)
+            //        {
+            //            if (item.Product.Id == Id)
+            //            {
+            //                item.Amount += Quantity;
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        var newItem = new CartViewModel();
+            //        newItem.Product.Id = Id;
+            //        newItem.Amount = Quantity;
+            //        list.Add(newItem);
+            //    }
+            //    Session[CartSession] = list;
+            //}
+            //else
+            //{
+            //    var newItem = new CartViewModel();
+            //    newItem.Product.Id = CartItem.Id;
+            //    newItem.Amount = Quantity;
+            //    var list = new List<CartViewModel>();
+            //    list.Add(newItem);
+            //    Session[CartSession] = list;
+            //}
+
+
             //if (Session["cart"] == null)
             //{
             //    Session["cart"] = new List<CartViewModel>();
@@ -83,7 +102,7 @@ namespace S3Train.Web.Controllers
             //            DisplayPrice = $"${m.Price}",
             //            Barcode = m.Barcode,
             //        }).ToList(),
-                    
+
             //    };
             //    cart.Add(newItem);
             //}

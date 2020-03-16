@@ -40,11 +40,11 @@ else
                 <div class="cart-sec">
                
                     <div class="cart-item cyc">
-                        <img src="@Url.Content("~/ImagePD/"+item.Product.ImagePath)" width="100" height="150" />
+                        <img src="@Url.Content("~/ImagePD/"+item.Products.ImagePath)" width="100" height="150" />
                     </div>
                     <div class="cart-item-info">
-                        <h3>@item.Product.NameProduct<span>@item.Product.Barcode</span></h3>
-                        <h4>@item.Product.Price</h4>
+                        <h3>@item.Products.NameProduct<span>@item.Products.Barcode</span></h3>
+                        <h4>@item.Products.Price</h4>
                         <p class="qty">Qty ::</p>
                         <input min="1" type="number" id="quantity" name="quantity" value="@item.Amount" class="form-control1 input-small">
                     </div>

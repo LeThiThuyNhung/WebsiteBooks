@@ -24,6 +24,7 @@ namespace S3Train.Web.Controllers
             var prodDetail = _detailProductService.GetProductDetail(id);
             var productDetailViewModel = new ProductDetailViewModel
             {
+                Id = prodDetail.Id,
                 Name = prodDetail.NameProduct,
                 ImagePath = prodDetail.ImagePath,
                 DisplayPrice = $"{prodDetail.Price}",
