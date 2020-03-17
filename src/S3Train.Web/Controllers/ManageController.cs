@@ -52,16 +52,7 @@ namespace S3Train.Web.Controllers
 
         //
         // GET: /Manage/Index
-        public ActionResult Profile()
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
-            var model = new IndexViewModel
-            {
-                Email = user.Email
-            };
-            return View(model);
-        }
+        
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -119,6 +110,17 @@ namespace S3Train.Web.Controllers
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
+        public async Task<ActionResult> Profile()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            var model = new IndexViewModel
+            {
+                Email = user.Email
+            };
+            return View(model);
+        }
+
         //
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
@@ -148,6 +150,33 @@ namespace S3Train.Web.Controllers
                 await UserManager.SmsService.SendAsync(message);
             }
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+        }
+
+        public ActionResult AddAddress()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddAddress(AddAddressViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            // Generate the token and send it
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Address);
+            if (UserManager.SmsService != null)
+            {
+                var message = new IdentityMessage
+                {
+                    Destination = model.Address,
+                    Body = "Your security code is: " + code
+                };
+                await UserManager.SmsService.SendAsync(message);
+            }
+            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Address });
         }
 
         //

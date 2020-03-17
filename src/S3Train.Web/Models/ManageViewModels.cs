@@ -74,6 +74,13 @@ namespace S3Train.Web.Models
         public string Number { get; set; }
     }
 
+    public class AddAddressViewModel
+    {
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+    }
+
     public class VerifyPhoneNumberViewModel
     {
         [Required]
