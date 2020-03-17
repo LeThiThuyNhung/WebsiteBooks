@@ -1052,9 +1052,6 @@ font-weight: 500;
         width: 100%;
     }
 
-    a.get-cart {
-        float: right;
-    }
 
     .latter input[type="submit"] {
         left: 11em;

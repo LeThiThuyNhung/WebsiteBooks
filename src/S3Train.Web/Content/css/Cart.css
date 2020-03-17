@@ -170,13 +170,14 @@ a.continue {
     }
 
 span.total {
-    width: 50%;
+    width: 70%;
     float: left;
+    padding-top:15px;
 }
 
 span.final {
     font-weight: 600;
-    padding-top: 6px;
+    margin-top:15px;
     font-size: 1.3em;
 }
 
@@ -186,13 +187,13 @@ h4.last-price {
     font-weight: 600;
     width: 50%;
     float: left;
-    padding-top: 10px;
 }
 
 .cart-total {
     padding-top: 26px;
     border-left: 1px solid;
 }
+
 
 a.order {
     background: #333;
