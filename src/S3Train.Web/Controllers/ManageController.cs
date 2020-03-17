@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using S3Train.Web.Models;
+using S3Train.Domain;
 
 namespace S3Train.Web.Controllers
 {
@@ -51,6 +52,16 @@ namespace S3Train.Web.Controllers
 
         //
         // GET: /Manage/Index
+        public ActionResult Profile()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            var model = new IndexViewModel
+            {
+                Email = user.Email
+            };
+            return View(model);
+        }
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -63,6 +74,10 @@ namespace S3Train.Web.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            //var user = userIdentity.Users.Where(u => u.Email == db.Email).First();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
@@ -70,8 +85,12 @@ namespace S3Train.Web.Controllers
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                
                 Email = await UserManager.GetEmailAsync(userId),
+
+                FullName = user.FullName,
+                Address = user.Address,
+                DateofBirth = user.DateofBirth,
+                Gender = user.Gender,
             };
             return View(model);
         }

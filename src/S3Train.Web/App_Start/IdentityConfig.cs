@@ -27,7 +27,7 @@ namespace S3Train
                 EnableSsl = true,
             };
 
-            var from = new MailAddress("thuy31081998@gmail.com", "Thuy BN");
+            var from = new MailAddress("thuy31081998@gmail.com", "Admin NationalBookStore");
             var to = new MailAddress(message.Destination);
 
             var mail = new MailMessage(from, to)

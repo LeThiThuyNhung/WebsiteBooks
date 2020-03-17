@@ -1,7 +1,7 @@
 ﻿@model S3Train.Web.Models.IndexViewModel
 @{
     ViewBag.Title = "Manage";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Profile.cshtml";
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -13,23 +13,23 @@
     <dl class="dl-horizontal">
         <dt>Full name:</dt>
         <dd>
-            @(Model.FullName)
+            @Model.FullName
         </dd>
         <dt>Address:</dt>
         <dd>
-            @(Model.Address)
+            @Model.Address
         </dd>
         <dt>Gender:</dt>
         <dd>
-            @(Model.Gender)
+            @Model.Gender
         </dd>
         <dt>Date of birth:</dt>
         <dd>
-            @(Model.DateofBirth)
+            @Model.DateofBirth.ToShortDateString()
         </dd>
         <dt>Email:</dt>
         <dd>
-            @(Model.Email)
+            @Model.Email
         </dd>
         <dt>Password:</dt>
         <dd>
@@ -75,7 +75,7 @@
                 <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")&nbsp;&nbsp;]</text>
             }
         </dd>
-        <dt>Two-Factor Authentication:</dt>
+        @*<dt>Two-Factor Authentication:</dt>
         <dd>
             <p>
                 There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
@@ -101,6 +101,6 @@
                         </text>
                     }
                 }
-        </dd>
+        </dd>*@
    </dl>
 </div>

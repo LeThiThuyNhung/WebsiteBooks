@@ -71,8 +71,8 @@ namespace S3Train.Web.Controllers
                 return PartialView("Login");
             }
 
-            S3Train_v1Entities db = new S3Train_v1Entities();
-            AspNetUser user = db.AspNetUsers.SingleOrDefault(m => m.Email == model.Email);
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.SingleOrDefault(m => m.UserName == model.Email);
             if (user == null)
             {
                 ModelState.AddModelError("CustomerError", "Account does not exist");

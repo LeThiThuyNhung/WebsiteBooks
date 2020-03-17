@@ -18,6 +18,7 @@ namespace S3Train.Web.Models
         public string Email { get; set; }
         public string Address { get; set; }
         public string Gender { get; set; }
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime DateofBirth { get; set; }
     }
 
