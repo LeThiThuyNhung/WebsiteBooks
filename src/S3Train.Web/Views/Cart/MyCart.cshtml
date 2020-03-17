@@ -38,7 +38,7 @@ else
                             <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
                             <h4>$@item.value.Products.Price</h4>
                             <p class="qty">Qty ::</p>
-                            <input min="1" type="number" id="quantity" name="quantity" value="@item.value.Amount" class="form-control1 input-small quantity">
+                            <input min="1" type="number" id="quantity" name="quantity" data-prod-id="@item.value.Products.Id" value="@item.value.Amount" class="form-control1 input-small quantity">
                             <input class="price" value="@item.value.Products.Price" type="hidden" />
                         </div>
                         <div class="clearfix"></div>
@@ -86,7 +86,15 @@ else
         cal();
 
         $(".quantity").change(function () {
-            cal();
+            //cal();
+            $.ajax({
+                data: { Id: $(this).data("prod-id"), NewQuan : $(this).val() },
+                url: "/Cart/UpdateQuantity",
+                type: "POST",
+                success: function (data) {
+                    cal();
+                }
+            });
         });
         
         function cal() {
@@ -101,12 +109,10 @@ else
                 var total = priceVal * quantityVal;
                 totalQty = totalQty + quantityVal;
 
-                //console.log(priceVal);
-                //console.log(quantityVal);
-                //console.log(total);
+            
                 among += total;
             });
-            //console.log("among", among);
+          
 
             $("#card-among").html(among);
             $(".final").html(among + 5);
@@ -128,9 +134,6 @@ else
                     alert("Delete successful")
                 }
             });
-
-            
-
             
         });
     });

@@ -55,7 +55,7 @@ namespace S3Train.Web.Controllers
             return RedirectToAction("MyCart");
         }
 
-        public RedirectToRouteResult UpdateQuantity(Guid Id, int NewQuan)
+        public ActionResult UpdateQuantity(Guid Id, int NewQuan)
         {
             List<CartViewModel> cart = (List<CartViewModel>)Session[CartSession]  ;
             CartViewModel updateItem = cart.FirstOrDefault(m => m.Products.Id == Id);
@@ -63,7 +63,7 @@ namespace S3Train.Web.Controllers
             {
                 updateItem.Amount = NewQuan;
             }
-            return RedirectToAction("MyCart");
+            return Json(updateItem);
 
         }
 
