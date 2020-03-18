@@ -198,14 +198,14 @@ a.continue {
     }
 
 span.total {
-    width: 60%;
+    width: 50%;
     float: right;
   
 }
 
 span.final {
     font-weight: 600;
-    margin-top:15px;
+    margin-top:10px;
     font-size: 1.3em;
 }
 
@@ -215,6 +215,7 @@ h4.last-price {
     font-weight: 600;
     width: 50%;
     float: left;
+    margin-top: 10px;
 }
 
 .cart-total {

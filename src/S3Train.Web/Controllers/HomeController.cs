@@ -79,6 +79,7 @@ namespace S3Train.Controllers
         {
             return productAds.Select(x => new SliderItemViewModel
             {
+                ProductId = x.ProductId,
                 ImagePath = x.ImagePath,
                 Title = x.Title,
                 Description = x.Description,

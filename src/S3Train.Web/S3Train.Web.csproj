@@ -466,6 +466,7 @@
     <Content Include="Content\jsDetail\modernizr.custom.js" />
     <Content Include="Content\jsDetail\simpleCart.min.js" />
     <Content Include="Content\jsDetail\star-rating.js" />
+    <Content Include="Content\js\buy.js" />
     <Content Include="Content\js\cart.js" />
     <Content Include="Content\js\jquery-1.11.0.min.js" />
     <Content Include="Content\js\jquery-1.9.0.min.js" />
