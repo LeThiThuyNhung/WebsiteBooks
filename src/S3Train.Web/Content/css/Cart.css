@@ -1,5 +1,33 @@
-﻿
+﻿.cart-empty {
+    width: 100%;
+    text-align:center;
+    margin:50px;
+    height:500px;
+}
+.cart-empty p {
+    font-size: 15px;
+}
 
+.cart-empty a.continue {
+    font-size: 20px;
+    width: 250px;
+    background-color: coral;
+}
+#cart-wrapper-empty {
+    width: 100%;
+    text-align: center;
+    margin: 50px;
+    height: 500px;
+}
+#cart-wrapper-empty p {
+    font-size: 15px;
+}
+
+ #cart-wrapper-empty a.continue {
+     font-size:20px;
+     width: 250px;
+     background-color:coral;
+    }
 p.qty {
     margin: 15px 10px 0 0;
     color: #333333;
@@ -170,9 +198,9 @@ a.continue {
     }
 
 span.total {
-    width: 70%;
-    float: left;
-    padding-top:15px;
+    width: 60%;
+    float: right;
+  
 }
 
 span.final {

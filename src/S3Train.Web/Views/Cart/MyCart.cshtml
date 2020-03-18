@@ -7,21 +7,14 @@
 
 @if (Model == null || Model.Count == 0)
 {
-    <p class="text-info text-center">
-        Cart is empty!
-    </p>
+    <div class="cart-empty">
+    <p>Cart is empty!</p>
+    <a class="continue" href="@Url.Action("Index", "Home", null)">Continue shopping</a>
+    </div>
 }
 else
 {
-    <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="men.html">Home</a></li>
-            <li class="active">Cart</li>
-        </ol>
-        <div class="cart-top">
-            <a href="index.html"><< home</a>
-        </div>
-
+    <div class="container" id="cart-wrapper">
         <div class="col-md-9 cart-items">
             <h2>My Shopping Bag (<span id="totalQty"></span>)</h2>
            
@@ -38,12 +31,13 @@ else
                             <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
                             <h4>$@item.value.Products.Price</h4>
                             <p class="qty">Qty ::</p>
-                            <input min="1" type="number" id="quantity" name="quantity" data-prod-id="@item.value.Products.Id" value="@item.value.Amount" class="form-control1 input-small quantity">
+                            <input min="1" type="number" id="quantity" name="quantity" data-id="@item.value.Products.Id" value="@item.value.Amount" class="form-control1 input-small quantity">
                             <input class="price" value="@item.value.Products.Price" type="hidden" />
                         </div>
                         <div class="clearfix"></div>
                         <div class="delivery">
-                            <p id="total">ToTal::$</p>
+                            <p>Total::</p>
+                            <p id="sum-total"></p>
                             <span>Delivered in 2-3 bussiness days</span>
                             <div class="clearfix"></div>
                         </div>
@@ -79,16 +73,20 @@ else
             </div>
       
         </div>
+
+        <div hidden id="cart-wrapper-empty">
+            <p>Cart is empty!</p>
+            <a class="continue" href="@Url.Action("Index", "Home", null)">Continue shopping</a>
+        </div>
 }
 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(document).ready(function () {
         cal();
-
         $(".quantity").change(function () {
             //cal();
             $.ajax({
-                data: { Id: $(this).data("prod-id"), NewQuan : $(this).val() },
+                data: { Id: $(this).data("id"), NewQuan : $(this).val() },
                 url: "/Cart/UpdateQuantity",
                 type: "POST",
                 success: function (data) {
@@ -96,45 +94,59 @@ else
                 }
             });
         });
-        
+
         function cal() {
             var among = 0;
             var totalQty = 0;
+            var total = 0;
             $(".cart-item-info").each(function () {
                 var price = $(".price");
                 var quantity = $(".quantity");
 
                 var priceVal = $(this).find(price).val();
                 var quantityVal = parseInt($(this).find(quantity).val());
-                var total = priceVal * quantityVal;
+                total = priceVal * quantityVal;
                 totalQty = totalQty + quantityVal;
 
-            
                 among += total;
             });
-          
+
 
             $("#card-among").html(among);
             $(".final").html(among + 5);
-            $("#total").html(total);
+            $("#sum-total").html(total);
             $("#totalQty").html(totalQty);
         };
 
         $('.close1').on('click', function () {
-            $.ajax({
-                data: { Id: $(this).data("prod-id") },
-                url: "/Cart/removeItem",
-                type: "POST",
-                success: function (data) {
+            var _this = $(this);
+            //console.log(val().total);
+            var r = confirm("Are you sure you want to leave this product?");
+            if (r == true) {
 
-                    //delete product item in cart
-                    $(this).parent().remove();
-                    cal();
+                $.ajax({
+                    data: { Id: $(this).data("prod-id") },
+                    url: "/Cart/removeItem",
+                    type: "POST",
+                    success: function (data) {
+                        //delete product item in cart
+                        _this.parent().remove();
+                        cal();
 
-                    alert("Delete successful")
-                }
-            });
-            
+                        if (data.length == 0) {
+                            $("#cart-wrapper").css("display", "none")
+                            $("#cart-wrapper-empty").css("display", "block")
+                        }
+                        else {
+                            $("#cart-wrapper").css("display", "block")
+                            $("#cart-wrapper-empty").css("display", "none")
+                        }
+                    }
+
+                });
+            }
+
         });
+
     });
-</script>
+</script>*@
