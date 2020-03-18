@@ -10,6 +10,7 @@ namespace S3Train.Web.Models
         public string NameProduct { get; set; }
         public string Summary { get; set; }
         public string DisplayPrice { get; set; }
+        public string Barcode { get; set; }
         public int Rating { get; set; }
         public int Grouping { get; set; }
     }

@@ -92,6 +92,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                     fileUpload.SaveAs(path);
                 }
                 staff.Id = Guid.NewGuid();
+                staff.Password = Encryptor.MD5Hash(staff.Password);
                 staff.ImagePath = fileName;
                 db.Staffs.Add(staff);
                 db.SaveChanges();
@@ -144,6 +145,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                     }
                     staff.ImagePath = fileName;
                 }
+                staff.Password = Encryptor.MD5Hash(staff.Password);
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

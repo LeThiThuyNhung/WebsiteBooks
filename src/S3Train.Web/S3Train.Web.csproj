@@ -346,12 +346,14 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListOfProductsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ProductsSearchForNameController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -409,11 +411,13 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CSProductViewModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductsSearchForNameViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\PromotionProductViewModel.cs" />
     <Compile Include="Models\SliderItemViewModel.cs" />
@@ -438,6 +442,7 @@
     <Content Include="Content\cssDetail\megamenu.css" />
     <Content Include="Content\cssDetail\normalize.css" />
     <Content Include="Content\cssDetail\style.css" />
+    <Content Include="Content\css\Cart.css" />
     <Content Include="Content\css\clndr.css" />
     <Content Include="Content\css\component.css" />
     <Content Include="Content\css\easy-responsive-tabs.css" />
@@ -449,6 +454,7 @@
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\images\close.png" />
     <Content Include="Content\images\price-rating.png" />
     <Content Include="Content\images\tag.png" />
     <Content Include="Content\jsDetail\easyResponsiveTabs.js" />
@@ -464,6 +470,7 @@
     <Content Include="Content\js\jquery-1.9.0.min.js" />
     <Content Include="Content\js\jquery.flexisel.js" />
     <Content Include="Content\js\main.js" />
+    <Content Include="Content\js\simpleCart.min.js" />
     <Content Include="Content\js\site.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TemplateAdmin\calendar.html" />
@@ -962,6 +969,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1118,6 +1126,8 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Views\Cart\MyCart.cshtml" />
+    <Content Include="Views\ProductsSearchForName\ProductsSearchForAuthor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

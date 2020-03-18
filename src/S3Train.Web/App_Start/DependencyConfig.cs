@@ -47,6 +47,8 @@ namespace S3Train.App_Start
             builder.RegisterType<CSProductService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<PromotionDetailService>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<ProductsByCategoryService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<SearchProductsForAuthorService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<CartService>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }
