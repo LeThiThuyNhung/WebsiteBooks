@@ -1,41 +1,109 @@
 ﻿@model S3Train.Web.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    <h4 class="text-success">@ViewBag.Message</h4>
 }
 
-<h2>@ViewBag.Title.</h2>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Register" />
+                </div>
+            </div>*@
+        <div class="modal fade" id="exampleModal2">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sign up</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label class="col-form-label">Email</label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Password</label>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Confirm Password</label>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Full Name</label>
+                                @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Gender</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp; Male @Html.RadioButtonFor(m => m.Gender, "Male", new { @checked = "checked" })
+                                &nbsp;&nbsp;&nbsp;&nbsp; Female @Html.RadioButtonFor(m => m.Gender, "Female")
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Address</label>
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Phone Number</label>
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Date of Birth</label>
+                                @Html.EditorFor(m => m.DateOfBirth, new { @class = "form-control" })
+                            </div>
+                            <div class="right-w3l">
+                                <input type="submit" class="form-control" value="Sign up">
+                            </div>
+                            <div class="sub-w3l">
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
+                                    <label class="custom-control-label" for="customControlAutosizing2">I Accept to the Terms & Conditions</label>
+                                </div>
+                            </div>
+                            <div class="txt1 text-center p-t-54 p-b-20">
+                                Or Sign Up With
+                            </div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+                            <div class="flex-c-m">
+                                <a href="#" class="login100-social-item bg1">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+                                <a href="#" class="login100-social-item bg3">
+                                    <i class="fa fa-google"></i>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+

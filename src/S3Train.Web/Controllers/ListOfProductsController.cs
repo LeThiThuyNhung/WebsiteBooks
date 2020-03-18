@@ -54,7 +54,7 @@ namespace S3Train.Web.Controllers
             return View(csproducts);
         }
 
-        private static IList< ProductViewModel> GetNewProducts(IList<Product> products)
+        private static IList<ProductViewModel> GetNewProducts(IList<Product> products)
         {
             return products.Select((x) => new ProductViewModel
             {

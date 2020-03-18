@@ -19,20 +19,34 @@ namespace S3Train.Web.Controllers
 
         }
         // GET: ProductsByCategory
-        public ActionResult ProductsByCategory(Guid CategoryId)
+        public ActionResult ProductsByCategory(Guid CategoryId, int page = 1, int pagesize = 2)
         {
-
+            int totalRecord = 0;
             var productsByCategory = new HomeViewModel
             {
-                productsByCategory = GetBroductsByCategory(_productsByCategory.GetProductsByCategoryItems(CategoryId))
+                ProductsByCategory = GetBroductsByCategory(_productsByCategory.GetProductsByCategoryItems(CategoryId), ref totalRecord, page, pagesize)
             };
+
+            ViewBag.ToTal = totalRecord;
+            ViewBag.Page = page;
+
+            int maxPage = 2;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling((double)(totalRecord / pagesize));
+
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Pre = page - 1;
 
             return View(productsByCategory);
         }
 
-        private static IList<CategoryViewModel> GetBroductsByCategory(IList<ProductDTO> proByCa)
+        private static IList<CategoryViewModel> GetBroductsByCategory(IList<ProductDTO> proByCa, ref int totalRecord, int page = 1, int pagesize = 2)
         {
-            return proByCa.Select(x => new CategoryViewModel
+            totalRecord = proByCa.Select(x => new CategoryViewModel
             {
                 Id = x.CategoryId,
                 ImagePath = x.ImagePath,
@@ -40,7 +54,19 @@ namespace S3Train.Web.Controllers
                 DisplayPrice = $"${x.Price}",
                 ProductId = x.ProductId,
                 NameCategory = x.Category.CategoryName,
-            }).ToList();
+            }).Count();
+
+            var model = proByCa.Select(x => new CategoryViewModel
+            {
+                Id = x.CategoryId,
+                ImagePath = x.ImagePath,
+                Name = x.NameProduct,
+                DisplayPrice = $"${x.Price}",
+                ProductId = x.ProductId,
+                NameCategory = x.Category.CategoryName,
+            }).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+
+            return model;
         }
     }
 }
