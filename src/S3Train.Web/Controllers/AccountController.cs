@@ -8,7 +8,7 @@ using Microsoft.Owin.Security;
 using S3Train.Domain;
 using S3Train.Web.Models;
 
-namespace S3Train.Controllers
+namespace S3Train.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -56,7 +56,7 @@ namespace S3Train.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return PartialView("Login");
         }
 
         //
@@ -68,7 +68,23 @@ namespace S3Train.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return PartialView("Login");
+            }
+
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.SingleOrDefault(m => m.UserName == model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("CustomerError", "Account does not exist");
+                return PartialView("Login");
+            }
+            else
+            {
+                if (user.EmailConfirmed == false)
+                {
+                    ModelState.AddModelError("CustomerError", "The account has not been authenticated");
+                    return PartialView("Login");
+                }
             }
 
             // This doesn't count login failures towards account lockout
@@ -84,8 +100,8 @@ namespace S3Train.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    ModelState.AddModelError("", "Password is wrong");
+                    return PartialView("Login");
             }
         }
 
@@ -137,7 +153,7 @@ namespace S3Train.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return PartialView("Register");
         }
 
         //
@@ -149,19 +165,20 @@ namespace S3Train.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName = model.Fullname, Address = model.Address, Gender = model.Gender, DateofBirth = model.DateOfBirth, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
+                    ViewBag.Message = "We have sent authentication information to your email, check your email to perform the authentication.";
                 }
                 AddErrors(result);
             }
@@ -209,10 +226,10 @@ namespace S3Train.Controllers
 
                 // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
             // If we got this far, something failed, redisplay form

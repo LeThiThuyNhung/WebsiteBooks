@@ -99,8 +99,13 @@ color: #fff;
     width: 40%;
 }
 
+account a p {
+    margin: -25px 21px 10px;
+    float: left;
+}
 .cart {
     width: 24%;
+    margin: -36px 320px;
 }
 
 .account a:hover {
@@ -111,12 +116,16 @@ color: #fff;
     text-decoration: none;
 }
 
+    .cart a {
+        display: inline-block;
+    }
 .account a span {
     background: url(../images/img-sprite.png)-117px -30px;
     width: 26px;
     height: 26px;
     display: inline-block;
     vertical-align: middle;
+    margin-left: -30px;
 }
 
 .account a, .cart a, ul.login li a {
@@ -133,10 +142,11 @@ color: #fff;
     vertical-align: middle;
 }
 
+
 ul.login {
     float: left;
     width: 36%;
-    margin: 0;
+    margin: -36px 150px;
 }
 
 ul.login li {

@@ -6,8 +6,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using S3Train.Web.Models;
+using S3Train.Domain;
 
-namespace S3Train.Controllers
+namespace S3Train.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
@@ -51,6 +52,7 @@ namespace S3Train.Controllers
 
         //
         // GET: /Manage/Index
+        
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -63,13 +65,23 @@ namespace S3Train.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            //var user = userIdentity.Users.Where(u => u.Email == db.Email).First();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                Email = await UserManager.GetEmailAsync(userId),
+
+                FullName = user.FullName,
+                Address = user.Address,
+                DateofBirth = user.DateofBirth,
+                Gender = user.Gender,
             };
             return View(model);
         }
@@ -96,6 +108,17 @@ namespace S3Train.Controllers
                 message = ManageMessageId.Error;
             }
             return RedirectToAction("ManageLogins", new { Message = message });
+        }
+
+        public async Task<ActionResult> Profile()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+            var model = new IndexViewModel
+            {
+                Email = user.Email
+            };
+            return View(model);
         }
 
         //
@@ -127,6 +150,33 @@ namespace S3Train.Controllers
                 await UserManager.SmsService.SendAsync(message);
             }
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+        }
+
+        public ActionResult AddAddress()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddAddress(AddAddressViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            // Generate the token and send it
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Address);
+            if (UserManager.SmsService != null)
+            {
+                var message = new IdentityMessage
+                {
+                    Destination = model.Address,
+                    Body = "Your security code is: " + code
+                };
+                await UserManager.SmsService.SendAsync(message);
+            }
+            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Address });
         }
 
         //
