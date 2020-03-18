@@ -37,7 +37,28 @@
                 </div>
 
                 }
+                <!------Page List-------->
+                @if (ViewBag.TotalPage > 0)
+                {
+                    var pageDisplay = (int)ViewBag.MaxPage;
+                    int totalPage = (int)ViewBag.TotalPage;
+                    int curentPage = ((int)ViewBag.Page);
 
+                    var startPageIndex = Math.Max(1, curentPage - pageDisplay / 2);
+                    var endPageIndex = Math.Min(totalPage, curentPage + pageDisplay / 2);
+                    <div class="pager">
+                        @if (curentPage > ViewBag.First)
+                        {
+                            <a href="@Url.Action("ProductsByCategory", "Category", new { @CategoryId = Model.ProductsByCategory.First().Id })"> title='Home'>1</a>
+                            @*<a href="@Url.Action("Index", new { page = ViewBag.Pre })"<i class="fa fa-user"></i></a>*@
+                        }
+                   </div>
+                }
+                else
+                {
+                    <span>No products</span>
+                }
+                
             </div>
 
 </div>
