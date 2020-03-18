@@ -48,19 +48,19 @@ namespace S3Train
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your SMS service here to send a text message.
-            //var soapSms = new S3Train.Web.ASPSMSX2.ASPSMSX2SoapClient("ASPSMSX2Soap");
-            //soapSms.SendSimpleTextSMS(
-            //    System.Configuration.ConfigurationManager.AppSettings["ASPSMSUSERKEY"],
-            //    System.Configuration.ConfigurationManager.AppSettings["ASPSMSPASSWORD"],
-            //    message.Destination,
-            //    System.Configuration.ConfigurationManager.AppSettings["ASPSMSORIGINATOR"],
-            //    message.Body);
-            //soapSms.Close();
+            var soapSms = new S3Train.Web.ASPSMSX2.ASPSMSX2SoapClient("ASPSMSX2Soap");
+            soapSms.SendSimpleTextSMS(
+                System.Configuration.ConfigurationManager.AppSettings["ASPSMSUSERKEY"],
+                System.Configuration.ConfigurationManager.AppSettings["ASPSMSPASSWORD"],
+                message.Destination,
+                System.Configuration.ConfigurationManager.AppSettings["ASPSMSORIGINATOR"],
+                message.Body);
+            soapSms.Close();
 
-            TwilioRestClient client = new TwilioRestClient("<ACbcd76fc531e0497df9c147952f7e4cd5>", "<54dbb08bc4b379aedc9f0ff3e589bb51>");
-#pragma warning disable CS0618 // Type or member is obsolete
-            client.SendSmsMessage("+12066811877", message.Destination, message.Body);
-#pragma warning restore CS0618 // Type or member is obsolete
+            //            TwilioRestClient client = new TwilioRestClient("<ACbcd76fc531e0497df9c147952f7e4cd5>", "<54dbb08bc4b379aedc9f0ff3e589bb51>");
+            //#pragma warning disable CS0618 // Type or member is obsolete
+            //            client.SendSmsMessage("+12066811877", message.Destination, message.Body);
+            //#pragma warning restore CS0618 // Type or member is obsolete
             return Task.FromResult(0);
         }
     }
