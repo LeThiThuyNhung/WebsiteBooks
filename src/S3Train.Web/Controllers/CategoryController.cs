@@ -32,7 +32,7 @@ namespace S3Train.Web.Controllers
 
             int maxPage = 2;
             int totalPage = 0;
-            totalPage = (int)Math.Ceiling((double)(totalRecord / pagesize));
+            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
 
             ViewBag.TotalPage = totalPage;
             ViewBag.MaxPage = maxPage;
@@ -64,7 +64,7 @@ namespace S3Train.Web.Controllers
                 DisplayPrice = $"${x.Price}",
                 ProductId = x.ProductId,
                 NameCategory = x.Category.CategoryName,
-            }).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            }).OrderBy(x => x.NameCategory).Skip((page - 1) * pagesize).Take(pagesize).ToList();
 
             return model;
         }

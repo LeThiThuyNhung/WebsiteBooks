@@ -11,7 +11,7 @@ namespace S3Train
 
             routes.MapRoute(
                 name: "Product Category",
-                url: "Category/{Name}-{CategoryId}",
+                url: "Category1/{Id}/{CategoryId}",
                 defaults: new { controller = "Category", action = "ProductsByCategory", id = UrlParameter.Optional }
             );
 

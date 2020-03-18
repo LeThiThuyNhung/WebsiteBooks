@@ -56,7 +56,7 @@ namespace S3Train.Web.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return PartialView("Login");
+            return PartialView("Login", returnUrl);
         }
 
         //
@@ -76,14 +76,14 @@ namespace S3Train.Web.Controllers
             if (user == null)
             {
                 ModelState.AddModelError("CustomerError", "Account does not exist");
-                return PartialView("Login");
+                return PartialView("Login", model);
             }
             else
             {
                 if (user.EmailConfirmed == false)
                 {
                     ModelState.AddModelError("CustomerError", "The account has not been authenticated");
-                    return PartialView("Login");
+                    return PartialView("Login", model);
                 }
             }
 
