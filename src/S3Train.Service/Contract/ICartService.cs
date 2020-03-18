@@ -10,6 +10,6 @@ namespace S3Train.Contract
 {
     public interface ICartService : IGenenicServiceBase<Product>
     {
-        ProductDTO GetCart(Guid Id, int Quantity);
+        ProductDTO GetCart(Guid Id);
     }
 }

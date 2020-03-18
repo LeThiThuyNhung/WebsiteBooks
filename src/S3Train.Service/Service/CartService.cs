@@ -13,7 +13,7 @@ namespace S3Train.Service
         {
         }
 
-        public ProductDTO GetCart(Guid Id, int Quantity)
+        public ProductDTO GetCart(Guid Id)
         {
             var cart = DbContext.Products.Where(x => x.Id == Id)
                 .Select(n => new ProductDTO
