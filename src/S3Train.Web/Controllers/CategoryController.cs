@@ -19,7 +19,7 @@ namespace S3Train.Web.Controllers
 
         }
         // GET: ProductsByCategory
-        public ActionResult ProductsByCategory(Guid CategoryId, int page = 1, int pagesize = 2)
+        public ActionResult ProductsByCategory(Guid CategoryId, int page = 1, int pagesize = 4)
         {
             int totalRecord = 0;
             var productsByCategory = new HomeViewModel
@@ -30,7 +30,7 @@ namespace S3Train.Web.Controllers
             ViewBag.ToTal = totalRecord;
             ViewBag.Page = page;
 
-            int maxPage = 2;
+            int maxPage = 5;
             int totalPage = 0;
             totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
 
@@ -44,9 +44,9 @@ namespace S3Train.Web.Controllers
             return View(productsByCategory);
         }
 
-        private static IList<CategoryViewModel> GetBroductsByCategory(IList<ProductDTO> proByCa, ref int totalRecord, int page = 1, int pagesize = 2)
+        private static IList<CategoryViewModel> GetBroductsByCategory(IList<ProductDTO> proByCa, ref int totalRecord, int page = 1, int pagesize = 4)
         {
-            totalRecord = proByCa.Select(x => new CategoryViewModel
+            var totalProd = proByCa.Select(x => new CategoryViewModel
             {
                 Id = x.CategoryId,
                 ImagePath = x.ImagePath,
@@ -54,17 +54,10 @@ namespace S3Train.Web.Controllers
                 DisplayPrice = $"${x.Price}",
                 ProductId = x.ProductId,
                 NameCategory = x.Category.CategoryName,
-            }).Count();
+            });
 
-            var model = proByCa.Select(x => new CategoryViewModel
-            {
-                Id = x.CategoryId,
-                ImagePath = x.ImagePath,
-                Name = x.NameProduct,
-                DisplayPrice = $"${x.Price}",
-                ProductId = x.ProductId,
-                NameCategory = x.Category.CategoryName,
-            }).OrderBy(x => x.NameCategory).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            var model = totalProd.OrderBy(x => x.NameCategory).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            totalRecord = totalProd.Count();
 
             return model;
         }
