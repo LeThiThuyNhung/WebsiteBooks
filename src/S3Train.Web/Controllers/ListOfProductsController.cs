@@ -24,67 +24,129 @@ namespace S3Train.Web.Controllers
             _bestSellerProductsService = bestSellerProductsService;
         }
         // GET: ListOfProducts
-        public ActionResult NewProducts()
+        public ActionResult NewProducts(int page = 1, int pagesize = 4)
         {
+            int totalRecord = 0;
+
             var model = new HomeViewModel
             {
-                newProducts = GetNewProducts(_newProductsService.GetNewProductItems()),
+                newProducts = GetNewProducts(_newProductsService.GetNewProductItems(), ref totalRecord, page, pagesize),
             };
+
+            ViewBag.ToTal = totalRecord;
+            ViewBag.Page = page;
+
+            int maxPage = 5;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
+
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Pre = page - 1;
 
             return View(model);
         }
 
-        public ActionResult cSProducts()
+        public ActionResult cSProducts(int page = 1, int pagesize = 4)
         {
+            int totalRecord = 0;
+
             var csproducts = new HomeViewModel
             {
-                csProducts = GetCSProducts(_cSProductsService.GetCSProductItems()),
+                csProducts = GetCSProducts(_cSProductsService.GetCSProductItems(), ref totalRecord, page, pagesize),
             };
+
+            ViewBag.ToTal = totalRecord;
+            ViewBag.Page = page;
+
+            int maxPage = 5;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
+
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Pre = page - 1;
 
             return View(csproducts);
         }
 
-        public ActionResult bestSellerProducts()
+        public ActionResult bestSellerProducts(int page = 1, int pagesize = 4)
         {
+            int totalRecord = 0;
             var csproducts = new HomeViewModel
             {
-                bestSellerProducts = GetBestSellerProducts(_bestSellerProductsService.GetPromotionDetail()),
+                bestSellerProducts = GetBestSellerProducts(_bestSellerProductsService.GetPromotionDetail(), ref totalRecord, page, pagesize),
             };
+
+            ViewBag.ToTal = totalRecord;
+            ViewBag.Page = page;
+
+            int maxPage = 5;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
+
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Pre = page - 1;
 
             return View(csproducts);
         }
 
-        private static IList<ProductViewModel> GetNewProducts(IList<Product> products)
+        private static IList<ProductViewModel> GetNewProducts(IList<Product> products, ref int totalRecord, int page = 1, int pagesize = 4)
         {
-            return products.Select((x) => new ProductViewModel
+            var totalPro = products.Select((x) => new ProductViewModel
             {
                 Id = x.Id,
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
-            }).ToList();
+            });
+
+            var model = totalPro.OrderBy(x => x.NameProduct).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            totalRecord = totalPro.Count();
+
+            return model;
         }
 
-        private static IList<CSProductViewModel> GetCSProducts(IList<Product> products)
+        private static IList<CSProductViewModel> GetCSProducts(IList<Product> products, ref int totalRecord, int page = 1, int pagesize = 4)
         {
-            return products.Select((x) => new CSProductViewModel
+            var totalPro = products.Select((x) => new CSProductViewModel
             {
                 Id = x.Id,
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
-            }).ToList();
+            });
+
+            var model = totalPro.OrderBy(x => x.NameProduct).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            totalRecord = totalPro.Count();
+
+            return model;
         }
 
-        private static IList<PromotionProductViewModel> GetBestSellerProducts(IList<ProductDTO> promotionDetail)
+        private static IList<PromotionProductViewModel> GetBestSellerProducts(IList<ProductDTO> promotionDetail, ref int totalRecord, int page = 1, int pagesize = 4)
         {
-            return promotionDetail.Select((x) => new PromotionProductViewModel
+            var totalPro = promotionDetail.Select((x) => new PromotionProductViewModel
             {
                 Id = x.ProductId,
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
-            }).ToList();
+            });
+
+            var model = totalPro.OrderBy(x => x.NameProduct).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            totalRecord = totalPro.Count();
+
+            return model;
         }
     }
 }

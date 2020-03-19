@@ -8,29 +8,6 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary("", new { @class = "text-danger" })
-        @*<div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                <div class="col-md-10">
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" class="btn btn-default" value="Register" />
-                </div>
-            </div>*@
         <div class="modal fade" id="exampleModal2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -78,12 +55,12 @@
                             <div class="right-w3l">
                                 <input type="submit" class="form-control" value="Sign up">
                             </div>
-                            <div class="sub-w3l">
+                            @*<div class="sub-w3l">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
                                     <label class="custom-control-label" for="customControlAutosizing2">I Accept to the Terms & Conditions</label>
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="txt1 text-center p-t-54 p-b-20">
                                 Or Sign Up With
                             </div>
