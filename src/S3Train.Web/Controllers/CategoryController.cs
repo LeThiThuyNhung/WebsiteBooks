@@ -53,12 +53,11 @@ namespace S3Train.Web.Controllers
                 Name = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
                 ProductId = x.ProductId,
+                Barcode = x.Barcode,
                 NameCategory = x.Category.CategoryName,
             });
-
             var model = totalProd.OrderBy(x => x.NameCategory).Skip((page - 1) * pagesize).Take(pagesize).ToList();
             totalRecord = totalProd.Count();
-
             return model;
         }
     }

@@ -37,7 +37,7 @@ else
                         <div class="clearfix"></div>
                         <div class="delivery">
                             <p>Total::</p>
-                            <p id="sum-money"></p>
+                            <p class="sum-money"></p>
                             <span>Delivered in 2-3 bussiness days</span>
                             <div class="clearfix"></div>
                         </div>
@@ -57,19 +57,13 @@ else
                     <span>Discount</span>
                     <span class="total">---</span>
                     <span>Delivery Charges</span>
-                    <span class="total">5</span>
+                    <span id="ship-fee"></span>
                     <div class="clearfix"></div>
                 </div>
                 <h4 class="last-price">TOTAL</h4>
                 <span class="total final">$</span>
                 <div class="clearfix"></div>
                 <a class="order" href="#">Place Order</a>
-                <div class="total-item">
-                    <h3>OPTIONS</h3>
-                    <h4>COUPONS</h4>
-                    <a class="cpns" href="#">Apply Coupons</a>
-                    <p><a href="#">Log In</a> to use accounts - linked coupons</p>
-                </div>
             </div>
       
         </div>
@@ -99,7 +93,6 @@ else
         var among = 0;
         var totalQty = 0;
         var total = 0;
-        var sum = 0;
         $(".cart-item-info").each(function () {
             var price = $(".price");
             var quantity = $(".quantity");
@@ -107,25 +100,30 @@ else
             var priceVal = $(this).find(price).val();
             var quantityVal = parseInt($(this).find(quantity).val());
             total = priceVal * quantityVal;
-           
             totalQty = totalQty + quantityVal;
-            
             among += total;
-            sum = total;
-            $("#sum-money").html(sum);
+            var fee = 5;
+            if (total < 20) {
+                $("#ship-fee").html(fee)
+                $(".final").html(among + fee);
+            }
+            else {
+                $("#ship-fee").html(fee - 5)
+                $(".final").html(among);
+            }
+           
+            $(this).parent().find(".sum-money").html(total)
+            
            
         });
         
 
         $("#card-among").html(among);
-        $(".final").html(among + 5);
-       
         $("#totalQty").html(totalQty);
     };
 
     $('.close1').on('click', function () {
         var _this = $(this);
-        //console.log(val().total);
         var r = confirm("Are you sure you want to leave this product?");
         if (r == true) {
 

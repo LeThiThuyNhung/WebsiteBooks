@@ -26,8 +26,8 @@
                         <img src="@Url.Content("~/ImagePD/"+item.ImagePath)" />
                     </a>
                     <div class="caption">
-                        <a href="@Url.Action("Detail", "Product",new { @id = item.Id } )"><h5>@item.Name</h5></a>
-                        <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
+                        <a href="@Url.Action("Detail", "Product",new { @id = item.ProductId } )"><h5>@item.Name</h5></a>
+                        <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a id="btn-add-to-cart" data-id="@item.ProductId" style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
                     </div>
 
                 </div>
