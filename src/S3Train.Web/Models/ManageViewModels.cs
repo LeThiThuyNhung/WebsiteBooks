@@ -2,8 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System;
 
-namespace S3Train.Models
+
+namespace S3Train.Web.Models
 {
     public class IndexViewModel
     {
@@ -12,6 +14,12 @@ namespace S3Train.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public string Gender { get; set; }
+        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
+        public DateTime DateofBirth { get; set; }
     }
 
     public class ManageLoginsViewModel
@@ -64,6 +72,13 @@ namespace S3Train.Models
         [Phone]
         [Display(Name = "Phone Number")]
         public string Number { get; set; }
+    }
+
+    public class AddAddressViewModel
+    {
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
     }
 
     public class VerifyPhoneNumberViewModel

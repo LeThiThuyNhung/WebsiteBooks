@@ -1,7 +1,7 @@
-﻿@using S3Train.Models;
+﻿@*@using S3Train.Models;
 @model HomeViewModel
 
 @foreach (var item in Model.CategoryItems)
 {
-    <li><a href='/' title='Home'><span>@item.Name</span></a></li>
-}
+    <li><a href="/Category1/@item.MetaTitle-@item.CategoryId" title='Home'><span>@item.NameCategory</span></a></li>
+}*@

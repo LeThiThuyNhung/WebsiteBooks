@@ -1,0 +1,155 @@
+﻿@using S3Train.Web.Models;
+@model IList<CartViewModel>
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <div class="cart-empty">
+    <p>Cart is empty!</p>
+    <a class="continue" href="@Url.Action("Index", "Home", null)">Buy Now</a>
+    </div>
+}
+else
+{
+    <div class="container" id="cart-wrapper">
+        <div class="col-md-9 cart-items">
+            <h2>My Shopping Bag (<span id="totalQty"></span>)</h2>
+           
+            @foreach (var item in Model.Select((value, i) => new { i, value }))
+            {
+                <div class="cart-header">
+                    <div class="close1" data-prod-id="@item.value.Products.Id"> </div>
+                    <div class="cart-sec">
+
+                        <div class="cart-item cyc">
+                            <img src="@Url.Content("~/ImagePD/"+item.value.Products.ImagePath)" width="100" height="150" />
+                        </div>
+                        <div class="cart-item-info">
+                            <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
+                            <h4>$@item.value.Products.Price</h4>
+                            <p class="qty">Qty ::</p>
+                            <input min="1" type="number" id="quantity" name="quantity" data-id="@item.value.Products.Id" value="@item.value.Amount" class="form-control1 input-small quantity">
+                            <input class="price" value="@item.value.Products.Price" type="hidden" />
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="delivery">
+                            <p>Total::</p>
+                            <p id="sum-money"></p>
+                            <span>Delivered in 2-3 bussiness days</span>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+      
+            <div class="col-md-3 cart-total">
+                <a class="continue" href="@Url.Action("Index", "Home", null)">Continue shopping</a>
+                <div class="price-details">
+                    <h3>Price Details</h3>
+                    <span>Total</span>
+                    <span id="card-among"></span>
+                    <span>Discount</span>
+                    <span class="total">---</span>
+                    <span>Delivery Charges</span>
+                    <span class="total">5</span>
+                    <div class="clearfix"></div>
+                </div>
+                <h4 class="last-price">TOTAL</h4>
+                <span class="total final">$</span>
+                <div class="clearfix"></div>
+                <a class="order" href="#">Place Order</a>
+                <div class="total-item">
+                    <h3>OPTIONS</h3>
+                    <h4>COUPONS</h4>
+                    <a class="cpns" href="#">Apply Coupons</a>
+                    <p><a href="#">Log In</a> to use accounts - linked coupons</p>
+                </div>
+            </div>
+      
+        </div>
+
+        <div hidden id="cart-wrapper-empty">
+            <p>Cart is empty!</p>
+            <a class="continue" href="@Url.Action("Index", "Home", null)">Buy Now</a>
+        </div>
+}
+<script>
+    $(document).ready(function () {
+    cal();
+    });
+    $(".quantity").change(function () {
+        //cal();
+        $.ajax({
+            data: { Id: $(this).data("id"), NewQuan: $(this).val() },
+            url: "/Cart/UpdateQuantity",
+            type: "POST",
+            success: function (data) {
+                cal();
+            }
+        });
+    });
+
+    function cal() {
+        var among = 0;
+        var totalQty = 0;
+        var total = 0;
+        var sum = 0;
+        $(".cart-item-info").each(function () {
+            var price = $(".price");
+            var quantity = $(".quantity");
+
+            var priceVal = $(this).find(price).val();
+            var quantityVal = parseInt($(this).find(quantity).val());
+            total = priceVal * quantityVal;
+           
+            totalQty = totalQty + quantityVal;
+            
+            among += total;
+            sum = total;
+            $("#sum-money").html(sum);
+           
+        });
+        
+
+        $("#card-among").html(among);
+        $(".final").html(among + 5);
+       
+        $("#totalQty").html(totalQty);
+    };
+
+    $('.close1').on('click', function () {
+        var _this = $(this);
+        //console.log(val().total);
+        var r = confirm("Are you sure you want to leave this product?");
+        if (r == true) {
+
+            $.ajax({
+                data: { Id: $(this).data("prod-id") },
+                url: "/Cart/removeItem",
+                type: "POST",
+                success: function (data) {
+                    //delete product item in cart
+                    _this.parent().remove();
+                    cal();
+
+                    if (data.length == 0) {
+                        $("#cart-wrapper").css("display", "none")
+                        $("#cart-wrapper-empty").css("display", "block")
+                    }
+                    else {
+                        $("#cart-wrapper").css("display", "block")
+                        $("#cart-wrapper-empty").css("display", "none")
+                    }
+                }
+
+            });
+        }
+
+    });
+</script>

@@ -12,16 +12,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>
             Name
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().UpdatedDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().IsActive)
@@ -32,13 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedDate)
+            @Html.DisplayFor(modelItem => item.NameCategory)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsActive)

@@ -6,6 +6,6 @@ namespace S3Train.Contract
 {
     public interface IProductService : IGenenicServiceBase<Product>
     {
-        IList<Product> GetProductItems();
+        IList<Product> GetNewProductItems();
     }
 }

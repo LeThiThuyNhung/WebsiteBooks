@@ -19,9 +19,16 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Categories
         public ActionResult Index(int? page)
         {
-            int pageNumber = (page ?? 1);
-            int pageSize = 10;
-            return View(db.Categories.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                int pageNumber = (page ?? 1);
+                int pageSize = 10;
+                return View(db.Categories.ToList().OrderBy(t => t.NameCategory).ToPagedList(pageNumber, pageSize));
+            }
         }
 
         // GET: Admin/Categories/Details/5
@@ -42,7 +49,14 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Categories/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Admin/Categories/Create
@@ -50,7 +64,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedDate,UpdatedDate,IsActive")] Category category)
+        public ActionResult Create([Bind(Include = "Id,NameCategory,CreatedDate,UpdatedDate,IsActive")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +97,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedDate,UpdatedDate,IsActive")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,NameCategory,CreatedDate,UpdatedDate,IsActive")] Category category)
         {
             if (ModelState.IsValid)
             {

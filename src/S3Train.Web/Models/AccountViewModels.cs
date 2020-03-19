@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace S3Train.Models
+namespace S3Train.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -64,7 +65,7 @@ namespace S3Train.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please enter your email")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +80,28 @@ namespace S3Train.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Full Name")]
+        [Required(ErrorMessage = "Please enter your full name")]
+        public string Fullname { get; set; }
+
+        [Display(Name = "Address")]
+        [Required(ErrorMessage = "Please enter your address")]
+        public string Address { get; set; }
+
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Please enter your Date of Birth")]
+        public DateTime DateOfBirth { get; set; }
+
+        [Display(Name = "Gender")]
+        [Required(ErrorMessage = "Please enter your gender")]
+        public string Gender { get; set; }
+
+        [Display(Name = "PhoneNumber")]
+        [Phone]
+        [Required(ErrorMessage = "Please enter your phone number")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ResetPasswordViewModel

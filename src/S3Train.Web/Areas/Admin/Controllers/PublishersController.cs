@@ -19,9 +19,16 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Publishers
         public ActionResult Index(int? page)
         {
-            int pageNumber = (page ?? 1);
-            int pageSize = 10;
-            return View(db.Publishers.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                int pageNumber = (page ?? 1);
+                int pageSize = 10;
+                return View(db.Publishers.ToList().OrderBy(t => t.NamePublisher).ToPagedList(pageNumber, pageSize));
+            }
         }
 
         // GET: Admin/Publishers/Details/5
@@ -42,7 +49,14 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // GET: Admin/Publishers/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: Admin/Publishers/Create
@@ -50,7 +64,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
+        public ActionResult Create([Bind(Include = "Id,NamePublisher,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +97,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
+        public ActionResult Edit([Bind(Include = "Id,NamePublisher,CreatedDate,UpdatedDate,IsActive")] Publisher publisher)
         {
             if (ModelState.IsValid)
             {

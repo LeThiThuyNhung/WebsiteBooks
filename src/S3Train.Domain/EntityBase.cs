@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace S3Train.Domain
 {
@@ -8,7 +9,9 @@ namespace S3Train.Domain
     public abstract class EntityBase
     {
         public Guid Id { get; set; }
-        public DateTime CreatedDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? CreatedDate { get; set; }
+        [DataType(DataType.Date)]
         public DateTime? UpdatedDate { get; set; }
         public bool IsActive { get; set; }
     }
