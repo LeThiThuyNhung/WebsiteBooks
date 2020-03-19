@@ -53,6 +53,7 @@ namespace S3Train.Web.Controllers
                 Name = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
                 ProductId = x.ProductId,
+                Barcode = x.Barcode,
                 NameCategory = x.Category.CategoryName,
             }).Count();
 
@@ -63,6 +64,7 @@ namespace S3Train.Web.Controllers
                 Name = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
                 ProductId = x.ProductId,
+                Barcode = x.Barcode,
                 NameCategory = x.Category.CategoryName,
             }).OrderBy(x => x.NameCategory).Skip((page - 1) * pagesize).Take(pagesize).ToList();
 

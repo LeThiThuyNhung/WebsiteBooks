@@ -9,6 +9,7 @@ namespace S3Train.Web.Models
         public Guid ProductId { get; set; }
         public string Name { get; set; }
         public string Summary { get; set; }
+        public string Barcode { get; set; }
         public string DisplayPrice { get; set; }
         public string ImagePath { get; set; }
         public string NameCategory { get; set; }

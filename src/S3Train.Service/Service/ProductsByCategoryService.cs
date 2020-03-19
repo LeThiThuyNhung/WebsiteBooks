@@ -24,6 +24,7 @@ namespace S3Train.Service
                      NameProduct = n.NameProduct,
                      ImagePath = n.ImagePath,
                      Price = n.Price,
+                     Barcode = n.Barcode,
                      Category = new CategoryDTO
                      {
                          CategoryName = n.Category.NameCategory
