@@ -1120,8 +1120,6 @@
     <Content Include="Views\ListOfProducts\NewProducts.cshtml" />
     <Content Include="Views\ListOfProducts\cSProducts.cshtml" />
     <Content Include="Views\ListOfProducts\bestSellerProducts.cshtml" />
-    <Content Include="Views\Account\_Login.cshtml" />
-    <Content Include="Views\Shared\_Register.cshtml" />
     <Content Include="Views\Shared\_Profile.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Home\_Categories.cshtml" />
