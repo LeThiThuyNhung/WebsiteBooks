@@ -77,6 +77,7 @@
     <Compile Include="Contract\ICartService.cs" />
     <Compile Include="Contract\ICategoryService.cs" />
     <Compile Include="Contract\ICSProductService.cs" />
+    <Compile Include="Contract\IOrderService.cs" />
     <Compile Include="Contract\IProductDetailService.cs" />
     <Compile Include="Contract\IProductAdvertisementService.cs" />
     <Compile Include="Contract\IProductsByCategoryService.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="Service\CartService.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\CSProductService.cs" />
+    <Compile Include="Service\GenenicServiceBaseUser.cs" />
+    <Compile Include="Service\OrderService.cs" />
     <Compile Include="Service\ProductDetailService.cs" />
     <Compile Include="Service\ProductAdvertisementService.cs" />
     <Compile Include="Service\NewProductService.cs" />

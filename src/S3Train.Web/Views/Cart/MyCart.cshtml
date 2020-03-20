@@ -24,9 +24,9 @@ else
                     <div class="close1" data-prod-id="@item.value.Products.Id"> </div>
                     <div class="cart-sec">
 
-                        <div class="cart-item cyc">
+                        <divError executing child request  class="cart-item cyc">
                             <img src="@Url.Content("~/ImagePD/"+item.value.Products.ImagePath)" width="100" height="150" />
-                        </div>
+                        </divError>
                         <div class="cart-item-info">
                             <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
                             <h4>$@item.value.Products.Price</h4>
@@ -63,7 +63,7 @@ else
                 <h4 class="last-price">TOTAL</h4>
                 <span class="total final">$</span>
                 <div class="clearfix"></div>
-                <a class="order" href="#">Place Order</a>
+                <a class="order" href="@Url.Action("PayMent","Cart", null)">Place Order</a>
             </div>
       
         </div>

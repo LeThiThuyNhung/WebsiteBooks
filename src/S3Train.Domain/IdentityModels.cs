@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
 
 namespace S3Train.Domain
 {
@@ -13,6 +14,7 @@ namespace S3Train.Domain
         public string Address { get; set; }
         public DateTime DateofBirth { get; set; }
         public string Gender { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

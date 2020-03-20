@@ -21,5 +21,6 @@ namespace S3Train.Domain
         public virtual ICollection<ProductAdvertisement> ProductAdvertisement { get; set; }
         public virtual Category Category { get; set; }
         public virtual Publisher Publisher { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

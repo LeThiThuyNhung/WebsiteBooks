@@ -13,7 +13,7 @@ namespace S3Train.Web.Controllers
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
-        private const string CartSession = "CartSession";
+        public const string CartSession = "CartSession";
         public CartController(ICartService cartService)
         {
             _cartService = cartService;
@@ -105,6 +105,17 @@ namespace S3Train.Web.Controllers
             }
             Session[CartSession] = currentCartItems;
             return RedirectToAction("MyCart");
+        }
+
+        public ActionResult PayMent()
+        {
+            var cartSession = (List<CartViewModel>)Session[CartSession];
+            var payMent = new PayMentViewModel
+            {
+               
+                    Card = cartSession,
+            };
+            return View(payMent.Card);
         }
     }
 }

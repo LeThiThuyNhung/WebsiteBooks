@@ -409,11 +409,24 @@
     <Compile Include="Migrations\202003160411073_updateUser.Designer.cs">
       <DependentUpon>202003160411073_updateUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003200353103_addorder.cs" />
+    <Compile Include="Migrations\202003200353103_addorder.Designer.cs">
+      <DependentUpon>202003200353103_addorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003200404419_ADDORDERDETAIL.cs" />
+    <Compile Include="Migrations\202003200404419_ADDORDERDETAIL.Designer.cs">
+      <DependentUpon>202003200404419_ADDORDERDETAIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003200407196_Addcol.cs" />
+    <Compile Include="Migrations\202003200407196_Addcol.Designer.cs">
+      <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CSProductViewModel.cs" />
+    <Compile Include="Models\PayMentViewModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -449,6 +462,7 @@
     <Content Include="Content\css\global.css" />
     <Content Include="Content\cssAccount\LoginCSS.css" />
     <Content Include="Content\css\style-responsive.css" />
+    <Content Include="Content\css\StyleSheet1.css" />
     <Content Include="Content\css\util.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -1123,6 +1137,7 @@
     <Content Include="Views\Shared\_Profile.cshtml" />
     <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Home\_Categories.cshtml" />
+    <Content Include="Views\Cart\PayMent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1177,6 +1192,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003160411073_updateUser.resx">
       <DependentUpon>202003160411073_updateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003200353103_addorder.resx">
+      <DependentUpon>202003200353103_addorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003200404419_ADDORDERDETAIL.resx">
+      <DependentUpon>202003200404419_ADDORDERDETAIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003200407196_Addcol.resx">
+      <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
