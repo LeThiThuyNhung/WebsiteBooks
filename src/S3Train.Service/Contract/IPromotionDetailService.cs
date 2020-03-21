@@ -7,6 +7,6 @@ namespace S3Train.Contract
 {
     public interface IPromotionDetailService : IGenenicServiceBase<PromotionDetail>
     {
-        IList<PromotionDetailDTO> GetPromotionDetail();
+        IList<ProductDTO> GetPromotionDetail();
     }
 }

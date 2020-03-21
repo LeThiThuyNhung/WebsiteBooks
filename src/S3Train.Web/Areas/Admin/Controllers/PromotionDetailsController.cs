@@ -27,7 +27,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 var promotionDetails = db.PromotionDetails.Include(p => p.Product).Include(p => p.Promotion);
                 int pageNumber = (page ?? 1);
                 int pageSize = 10;
-                return View(promotionDetails.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+                return View(promotionDetails.ToList().OrderBy(t => t.CreatedDate).ToPagedList(pageNumber, pageSize));
             }
         }
 

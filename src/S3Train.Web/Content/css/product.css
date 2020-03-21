@@ -17,9 +17,11 @@
     width: 220px;
     height:50px;
     margin-left:2px;
+    color:black;
 }
-
-
+#myCarousel a:hover {
+    text-decoration: none;
+}
 #myCarousel1 .thumbnail {
     margin-bottom: 0;
     height: 400px;
@@ -32,6 +34,24 @@
 
 
 #myCarousel1 h5 {
+    width: 220px;
+    height: 50px;
+    margin-left: 2px;
+}
+
+
+#myCarousel2 .thumbnail {
+    margin-bottom: 0;
+    height: 400px;
+}
+
+#myCarousel2 img {
+    width: 225px;
+    height: 260px;
+}
+
+
+#myCarousel2 h5 {
     width: 220px;
     height: 50px;
     margin-left: 2px;

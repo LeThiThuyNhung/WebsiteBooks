@@ -24,6 +24,7 @@ namespace S3Train.Web.Controllers
             var categories = _categoryService.GetCategoryItems()
                 .Select(x => new CategoryViewModel
                 {
+                    Id = x.Id,
                     NameCategory = x.NameCategory
                 }).ToList();
 

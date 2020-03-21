@@ -15,7 +15,7 @@ namespace S3Train.Service
         public IList<Product> GetCSProductItems()
         {
 
-            var csbook = DbContext.Products.Where(x =>x.UpdatedDate == null).ToList(); 
+            var csbook = DbContext.Products.Where(x => x.UpdatedDate == null).ToList(); 
             return csbook;
         }
     }

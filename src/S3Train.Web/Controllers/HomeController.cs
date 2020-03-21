@@ -31,7 +31,6 @@ namespace S3Train.Controllers
             {
                 SliderItems = GetHomeSlider(_productAdvertisementService.GetSliderItems()),
                 NewProducts = GetHomeNewProducts(_newProductService.GetNewProductItems()),
-                //CategoryItems = GetHomeCategory(_categoryService.GetCategoryItems())
                 CSProducts = GetHomeCSProducts(_cSProductService.GetCSProductItems()),
                 PromotionProducts = GetHomeBestSellerProducts(_promotionProductService.GetPromotionDetail()),
             };
@@ -64,7 +63,7 @@ namespace S3Train.Controllers
             }).GroupBy(e => e.Grouping).ToList();
         }
 
-        private static IEnumerable<IGrouping<int, PromotionProductViewModel>> GetHomeBestSellerProducts(IList<PromotionDetailDTO> promotionDetail)
+        private static IEnumerable<IGrouping<int, PromotionProductViewModel>> GetHomeBestSellerProducts(IList<ProductDTO> promotionDetail)
         {
             return promotionDetail.Select((x, i) => new PromotionProductViewModel
             {
@@ -80,6 +79,7 @@ namespace S3Train.Controllers
         {
             return productAds.Select(x => new SliderItemViewModel
             {
+                ProductId = x.ProductId,
                 ImagePath = x.ImagePath,
                 Title = x.Title,
                 Description = x.Description,

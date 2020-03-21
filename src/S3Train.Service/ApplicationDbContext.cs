@@ -20,6 +20,8 @@ namespace S3Train.Domain
         public DbSet<Author_Product> Author_Products { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<PromotionDetail> PromotionDetails { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -34,7 +36,7 @@ namespace S3Train.Domain
             modelBuilder.Entity<Product>().HasMany(c => c.Author_Products).WithRequired(p => p.Product);
             modelBuilder.Entity<Product>().HasMany(c => c.PromotionDetails).WithRequired(p => p.Product);
             modelBuilder.Entity<Product>().HasMany(c => c.ProductAdvertisement).WithRequired(p => p.Product);
-
+            modelBuilder.Entity<Product>().HasMany(c => c.OrderDetails).WithRequired(p => p.Product);
             modelBuilder.Entity<Product>().Property(x => x.NameProduct).HasMaxLength(300).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
             modelBuilder.Entity<Product>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
@@ -77,7 +79,6 @@ namespace S3Train.Domain
 
             modelBuilder.Entity<Author_Product>().ToTable("Author_Product");
             modelBuilder.Entity<Author_Product>().Property(x => x.Role).HasMaxLength(100);
-            modelBuilder.Entity<Author_Product>().Property(x => x.Location).HasMaxLength(100);
 
             modelBuilder.Entity<Promotion>().ToTable("Promotion");
             modelBuilder.Entity<Promotion>().HasMany(c => c.PromotionDetails).WithRequired(p => p.Promotion);
@@ -87,6 +88,17 @@ namespace S3Train.Domain
 
             modelBuilder.Entity<PromotionDetail>().ToTable("PromotionDetail");
             modelBuilder.Entity<PromotionDetail>().Property(x => x.PromotionPercent).IsRequired();
+
+            modelBuilder.Entity<Order>().ToTable("Order");
+            modelBuilder.Entity<Order>().HasMany(c => c.OrderDetails).WithRequired(p => p.Order);
+            modelBuilder.Entity<Order>().Property(x => x.DatePayment).IsRequired();
+            modelBuilder.Entity<Order>().Property(x => x.Status).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Order>().Property(x => x.Note).HasMaxLength(300).IsRequired();
+            modelBuilder.Entity<Order>().Property(x => x.TotalMoney).IsRequired();
+
+            modelBuilder.Entity<OrderDetail>().ToTable("OrderDetail");
+            modelBuilder.Entity<OrderDetail>().Property(x => x.OrderQuantity).IsRequired();
+            modelBuilder.Entity<OrderDetail>().Property(x => x.Total).IsRequired();
         }
         
     }

@@ -22,7 +22,7 @@
                                 </a>
                                 <div class="caption">
                                     <a href="@Url.Action("Detail", "Product",new { @id = item.Id} )"><h5>@item.NameProduct</h5></a>
-                                    <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
+                                    <p><a  class="btn btn-primary" role="button">@item.DisplayPrice</a><a id="btn-add-to-cart1" data-id="@item.Id" style="float:right" href="#" class="btn btn-default"  role="button" >Add to card</a></p>
                                 </div>
 
                             </div>
@@ -37,4 +37,19 @@
 
 </div>
 
-
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $('.btn-default').click(function () {
+              
+                var id = $(this).data("id");
+                $.ajax({
+                    type: "POST",
+                    url: '/Cart/Buy',
+                    data: { Id: id},
+                    success: function (data) {
+                        alert("Add to cart successfully")
+                    }
+                });
+            });
+        });
+</script>*@

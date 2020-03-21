@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using S3Train.Domain;
+using S3Train.Web.Areas.Admin.Data;
 
 namespace S3Train.Web.Areas.Admin.Controllers
 {
@@ -28,7 +29,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 var staffs = db.Staffs.Include(s => s.Position);
                 int pageNumber = (page ?? 1);
                 int pageSize = 10;
-                return View(staffs.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+                return View(staffs.ToList().OrderBy(t => t.NameStaff).ToPagedList(pageNumber, pageSize));
             }
         }
 
@@ -91,6 +92,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                     fileUpload.SaveAs(path);
                 }
                 staff.Id = Guid.NewGuid();
+                staff.Password = Encryptor.MD5Hash(staff.Password);
                 staff.ImagePath = fileName;
                 db.Staffs.Add(staff);
                 db.SaveChanges();
@@ -143,6 +145,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
                     }
                     staff.ImagePath = fileName;
                 }
+                staff.Password = Encryptor.MD5Hash(staff.Password);
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

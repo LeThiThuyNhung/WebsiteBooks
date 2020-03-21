@@ -8,6 +8,7 @@ namespace S3Train.DTOs
 {
     public class ProductDTO
     {
+        public Guid Id { get; set; }
         public Guid ProductId { get; set; }
         public Guid CategoryId { get; set; }
         public Guid PublisherId { get; set; }
@@ -21,5 +22,11 @@ namespace S3Train.DTOs
         public int? Rating { get; set; }
 
         public PublisherDTO Publisher  { get; set; }
+        public IList<AuthorDTO> Author { get; set; }
+        public CategoryDTO Category { get; set; }
+        public IList<PromotionDTO> Promotion { get; set; }
+
+        public List<ProductDTO> RelatedProduct { get; set; }
     }
+
 }

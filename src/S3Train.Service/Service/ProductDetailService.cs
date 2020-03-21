@@ -16,20 +16,49 @@ namespace S3Train.Service
         }
         public ProductDTO GetProductDetail(Guid id)
         {
-            var productDetail = DbContext.Products.Include("Publisher")
+            var productDetail = DbContext.Products.Include("Publisher").Include("Author")
                 .Where(u => u.Id == id)
                 .Select(n => new ProductDTO
                 {
+                    Id = n.Id,
                     NameProduct = n.NameProduct,
                     ImagePath = n.ImagePath,
                     Price = n.Price,
                     Rating = n.Rating,
                     Summary = n.Summary,
-                    Publisher = new PublisherDTO {
+                    Barcode = n.Barcode,
+                    ReleaseYear = n.ReleaseYear,
+                    Publisher = new PublisherDTO
+                    {
                         NamePublisher = n.Publisher.NamePublisher
-                    }
+                    },
+                    Author = n.Author_Products.Select(q => new AuthorDTO
+                    {
+                        AuthorId = q.AuthorId,
+                        NameAuthor = q.Author.NameAuthor
+                    }).ToList(),
+                    Category = new CategoryDTO
+                    {
+                        CategoryName = n.Category.NameCategory
+                    },
+                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO {
+                        PromotionPercent = x.PromotionPercent
+                    }).ToList(),
                 }).SingleOrDefault();
+
+            var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
+
+            productDetail.RelatedProduct = DbContext.Author_Products.Include("Product")
+                .Where(q => listAuthorId.Contains(q.AuthorId) && q.ProductId!= id).Select(n => new ProductDTO {
+                    ProductId = n.Product.Id,
+                    NameProduct = n.Product.NameProduct,
+                    ImagePath = n.Product.ImagePath,
+                    Price = n.Product.Price
+                }).ToList();
+               
+
             return productDetail;
+
         }
     }
 }

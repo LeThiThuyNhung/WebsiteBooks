@@ -24,12 +24,6 @@
             Promotion Percent
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.First().CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().UpdatedDate)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.First().IsActive)
         </th>
         <th></th>
@@ -47,17 +41,11 @@
             @Html.DisplayFor(modelItem => item.PromotionPercent)%
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedDate)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

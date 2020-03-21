@@ -26,7 +26,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
             {
                 int pageNumber = (page ?? 1);
                 int pageSize = 10;
-                return View(db.Positions.ToList().OrderBy(t => t.Id).ToPagedList(pageNumber, pageSize));
+                return View(db.Positions.ToList().OrderBy(t => t.NamePosition).ToPagedList(pageNumber, pageSize));
             }
                 
         }

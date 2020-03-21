@@ -1,0 +1,42 @@
+﻿@using S3Train.Web.Models;
+@model List<CartViewModel>
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="Payment">
+        <h3>Payment</h3>
+        <hr />
+        <h5>Shipping Address</h5>
+        <div>
+            <a href="#">Change</a>
+        </div>
+        @foreach(var item in Model )
+        {
+            <div>
+
+                <table style="border:none" width="1000">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Price</th>
+                        <th>Quatity</th>
+                        <th>Total</th>
+                    </tr>
+                    <tr>
+                        <td>@item.Products.NameProduct</td>
+                        <td>@*@item.Amount*@</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div>
+                    <h4>Total</h4>
+                </div>
+            </div>}
+        
+    </div>
+</div>

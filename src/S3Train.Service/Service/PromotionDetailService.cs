@@ -13,23 +13,19 @@ namespace S3Train.Service
         {
         }
 
-        public IList<PromotionDetailDTO> GetPromotionDetail()
+        public IList<ProductDTO> GetPromotionDetail()
         {
-            var promotionDetail = DbContext.PromotionDetails.Include("Product")
-                .Where (x => x.PromotionPercent >  0)
-                .Select(n => new PromotionDetailDTO
+            var product = DbContext.Products
+                .Where(n => n.PromotionDetails.Any(a => a.PromotionPercent > 0))
+                .Select(n => new ProductDTO
                 {
-                   PromotionPercent = n.PromotionPercent,
-                   PromotionDetail = new ProductDTO
-                   {
-                       ProductId = n.Product.Id,
-                       NameProduct = n.Product.NameProduct,
-                       ImagePath = n.Product.ImagePath,
-                       Price = n.Product.Price,
-                   }
-
+                    ProductId = n.Id,
+                    NameProduct = n.NameProduct,
+                    ImagePath = n.ImagePath,
+                    Price = n.Price,
                 }).ToList();
-            return promotionDetail;
+
+            return product;
         }
     }
 }
