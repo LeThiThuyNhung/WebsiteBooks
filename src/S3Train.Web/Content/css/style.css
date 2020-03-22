@@ -53,6 +53,10 @@ font-size: 1.1em;
 color: #fff;
 }
 
+.total{
+    float: right;
+}
+
 .top-header-right {
     float: right;
     padding-top: 8px;

@@ -4,6 +4,7 @@ using S3Train.DTOs;
 using S3Train.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -116,6 +117,48 @@ namespace S3Train.Web.Controllers
                     Card = cartSession,
             };
             return View(payMent.Card);
+        }
+
+        ApplicationDbContext db = new ApplicationDbContext();
+
+        public ActionResult AddAddress()
+        {
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
+            var model = new ApplicationUser
+            {
+                Id = user.Id,
+                Address = user.Address,
+                Email = user.Email,
+                PasswordHash = user.PasswordHash,
+                EmailConfirmed = user.EmailConfirmed,
+                SecurityStamp = user.SecurityStamp,
+                PhoneNumber = user.PhoneNumber,
+                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled,
+                LockoutEndDateUtc = user.LockoutEndDateUtc,
+                LockoutEnabled = user.LockoutEnabled,
+                AccessFailedCount = user.AccessFailedCount,
+                UserName = user.UserName,
+                FullName = user.FullName,
+                DateofBirth = user.DateofBirth,
+                Gender = user.Gender
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddAddress([Bind(Include = "Id,Address,Email,PasswordHash,EmailConfirmed,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FullName,DateofBirth,Gender")] ApplicationUser user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("PayMent", "Cart");
+            }
+            return View(user);
         }
     }
 }

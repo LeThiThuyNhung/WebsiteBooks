@@ -72,7 +72,6 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Username or password wrong!");
-                    //TempData["Message"] = "<script>alert('Login failed!!!')</script>";
                 }
             }
             return View();

@@ -9,7 +9,7 @@ namespace S3Train.Domain
         public string Status { get; set; }
         public string Note { get; set; }
         public Decimal TotalMoney { get; set; }
-        public Guid ApplicationUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
     }

@@ -16,7 +16,7 @@ namespace S3Train.Service
 
         public void InsertOrder(Order order)
         {
-            var od =DbContext.Orders.Add(order);
+            var od = DbContext.Orders.Add(order);
             DbContext.SaveChanges();
         }
     }
