@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace S3Train.Domain
 {
-    public class ProducDTO : EntityBase
+    public class Product : EntityBase
     {
         public Guid CategoryId { get; set; }
         public Guid PublisherId { get; set; }

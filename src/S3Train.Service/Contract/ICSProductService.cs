@@ -8,7 +8,7 @@ using S3Train.DTOs;
 
 namespace S3Train.Contract
 {
-    public interface ICSProductService : IGenenicServiceBase<ProducDTO>
+    public interface ICSProductService : IGenenicServiceBase<Product>
     {
         IList<ProductDTO> GetCSProductItems();
     }

@@ -21,31 +21,33 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    @if (Model.PromotionPercent == 0)
+                    @if (Model.PromotionPercent > 0)
                     {
-                    <div class="details-left-info">
-                        <h3>@Model.Name</h3>
-                       
-                        <p>$ @Model.DisplayPrice</p>
-                        <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
-                        <div class="btn_form">
-                            <a id="btn-add-to-cart" href="#">Add to cart</a>
+                        <div class="details-left-info">
+                            <h3>@Model.Name</h3>
+                            <p>
+                                $@(Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) * Model.PromotionPercent / 100))
+                                <span>Save: $@(Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) * Model.PromotionPercent / 100))) (-@Model.PromotionPercent%)</span>
+                            </p>
+                            <h5><strike>$ @Model.DisplayPrice</strike></h5>
+                            <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
+                            <div class="btn_form">
+                                <a id="btn-add-to-cart" href="#">Add to cart</a>
+                            </div>
+                            <div class="flower-type">
+                                <p>Author  ::@Model.AuthorName</p>
+                                <p>Bacode  ::@Model.Barcode</p>
+                            </div>
+                            <h5>Description  ::</h5>
+                            <p class="desc">@Model.Summary</p>
                         </div>
-                        <div class="flower-type">
-                            <p>Author  ::@Model.AuthorName</p>
-                            <p>Bacode  ::@Model.Barcode</p>
-                        </div>
-                        <h5>Description  ::</h5>
-                        <p class="desc">@Model.Summary</p>
-                    </div>
                     }
                     else
                     {
                         <div class="details-left-info">
                             <h3>@Model.Name</h3>
-                            <p>$@(Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) * Model.PromotionPercent / 100)) 
-                            <span>Save: $@(Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) * Model.PromotionPercent / 100))) (-@Model.PromotionPercent%)</span></p>
-                            <h5><strike>$ @Model.DisplayPrice</strike></h5>
+
+                            <p>$ @Model.DisplayPrice</p>
                             <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
                             <div class="btn_form">
                                 <a id="btn-add-to-cart" href="#">Add to cart</a>

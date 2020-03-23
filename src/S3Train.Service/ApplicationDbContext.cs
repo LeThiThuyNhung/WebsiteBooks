@@ -10,7 +10,7 @@ namespace S3Train.Domain
         {
         }
 
-        public DbSet<ProducDTO> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductAdvertisement> ProductAdvertisements { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
@@ -32,18 +32,18 @@ namespace S3Train.Domain
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<ProducDTO>().ToTable("Product");
-            modelBuilder.Entity<ProducDTO>().HasMany(c => c.Author_Products).WithRequired(p => p.Product);
-            modelBuilder.Entity<ProducDTO>().HasMany(c => c.PromotionDetails).WithRequired(p => p.Product);
-            modelBuilder.Entity<ProducDTO>().HasMany(c => c.ProductAdvertisement).WithRequired(p => p.Product);
-            modelBuilder.Entity<ProducDTO>().HasMany(c => c.OrderDetails).WithRequired(p => p.Product);
-            modelBuilder.Entity<ProducDTO>().Property(x => x.NameProduct).HasMaxLength(300).IsRequired();
-            modelBuilder.Entity<ProducDTO>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
-            modelBuilder.Entity<ProducDTO>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
-            modelBuilder.Entity<ProducDTO>().Property(x => x.Price).IsRequired();
-            modelBuilder.Entity<ProducDTO>().Property(x => x.Barcode).HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<ProducDTO>().Property(x => x.ReleaseYear).IsRequired();
-            modelBuilder.Entity<ProducDTO>().Property(x => x.Amount).IsRequired();
+            modelBuilder.Entity<Product>().ToTable("Product");
+            modelBuilder.Entity<Product>().HasMany(c => c.Author_Products).WithRequired(p => p.Product);
+            modelBuilder.Entity<Product>().HasMany(c => c.PromotionDetails).WithRequired(p => p.Product);
+            modelBuilder.Entity<Product>().HasMany(c => c.ProductAdvertisement).WithRequired(p => p.Product);
+            modelBuilder.Entity<Product>().HasMany(c => c.OrderDetails).WithRequired(p => p.Product);
+            modelBuilder.Entity<Product>().Property(x => x.NameProduct).HasMaxLength(300).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Summary).HasMaxLength(500).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.ImagePath).HasMaxLength(200).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Price).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Barcode).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.ReleaseYear).IsRequired();
+            modelBuilder.Entity<Product>().Property(x => x.Amount).IsRequired();
 
             modelBuilder.Entity<Category>().ToTable("Category");
             modelBuilder.Entity<Category>().HasMany(c => c.Products).WithRequired(p => p.Category);

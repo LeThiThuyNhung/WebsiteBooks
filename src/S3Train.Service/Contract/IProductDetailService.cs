@@ -5,7 +5,7 @@ using S3Train.DTOs;
 
 namespace S3Train.Contract
 {
-    public interface IProductDetailService : IGenenicServiceBase<ProducDTO>
+    public interface IProductDetailService : IGenenicServiceBase<Product>
     {
         ProductDTO GetProductDetail(Guid id);
     }

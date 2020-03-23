@@ -7,7 +7,7 @@ using S3Train.DTOs;
 
 namespace S3Train.Service
 {
-    public class CartService : GenenicServiceBase<ProducDTO>, ICartService
+    public class CartService : GenenicServiceBase<Product>, ICartService
     {
         public CartService(ApplicationDbContext dbContext) : base(dbContext)
         {

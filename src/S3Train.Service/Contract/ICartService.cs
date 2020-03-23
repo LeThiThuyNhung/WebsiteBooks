@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace S3Train.Contract
 {
-    public interface ICartService : IGenenicServiceBase<ProducDTO>
+    public interface ICartService : IGenenicServiceBase<Product>
     {
         ProductDTO GetCart(Guid Id);
     }

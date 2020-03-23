@@ -7,7 +7,7 @@ using S3Train.DTOs;
 
 namespace S3Train.Service
 {
-    public class CSProductService : GenenicServiceBase<ProducDTO>, ICSProductService
+    public class CSProductService : GenenicServiceBase<Product>, ICSProductService
     {
         public CSProductService(ApplicationDbContext dbContext) : base(dbContext)
         {
@@ -18,10 +18,11 @@ namespace S3Train.Service
                 .Where(x => x.UpdatedDate == null)
                 .Select(n => new ProductDTO
                 {
-                    ProductId = n.Id,
+                    Id = n.Id,
                     NameProduct = n.NameProduct,
                     ImagePath = n.ImagePath,
                     Price = n.Price,
+                    UpdatedDate = n.UpdatedDate,
                     Promotion = n.PromotionDetails.Select(x => new PromotionDTO
                     {
                         PromotionPercent = x.PromotionPercent,

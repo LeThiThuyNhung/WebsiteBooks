@@ -23,6 +23,7 @@ namespace S3Train.Service
                                c.NameProduct,
                                c.Price,
                                c.ImagePath,
+                               c.UpdatedDate,
                            }).Take(8).ToList();
             var book = newbook
                 .Select(n => new ProductDTO
@@ -31,6 +32,7 @@ namespace S3Train.Service
                    NameProduct = n.NameProduct,
                    ImagePath = n.ImagePath,
                    Price = n.Price,
+                   UpdatedDate = n.UpdatedDate,
                }).ToList();
             return book;
         }

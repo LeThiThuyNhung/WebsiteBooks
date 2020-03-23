@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace S3Train.Service
 {
-    public class SearchProductsForAuthorService : GenenicServiceBase<ProducDTO>, ISearchProductsForAuthorService
+    public class SearchProductsForAuthorService : GenenicServiceBase<Product>, ISearchProductsForAuthorService
     {
         public SearchProductsForAuthorService(ApplicationDbContext dbContext) : base(dbContext)
         {

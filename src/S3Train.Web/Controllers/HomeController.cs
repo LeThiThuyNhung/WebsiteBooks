@@ -39,7 +39,7 @@ namespace S3Train.Controllers
         }
 
        
-        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeNewProducts(IList<ProducDTO> products)
+        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeNewProducts(IList<ProductDTO> products)
         {
             return products.Select((x, i) => new ProductViewModel
             {

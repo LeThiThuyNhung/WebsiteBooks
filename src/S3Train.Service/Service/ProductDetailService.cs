@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace S3Train.Service
 {
-    public class ProductDetailService : GenenicServiceBase<ProducDTO>, IProductDetailService
+    public class ProductDetailService : GenenicServiceBase<Product>, IProductDetailService
     {
         public ProductDetailService(ApplicationDbContext dbContext) : base(dbContext)
         {
@@ -47,9 +47,9 @@ namespace S3Train.Service
                     }).ToList(),
                 }).SingleOrDefault();
 
-            var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
+                var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
 
-            productDetail.RelatedProduct = DbContext.Author_Products.Include("Product")
+                productDetail.RelatedProduct = DbContext.Author_Products.Include("Product")
                 .Where(q => listAuthorId.Contains(q.AuthorId) && q.ProductId!= id).Select(n => new ProductDTO {
                     ProductId = n.Product.Id,
                     NameProduct = n.Product.NameProduct,

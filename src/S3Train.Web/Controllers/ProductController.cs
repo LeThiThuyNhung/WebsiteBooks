@@ -22,31 +22,65 @@ namespace S3Train.Web.Controllers
         public ActionResult Detail(Guid id)
         {
             var prodDetail = _detailProductService.GetProductDetail(id);
-            var productDetailViewModel = new ProductDetailViewModel
-            {
-                Id = prodDetail.Id,
-                Name = prodDetail.NameProduct,
-                ImagePath = prodDetail.ImagePath,
-                DisplayPrice = $"{prodDetail.Price}",
-                Price = prodDetail.Price,
-                Rating = prodDetail.Rating ?? 0,
-                Summary = prodDetail.Summary,
-                Barcode = prodDetail.Barcode,
-                ReleaseYear = prodDetail.ReleaseYear,
-                NamePublisher = prodDetail.Publisher.NamePublisher,
-                CategoryName = prodDetail.Category.CategoryName,
-                UpdatedDate = prodDetail.UpdatedDate,
-                PromotionPercent = prodDetail.Promotion.First().PromotionPercent,
-                AuthorName = String.Join(", ", prodDetail.Author.Select(x => x.NameAuthor)),
-                RelatedProduct = prodDetail.RelatedProduct.Select(q => new ProductViewModel
-                {
-                    Id = q.ProductId,
-                    NameProduct = q.NameProduct,
-                    ImagePath = q.ImagePath,
-                    DisplayPrice = q.Price.ToString()
-                }).ToList()
-            };
+            var productDetailViewModel = new ProductDetailViewModel();
 
+                if(prodDetail.Promotion.Count() != 0)
+                {
+                    productDetailViewModel = new ProductDetailViewModel
+                    {
+
+                        Id = prodDetail.Id,
+                        Name = prodDetail.NameProduct,
+                        ImagePath = prodDetail.ImagePath,
+                        DisplayPrice = $"{prodDetail.Price}",
+                        Price = prodDetail.Price,
+                        Rating = prodDetail.Rating ?? 0,
+                        Summary = prodDetail.Summary,
+                        Barcode = prodDetail.Barcode,
+                        ReleaseYear = prodDetail.ReleaseYear,
+                        NamePublisher = prodDetail.Publisher.NamePublisher,
+                        CategoryName = prodDetail.Category.CategoryName,
+                        UpdatedDate = prodDetail.UpdatedDate,
+                        PromotionPercent = prodDetail.Promotion.FirstOrDefault().PromotionPercent,
+                        AuthorName = String.Join(", ", prodDetail.Author.Select(x => x.NameAuthor)),
+                        RelatedProduct = prodDetail.RelatedProduct.Select(q => new ProductViewModel
+                        {
+                            Id = q.ProductId,
+                            NameProduct = q.NameProduct,
+                            ImagePath = q.ImagePath,
+                            DisplayPrice = q.Price.ToString()
+                        }).ToList()
+
+                    };
+                }else
+                {
+                productDetailViewModel = new ProductDetailViewModel
+                {
+
+                    Id = prodDetail.Id,
+                    Name = prodDetail.NameProduct,
+                    ImagePath = prodDetail.ImagePath,
+                    DisplayPrice = $"{prodDetail.Price}",
+                    Price = prodDetail.Price,
+                    Rating = prodDetail.Rating ?? 0,
+                    Summary = prodDetail.Summary,
+                    Barcode = prodDetail.Barcode,
+                    ReleaseYear = prodDetail.ReleaseYear,
+                    NamePublisher = prodDetail.Publisher.NamePublisher,
+                    CategoryName = prodDetail.Category.CategoryName,
+                    UpdatedDate = prodDetail.UpdatedDate,
+                    AuthorName = String.Join(", ", prodDetail.Author.Select(x => x.NameAuthor)),
+                    RelatedProduct = prodDetail.RelatedProduct.Select(q => new ProductViewModel
+                    {
+                        Id = q.ProductId,
+                        NameProduct = q.NameProduct,
+                        ImagePath = q.ImagePath,
+                        DisplayPrice = q.Price.ToString()
+                    }).ToList()
+
+                };
+            }
+                
             return View(productDetailViewModel);
         }
 
