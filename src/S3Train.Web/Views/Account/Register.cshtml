@@ -7,7 +7,6 @@
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="modal fade" id="exampleModal2">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -22,18 +21,22 @@
                             <div class="form-group">
                                 <label class="col-form-label">Email</label>
                                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", @require = "" })
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">Password</label>
                                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", @require = "" })
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">Confirm Password</label>
                                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger", @require = "" })
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">Full Name</label>
                                 @Html.TextBoxFor(m => m.Fullname, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Fullname, "", new { @class = "text-danger", @require = "" })
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">Gender</label>
@@ -43,14 +46,17 @@
                             <div class="form-group">
                                 <label class="col-form-label">Address</label>
                                 @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger", @require = "" })
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">Phone Number</label>
                                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger", @require = "" })
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">Date of Birth</label>
                                 @Html.EditorFor(m => m.DateOfBirth, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger", @require = "" })
                             </div>
                             <div class="right-w3l">
                                 <input type="submit" class="form-control" value="Sign up">

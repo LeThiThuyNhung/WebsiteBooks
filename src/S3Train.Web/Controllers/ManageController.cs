@@ -155,31 +155,60 @@ namespace S3Train.Web.Controllers
         // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
-            return View();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
+            var model = new ApplicationUser
+            {
+                Id = user.Id,
+                Address = user.Address,
+                Email = user.Email,
+                PasswordHash = user.PasswordHash,
+                EmailConfirmed = user.EmailConfirmed,
+                SecurityStamp = user.SecurityStamp,
+                PhoneNumber = user.PhoneNumber,
+                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled,
+                LockoutEndDateUtc = user.LockoutEndDateUtc,
+                LockoutEnabled = user.LockoutEnabled,
+                AccessFailedCount = user.AccessFailedCount,
+                UserName = user.UserName,
+                FullName = user.FullName,
+                DateofBirth = user.DateofBirth,
+                Gender = user.Gender
+            };
+
+            return View(model);
         }
 
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
+        public /*async Task<*/ActionResult AddPhoneNumber([Bind(Include = "Id,Address,Email,PasswordHash,EmailConfirmed,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FullName,DateofBirth,Gender")] ApplicationUser user)
         {
-            if (!ModelState.IsValid)
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(model);
+            //}
+            ////Generate the token and send it
+            //var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            //if (UserManager.SmsService != null)
+            //{
+            //    var message = new IdentityMessage
+            //    {
+            //        Destination = "+84363276905",
+            //        Body = "Your security code is: " + code
+            //    };
+            //    await UserManager.SmsService.SendAsync(message);
+            //}
+            //return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+            if (ModelState.IsValid)
             {
-                return View(model);
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Manage");
             }
-            //Generate the token and send it
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
-            {
-                var message = new IdentityMessage
-                {
-                    Destination = "+84363276905",
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
-            }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
+            return View(user);
         }
 
         public ActionResult AddAddress()
@@ -211,7 +240,7 @@ namespace S3Train.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddAddress([Bind(Include = "Id,Address,Email,PasswordHash,EmailConfirmed,SecurityStamp,PhoneNumber = user.PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FullName,DateofBirth,Gender")] ApplicationUser user)
+        public ActionResult AddAddress([Bind(Include = "Id,Address,Email,PasswordHash,EmailConfirmed,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FullName,DateofBirth,Gender")] ApplicationUser user)
         {
             if (ModelState.IsValid)
             {

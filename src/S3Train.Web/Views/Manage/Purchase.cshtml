@@ -5,15 +5,23 @@
     Layout = "~/Views/Shared/_Profile.cshtml";
 }
 
+@if (Model.OrderProViewModel == null || Model.OrderProViewModel.Count == 0)
+{
+<div class="cart-empty">
+    <p>No purchase orders yet</p>
+    <a class="continue" href="@Url.Action("Index", "Home", null)">Buy Now</a>
+</div>
+}
+else
+{
 
-
-@foreach (var item in Model.OrderProViewModel)
+foreach (var item in Model.OrderProViewModel)
 {
     <div class="cart-header">
         <div class="cart-sec">
 
             <divError executing child request class="cart-item cyc">
-                <img src="@Url.Content("~/ImagePD/"+item.ImagePath )" width="80" height="100" />
+                <img src="@Url.Content("~/ImagePD/" + item.ImagePath)" width="80" height="100" />
             </divError>
             <div class="cart-item-info">
                 <ul>
@@ -32,6 +40,7 @@
 
         </div>
     </div>
+}
 }
 <style>
     .total{
