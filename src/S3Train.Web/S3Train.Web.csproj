@@ -498,9 +498,11 @@
     <Content Include="Content\js\jquery-1.11.0.min.js" />
     <Content Include="Content\js\jquery-1.9.0.min.js" />
     <Content Include="Content\js\jquery.flexisel.js" />
+    <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\simpleCart.min.js" />
     <Content Include="Content\js\site.js" />
+    <Content Include="Content\js\validate.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TemplateAdmin\calendar.html" />
     <Content Include="Content\TemplateAdmin\chart.html" />
@@ -1151,6 +1153,9 @@
     <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Home\_Categories.cshtml" />
     <Content Include="Views\Cart\PayMent.cshtml" />
+    <Content Include="Views\Manage\AddAddress.cshtml" />
+    <Content Include="Views\Cart\AddAddress.cshtml" />
+    <Content Include="Views\Manage\Purchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1214,15 +1219,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003200407196_Addcol.resx">
       <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003220950187_O.resx">
-      <DependentUpon>202003220950187_O.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003221518400_UpdateCol.resx">
-      <DependentUpon>202003221518400_UpdateCol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003221612488_UpdateCol1.resx">
-      <DependentUpon>202003221612488_UpdateCol1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace S3Train.Contract
 {
-    public interface ISearchProductsForAuthorService : IGenenicServiceBase<Product>
+    public interface ISearchProductsForAuthorService : IGenenicServiceBase<ProducDTO>
     {
         IList<ProductDTO> GetProductsSearchForAuhtorItems(string Name);
     }

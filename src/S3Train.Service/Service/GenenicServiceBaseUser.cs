@@ -10,9 +10,10 @@
 
 //namespace S3Train.Service
 //{
-//    public abstract class GenenicServiceBaseUser<T> : IGenenicServiceBaseUser<T>
+//    public abstract class GenenicServiceBaseUser<T> : IGenenicServiceBaseUser<T> where T : ApplicationUser
 //    {
 //        protected readonly ApplicationDbContext DbContext;
+//        protected DbSet<T> EntityDbSet => DbContext.Set<T>();
 
 //        protected GenenicServiceBaseUser(ApplicationDbContext dbContext)
 //        {
@@ -23,16 +24,19 @@
 //        /// Select all data
 //        /// </summary>
 //        /// <returns></returns>
-      
+//        public List<T> SelectAll()
+//        {
+//            return EntityDbSet.ToList();
+//        }
 //        /// <summary>
 //        /// Get entity by Id, return null if not found
 //        /// </summary>
 //        /// <param name="id">The identifier.</param>
 //        public T GetById(string id)
 //        {
-//            return DbContext.Users.SingleOrDefault(x => x.Id == id);
+//            return EntityDbSet.SingleOrDefault(x => x.Id == id);
 //        }
 
 //    }
 //}
-//}
+

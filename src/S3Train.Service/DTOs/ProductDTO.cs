@@ -20,6 +20,7 @@ namespace S3Train.DTOs
         public int ReleaseYear { get; set; }
         public int Amount { get; set; }
         public int? Rating { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         public PublisherDTO Publisher  { get; set; }
         public IList<AuthorDTO> Author { get; set; }

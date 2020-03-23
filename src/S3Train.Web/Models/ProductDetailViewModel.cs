@@ -17,10 +17,12 @@ namespace S3Train.Web.Models
         public int ReleaseYear { get; set; }
         public int Amount { get; set; }
         public int? Rating { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public decimal Price { get; set; }
 
         public string NamePublisher { get; set; }
         public string AuthorName { get; set; }
-        public string PromotionPercent { get; set; }
+        public double PromotionPercent { get; set; }
         public string CategoryName { get; set; }
 
         public IList<ProductViewModel> RelatedProduct { get; set; }

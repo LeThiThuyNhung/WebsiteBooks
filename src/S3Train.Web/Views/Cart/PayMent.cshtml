@@ -12,9 +12,11 @@
     <div class="Payment">
         <h3>Payment</h3>
         <hr />
-        <div class="info">
-            <p>Shipping Address</p>
-            <b><span>@Model.User.FullName</span><span>@Model.User.PhoneNumber</span></b><span>@Model.User.Address</span> <a href="#">Change</a>
+        <h5>Shipping Address</h5>
+        <div>
+            <a href="@Url.Action("AddAddress", "Cart")">Change</a>
+        </div>
+        <div>
 
         </div><br />
         <div class="order-pro">

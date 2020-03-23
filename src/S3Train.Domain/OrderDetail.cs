@@ -14,6 +14,6 @@ namespace S3Train.Domain
         public decimal Price { get; set; }
         public Decimal Total { get; set; }
         public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual ProducDTO Product { get; set; }
     }
 }
