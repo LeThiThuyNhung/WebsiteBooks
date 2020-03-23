@@ -11,6 +11,7 @@ using S3Train.Contract;
 using System.Collections.Generic;
 using System;
 using S3Train.DTOs;
+using System.Data.Entity;
 
 namespace S3Train.Web.Controllers
 {

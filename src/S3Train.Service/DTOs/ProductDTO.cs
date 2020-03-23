@@ -20,6 +20,8 @@ namespace S3Train.DTOs
         public int ReleaseYear { get; set; }
         public int Amount { get; set; }
         public int? Rating { get; set; }
+        public int OrderQuantity { get; set; }
+        public decimal ToTal { get; set; }
 
         public PublisherDTO Publisher  { get; set; }
         public IList<AuthorDTO> Author { get; set; }
@@ -27,6 +29,7 @@ namespace S3Train.DTOs
         public IList<PromotionDTO> Promotion { get; set; }
 
         public List<ProductDTO> RelatedProduct { get; set; }
+        public List<ProductDTO> UserProducts { get; set; }
     }
 
 }

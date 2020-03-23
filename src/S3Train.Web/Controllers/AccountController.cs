@@ -68,7 +68,7 @@ namespace S3Train.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("Login");
+                return PartialView("SignIn");
             }
 
             ApplicationDbContext db = new ApplicationDbContext();
@@ -76,14 +76,14 @@ namespace S3Train.Web.Controllers
             if (user == null)
             {
                 ModelState.AddModelError("CustomerError", "Account does not exist");
-                return PartialView("Login", model);
+                return PartialView("SignIn", model);
             }
             else
             {
                 if (user.EmailConfirmed == false)
                 {
                     ModelState.AddModelError("CustomerError", "The account has not been authenticated");
-                    return PartialView("Login", model);
+                    return PartialView("SignIn", model);
                 }
             }
 
@@ -101,7 +101,58 @@ namespace S3Train.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Password is wrong");
-                    return PartialView("Login");
+                    return PartialView("SignIn");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult SignIn(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return PartialView("SignIn", returnUrl);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignIn(LoginViewModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("SignIn");
+            }
+
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.SingleOrDefault(m => m.UserName == model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("CustomerError", "Account does not exist");
+                return PartialView("SignIn", model);
+            }
+            else
+            {
+                if (user.EmailConfirmed == false)
+                {
+                    ModelState.AddModelError("CustomerError", "The account has not been authenticated");
+                    return PartialView("SignIn", model);
+                }
+            }
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Password is wrong");
+                    return View("SignIn");
             }
         }
 

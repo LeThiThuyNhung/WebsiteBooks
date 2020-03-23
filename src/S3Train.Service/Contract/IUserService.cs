@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace S3Train.Contract
 {
-    public interface IUserService : IGenenicServiceBaseUser<ApplicationUser>
+    public interface IUserService
     {
         IList<ApplicationUser> GetUserItems(string Id);
     }

@@ -9,20 +9,22 @@ using S3Train.Web.Models;
 using S3Train.Domain;
 using System.Data.Entity;
 using S3Train.Contract;
+using System.Collections.Generic;
+using S3Train.DTOs;
 
 namespace S3Train.Web.Controllers
 {
-    [Authorize]
     public class ManageController : Controller
     {
         //private readonly IUserService _userService;
         ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IOrderService _orderService;
 
-        public ManageController(/*IUserService userService*/)
+        public ManageController(IOrderService orderService)
         {
-            //_userManager = userService;
+            _orderService = orderService;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -71,7 +73,6 @@ namespace S3Train.Web.Controllers
 
             var userId = User.Identity.GetUserId();
             //var user = _userService.GetUserItems(Id);
-            
             var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
 
             var model = new IndexViewModel
@@ -91,9 +92,29 @@ namespace S3Train.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Purchase()
+        public ActionResult Purchase(string ApplicationUserId)
         {
-            return View();
+            ApplicationUserId = User.Identity.GetUserId();
+            var productsUser = new HomeViewModel
+            {
+                OrderProViewModel = GetProductsByUser(_orderService.GetProductsByUserItems(ApplicationUserId))
+            };
+            return View(productsUser);
+        }
+
+        private static IList<OrderProViewModel> GetProductsByUser(IList<ProductDTO> proUser)
+        {
+            var model = proUser.Select(x => new OrderProViewModel
+            {
+                Id = x.Id,
+                ImagePath = x.ImagePath,
+                NameProduct = x.NameProduct,
+                Price = x.Price,
+                BarCode = x.Barcode,
+                Total = x.ToTal,
+                OrderQuantity = x.OrderQuantity
+            }).ToList();
+            return model;
         }
 
         //
