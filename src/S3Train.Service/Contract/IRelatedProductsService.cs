@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace S3Train.Contract
 {
-    public interface IRelatedProductsService: IGenenicServiceBase<Product>
+    public interface IRelatedProductsService: IGenenicServiceBase<ProducDTO>
     {
     }
 }

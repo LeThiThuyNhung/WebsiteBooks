@@ -39,7 +39,7 @@ namespace S3Train.Controllers
         }
 
        
-        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeNewProducts(IList<Product> products)
+        private static IEnumerable<IGrouping<int, ProductViewModel>> GetHomeNewProducts(IList<ProducDTO> products)
         {
             return products.Select((x, i) => new ProductViewModel
             {
@@ -51,7 +51,7 @@ namespace S3Train.Controllers
             }).GroupBy(e => e.Grouping).ToList();
         }
 
-        private static IEnumerable<IGrouping<int, CSProductViewModel>> GetHomeCSProducts(IList<Product> products)
+        private static IEnumerable<IGrouping<int, CSProductViewModel>> GetHomeCSProducts(IList<ProductDTO> products)
         {
             return products.Select((x, i) => new CSProductViewModel
             {
@@ -70,7 +70,8 @@ namespace S3Train.Controllers
                 Id = x.ProductId,
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
-                DisplayPrice = $"${x.Price}",
+                Price = x.Price,
+                PromotionPercent = x.Promotion.First().PromotionPercent,
                 Grouping = i / 4
             }).GroupBy(e => e.Grouping).ToList();
         }

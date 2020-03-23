@@ -23,6 +23,10 @@ namespace S3Train.Service
                     NameProduct = n.NameProduct,
                     ImagePath = n.ImagePath,
                     Price = n.Price,
+                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO
+                    {
+                        PromotionPercent = x.PromotionPercent,
+                    }).ToList(),
                 }).ToList();
 
             return product;

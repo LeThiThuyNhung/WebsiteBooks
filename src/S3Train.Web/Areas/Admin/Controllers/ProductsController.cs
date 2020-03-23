@@ -42,7 +42,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            ProducDTO product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -71,7 +71,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "Id,CategoryId,PublisherId,NameProduct,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
+        public ActionResult Create([Bind(Include = "Id,CategoryId,PublisherId,NameProduct,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] ProducDTO product, HttpPostedFileBase fileUpload)
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "NameCategory", product.CategoryId);
             ViewBag.PublisherId = new SelectList(db.Publishers, "Id", "NamePublisher", product.PublisherId);
@@ -114,7 +114,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            ProducDTO product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -130,7 +130,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit([Bind(Include = "Id,CategoryId,PublisherId,NameProduct,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] Product product, HttpPostedFileBase fileUpload)
+        public ActionResult Edit([Bind(Include = "Id,CategoryId,PublisherId,NameProduct,Summary,Price,ImagePath,Barcode,ReleaseYear,Amount,Rating,CreatedDate,UpdatedDate,IsActive")] ProducDTO product, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
@@ -167,7 +167,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            ProducDTO product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -180,7 +180,7 @@ namespace S3Train.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Product product = db.Products.Find(id);
+            ProducDTO product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");

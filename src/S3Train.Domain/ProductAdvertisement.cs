@@ -10,6 +10,6 @@ namespace S3Train.Domain
         public string EventUrl{ get; set; }
         public string ImagePath { get; set; }
         public ProductAdvertisementType AdType { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual ProducDTO Product { get; set; }
     }
 }

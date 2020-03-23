@@ -1,4 +1,5 @@
-﻿using System;
+﻿using S3Train.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,8 @@ namespace S3Train.Web.Models
         public string ImagePath { get; set; }
         public string NameProduct { get; set; }
         public string DisplayPrice { get; set; }
-        public double PromotionDetail { get; set; }
+        public decimal Price { get; set; }
+        public double PromotionPercent { get; set; }
         public int Grouping { get; set; }
     }
 }

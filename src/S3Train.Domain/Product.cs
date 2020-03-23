@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace S3Train.Domain
 {
-    public class Product : EntityBase
+    public class ProducDTO : EntityBase
     {
         public Guid CategoryId { get; set; }
         public Guid PublisherId { get; set; }
@@ -15,6 +15,7 @@ namespace S3Train.Domain
         public int ReleaseYear { get; set; }
         public int Amount { get; set; }
         public int? Rating { get; set; }
+        
 
         public virtual ICollection<Author_Product> Author_Products { get; set; }
         public virtual ICollection<PromotionDetail> PromotionDetails { get; set; }

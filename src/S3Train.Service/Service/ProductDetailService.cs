@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace S3Train.Service
 {
-    public class ProductDetailService : GenenicServiceBase<Product>, IProductDetailService
+    public class ProductDetailService : GenenicServiceBase<ProducDTO>, IProductDetailService
     {
         public ProductDetailService(ApplicationDbContext dbContext) : base(dbContext)
         {
@@ -28,6 +28,7 @@ namespace S3Train.Service
                     Summary = n.Summary,
                     Barcode = n.Barcode,
                     ReleaseYear = n.ReleaseYear,
+                    UpdatedDate = n.UpdatedDate,
                     Publisher = new PublisherDTO
                     {
                         NamePublisher = n.Publisher.NamePublisher

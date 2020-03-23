@@ -68,7 +68,7 @@ namespace S3Train.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("Login");
+                return View("Error");
             }
 
             ApplicationDbContext db = new ApplicationDbContext();

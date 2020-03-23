@@ -7,7 +7,7 @@ using S3Train.DTOs;
 
 namespace S3Train.Service
 {
-    public class RelatedProductsService: GenenicServiceBase<Product>, IRelatedProductsService
+    public class RelatedProductsService: GenenicServiceBase<ProducDTO>, IRelatedProductsService
     {
         public RelatedProductsService(ApplicationDbContext dbContext) : base(dbContext)
         {

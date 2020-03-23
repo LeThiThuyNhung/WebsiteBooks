@@ -6,6 +6,6 @@ namespace S3Train.Domain
     {
         public string NameCategory { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProducDTO> Products { get; set; }
     }
 }
