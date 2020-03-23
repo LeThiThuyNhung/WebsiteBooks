@@ -34,7 +34,65 @@ p.qty {
     font-size: 1em;
     display: inline-block;
 }
+.Payment
+{
+    height:auto;
+}
+.info p {
+    color: coral;
+    font-size: 25px;
+}
 
+.info span {
+    margin-left: 20px;
+    font-size: 20px;
+}
+.info a
+{
+    margin-left:30px;
+}
+.order-total {
+    float: right;
+    width:20%;
+}
+.order-total h4
+{
+    font-size:15px;
+}
+.order-total a {
+    background: orange;
+    padding: 10px 1.5em;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -o-border-radius: 7px;
+    font-size: 1em;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+    text-align: center;
+    width: 200px;
+    font-size:15px;
+}
+
+.order-pro table {
+    border: none;
+    width: 100%;
+}
+
+.order-pro table th {
+    font-size: 20px;
+    width:auto;
+}
+.order-pro table td
+{
+    font-size:15px;
+}
+.order-pro table td img {
+    width: 50px;
+    height: 50px;
+}
 .details-left-info #quantity {
     width: 50px;
     height: 37px;

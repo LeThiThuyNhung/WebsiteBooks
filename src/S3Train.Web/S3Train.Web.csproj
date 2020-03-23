@@ -421,19 +421,24 @@
     <Compile Include="Migrations\202003200407196_Addcol.Designer.cs">
       <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003211832221_deletecol.cs" />
-    <Compile Include="Migrations\202003211832221_deletecol.Designer.cs">
-      <DependentUpon>202003211832221_deletecol.cs</DependentUpon>
+    <Compile Include="Migrations\202003220950187_O.cs" />
+    <Compile Include="Migrations\202003220950187_O.Designer.cs">
+      <DependentUpon>202003220950187_O.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003221420301_updatecol.cs" />
-    <Compile Include="Migrations\202003221420301_updatecol.Designer.cs">
-      <DependentUpon>202003221420301_updatecol.cs</DependentUpon>
+    <Compile Include="Migrations\202003221518400_UpdateCol.cs" />
+    <Compile Include="Migrations\202003221518400_UpdateCol.Designer.cs">
+      <DependentUpon>202003221518400_UpdateCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003221612488_UpdateCol1.cs" />
+    <Compile Include="Migrations\202003221612488_UpdateCol1.Designer.cs">
+      <DependentUpon>202003221612488_UpdateCol1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\CSProductViewModel.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PayMentViewModel.cs" />
     <Compile Include="Models\ProductDetailViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
@@ -1212,12 +1217,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003200407196_Addcol.resx">
       <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003211832221_deletecol.resx">
-      <DependentUpon>202003211832221_deletecol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003221420301_updatecol.resx">
-      <DependentUpon>202003221420301_updatecol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

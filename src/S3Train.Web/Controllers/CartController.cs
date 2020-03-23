@@ -1,23 +1,30 @@
-﻿using S3Train.Contract;
-using S3Train.Domain;
-using S3Train.DTOs;
-using S3Train.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using S3Train.Web.Models;
+using S3Train.Domain;
+using S3Train.Contract;
+using System.Collections.Generic;
+using System;
+using S3Train.DTOs;
 
 namespace S3Train.Web.Controllers
 {
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
+        private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
         public const string CartSession = "CartSession";
-        public CartController(ICartService cartService)
+        public CartController(ICartService cartService, IOrderService orderService, IOrderDetailService orderDetailService)
         {
             _cartService = cartService;
+            _orderService = orderService;
+            _orderDetailService = orderDetailService;
 
         }
         // GET: Cart
@@ -110,13 +117,51 @@ namespace S3Train.Web.Controllers
 
         public ActionResult PayMent()
         {
+            var userId = User.Identity.GetUserId();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             var cartSession = (List<CartViewModel>)Session[CartSession];
             var payMent = new PayMentViewModel
             {
                
-                    Card = cartSession,
+                    Cart = cartSession,
+                    User = new ApplicationUser
+                    {
+                        
+
+                        FullName = user.FullName,
+                        Address = user.Address,
+                        PhoneNumber = user.PhoneNumber,
+                    }
             };
-            return View(payMent.Card);
+            return View(payMent);
+        }
+
+        public ActionResult Order()
+        {
+            var userId = User.Identity.GetUserId();
+            var cartSession = (List<CartViewModel>)Session[CartSession];
+            var order = new Order
+            {
+                ApplicationUserId = userId,
+                DatePayment = DateTime.Now,
+                TotalMoney = cartSession.Sum(m => m.Amount * m.Products.Price),
+            };
+            var id = _orderService.InsertOrder(order);
+            foreach (var item in cartSession)
+            {
+                var orderDetail = new OrderDetail
+                {
+                    OrderId = id,
+                    OrderQuantity = item.Amount,
+                    Price = item.Products.Price,
+                    Total = item.Amount * item.Products.Price,
+                    ProductId = item.Products.Id,
+                };
+                _orderDetailService.InsertOrderDetail(orderDetail);
+            }
+            Session[CartSession] = null;
+            return RedirectToAction("MyCart");
         }
 
         ApplicationDbContext db = new ApplicationDbContext();

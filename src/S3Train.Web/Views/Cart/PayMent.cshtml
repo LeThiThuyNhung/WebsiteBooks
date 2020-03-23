@@ -1,10 +1,13 @@
 ﻿@using S3Train.Web.Models;
-@model List<CartViewModel>
+@model PayMentViewModel
 
 @{
     ViewBag.Title = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+ 
+</style>
 <div class="container">
     <div class="Payment">
         <h3>Payment</h3>
@@ -17,26 +20,47 @@
         {
             <div>
 
-                <table style="border:none" width="1000">
+        </div><br />
+        <div class="order-pro">
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th></th>
+                    <th>Price</th>
+                    <th>Quatity</th>
+                    <th>Total</th>
+                </tr>
+                
+                @foreach (var item in Model.Cart)
+                {
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th>Price</th>
-                        <th>Quatity</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr>
+
+                        <td><img src="@Url.Content("~/ImagePD/" + item.Products.ImagePath)" /></td>
                         <td>@item.Products.NameProduct</td>
-                        <td>@*@item.Amount*@</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>@item.Amount</td>
+                        <td>@item.Products.Price</td>
+                        <td>@(item.Products.Price * item.Amount) </td>
+
                     </tr>
-                </table>
-                <div>
-                    <h4>Total</h4>
-                </div>
-            </div>}
-        
+                }
+            </table>
+        </div><br />
+        <div class="order-total">
+            @{
+                if (@Model.Cart.Sum(m => m.Amount * m.Products.Price) >= 20)
+                {
+
+                    <h5>Total: $@Model.Cart.Sum(m => m.Amount * m.Products.Price)</h5>
+                    <h5>Delivery Charges: 0</h5>
+                    <h5>Total payment: $@Model.Cart.Sum(m => m.Amount * m.Products.Price)</h5>
+                }
+                else
+                {
+                    <h5>Total: $@Model.Cart.Sum(m => m.Amount * m.Products.Price)</h5>
+                    <h5>Delivery Charges: $5</h5>
+                    <h5>Total payment: $@Model.Cart.Sum(m => m.Amount * m.Products.Price + 5)</h5>
+                }
+            }  <a href="@Url.Action("Order", "Cart", null)" onclick="alert('You have successfully placed an order. Thanks!')">Place Order</a>
+        </div>
     </div>
 </div>

@@ -2,6 +2,7 @@
 using S3Train.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,13 @@ namespace S3Train.Service
         {
         }
 
-        public void InsertOrder(Order order)
+        public Guid InsertOrder(Order order)
         {
-            var od = DbContext.Orders.Add(order);
+            order.Id = Guid.NewGuid();
+            DbContext.Orders.Add(order);
             DbContext.SaveChanges();
+
+            return order.Id;
         }
     }
 }
