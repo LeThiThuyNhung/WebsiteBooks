@@ -41,7 +41,7 @@
             int totalPage = (int)ViewBag.TotalPage;
             int curentPage = ((int)ViewBag.Page);
 
-            var startPageIndex = Math.Max(1, curentPage - pageDisplay / 2);
+            var startPageIndex = Math.Max(curentPage, curentPage - pageDisplay / 2);
             var endPageIndex = Math.Min(totalPage, curentPage + pageDisplay / 2);
             var link = Url.Action("bestSellerProducts", "ListOfProducts");
             <nav>
@@ -64,8 +64,8 @@
                     }
                     @if (curentPage < totalPage)
                     {
-                        <li><a href="@link?page=@ViewBag.Next" title="First page"><i class="fa fa-angle-right"></i></a></li>
-                            <li><a href="@link?page=@ViewBag.Last" title="Previous page"><i class="fa fa-angle-double-right"></i></a></li>
+                        <li><a href="@link?page=@ViewBag.Next" title="Next page"><i class="fa fa-angle-right"></i></a></li>
+                            <li><a href="@link?page=@ViewBag.Last" title="Last page"><i class="fa fa-angle-double-right"></i></a></li>
                     }
                 </ul>
             </nav>

@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Purchase";
+    Layout = "~/Views/Shared/_Profile.cshtml";
+}
+
+
+
+    @*@foreach (var item in Model)
+        {*@
+    <div class="cart-header">
+        <div class="cart-sec">
+
+            <divError executing child request class="cart-item cyc">
+                <img src="@Url.Content("~/ImagePD/comic1.png"@*+item.value.Products.ImagePath*@ )" width="80" height="100" />
+            </divError>
+            <div class="cart-item-info">
+                <ul>
+                    <li>@*@item.value.Products.NameProduct*@The Oxford Book of American Short Stories</li>
+                    <li>X 5</li>
+                    <li class="price">@*$@item.value.Products.Price*@$12.00</li>
+                </ul>
+            </div>
+            <div class="total">
+                <p>Total:</p>
+            </div>
+            <div class="clearfix"></div>
+
+
+        </div>
+    </div>
+    @*  }*@
+<style>
+    .total{
+        float: right
+    }
+    .price
+    {
+        float:right
+    }
+</style>
+
+
+
+

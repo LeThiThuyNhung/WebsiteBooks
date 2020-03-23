@@ -178,6 +178,7 @@ namespace S3Train.Web.Controllers
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     //return RedirectToAction("Index", "Home");
+                    //TempData["Message"] = "<script>alert('We have sent authentication information to your email, check your email to perform the authentication.')</script>";
                     ViewBag.Message = "We have sent authentication information to your email, check your email to perform the authentication.";
                 }
                 AddErrors(result);
@@ -496,5 +497,6 @@ namespace S3Train.Web.Controllers
             }
         }
         #endregion
+
     }
 }

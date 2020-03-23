@@ -7,17 +7,22 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using S3Train.Web.Models;
 using S3Train.Domain;
+using System.Data.Entity;
+using S3Train.Contract;
 
 namespace S3Train.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        //private readonly IUserService _userService;
+        ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
+        public ManageController(/*IUserService userService*/)
         {
+            //_userManager = userService;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -53,7 +58,7 @@ namespace S3Train.Web.Controllers
         //
         // GET: /Manage/Index
         
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public async Task<ActionResult> Index(ManageMessageId? message, string Id)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -65,8 +70,8 @@ namespace S3Train.Web.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
-            //var user = userIdentity.Users.Where(u => u.Email == db.Email).First();
-            ApplicationDbContext db = new ApplicationDbContext();
+            //var user = _userService.GetUserItems(Id);
+            
             var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
 
             var model = new IndexViewModel
@@ -84,6 +89,11 @@ namespace S3Train.Web.Controllers
                 Gender = user.Gender,
             };
             return View(model);
+        }
+
+        public ActionResult Purchase()
+        {
+            return View();
         }
 
         //
@@ -110,9 +120,8 @@ namespace S3Train.Web.Controllers
             return RedirectToAction("ManageLogins", new { Message = message });
         }
 
-        public async Task<ActionResult> Profile()
+        public new ActionResult Profile()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
             var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
             var model = new IndexViewModel
             {
@@ -138,45 +147,58 @@ namespace S3Train.Web.Controllers
             {
                 return View(model);
             }
-            // Generate the token and send it
-            //var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            //if (UserManager.SmsService != null)
-            //{
-            //    var message = new IdentityMessage
-            //    {
-            //        Destination = "+84363276905",
-            //        Body = "Your security code is: " + code
-            //    };
-            //    await UserManager.SmsService.SendAsync(message);
-            //}
+            //Generate the token and send it
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
+            if (UserManager.SmsService != null)
+            {
+                var message = new IdentityMessage
+                {
+                    Destination = "+84363276905",
+                    Body = "Your security code is: " + code
+                };
+                await UserManager.SmsService.SendAsync(message);
+            }
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
 
         public ActionResult AddAddress()
         {
-            return View();
+            var user = db.Users.Where(x => x.UserName == User.Identity.Name).FirstOrDefault();
+
+            var model = new ApplicationUser
+            {
+                Id = user.Id,
+                Address = user.Address,
+                Email = user.Email,
+                PasswordHash = user.PasswordHash,
+                EmailConfirmed = user.EmailConfirmed,
+                SecurityStamp = user.SecurityStamp,
+                PhoneNumber = user.PhoneNumber,
+                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled,
+                LockoutEndDateUtc = user.LockoutEndDateUtc,
+                LockoutEnabled = user.LockoutEnabled,
+                AccessFailedCount = user.AccessFailedCount,
+                UserName = user.UserName,
+                FullName = user.FullName,
+                DateofBirth = user.DateofBirth,
+                Gender = user.Gender
+            };
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddAddress(AddAddressViewModel model)
+        public ActionResult AddAddress([Bind(Include = "Id,Address,Email,PasswordHash,EmailConfirmed,SecurityStamp,PhoneNumber = user.PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,FullName,DateofBirth,Gender")] ApplicationUser user)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", "Manage");
             }
-            // Generate the token and send it
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Address);
-            if (UserManager.SmsService != null)
-            {
-                var message = new IdentityMessage
-                {
-                    Destination = model.Address,
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
-            }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Address });
+            return View(user);
         }
 
         //
