@@ -12,10 +12,22 @@ namespace S3Train.Service
         public CSProductService(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
-        public IList<Product> GetCSProductItems()
+        public IList<ProductDTO> GetCSProductItems()
         {
-
-            var csbook = DbContext.Products.Where(x => x.UpdatedDate == null).ToList(); 
+            var csbook = DbContext.Products
+                .Where(x => x.UpdatedDate == null)
+                .Select(n => new ProductDTO
+                {
+                    Id = n.Id,
+                    NameProduct = n.NameProduct,
+                    ImagePath = n.ImagePath,
+                    Price = n.Price,
+                    UpdatedDate = n.UpdatedDate,
+                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO
+                    {
+                        PromotionPercent = x.PromotionPercent,
+                    }).ToList(),
+                }).ToList();
             return csbook;
         }
     }

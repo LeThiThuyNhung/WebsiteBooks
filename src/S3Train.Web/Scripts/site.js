@@ -15,6 +15,10 @@
         });
     }
 
+    function callLogin() {
+        alert("login")
+    }
+
     var registerForm = $('#registerForm');
     if (registerForm.length > 0) {
         $(registerForm).load('/Account/Register', function () {

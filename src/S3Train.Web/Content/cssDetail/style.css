@@ -51,13 +51,18 @@ font-family: 'Raleway', sans-serif;
 }
 .details-left-info p {
 margin-top: 2%;
-font-size: 1.8em;
-color: #fa558f;
+font-size: 1.5em;
+color:coral;
 line-height: 1.8em;
 text-shadow: 0 1px 0 #ffffff;
 letter-spacing: 1px;
 }
-.details-left-info  h4 {
+
+.details-left-info p span {
+    font-size:small;
+    color:black;
+}
+.details-left-info h4 {
 color:#CDCDCD;
 font-weight: 400;
 margin-bottom: 1em;

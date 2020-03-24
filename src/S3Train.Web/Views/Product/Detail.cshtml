@@ -15,26 +15,51 @@
                         <ul id="etalage">
                             <li>
                                 <a href="#">
-                                    <img class="etalage_thumb_image" src="@Url.Content("~/ImagePD/"+Model.ImagePath)" width="250" height="350" />
+                                    <img class="etalage_thumb_image" src="@Url.Content("~/ImagePD/" + Model.ImagePath)" width="250" height="350" />
                                 </a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="details-left-info">
-                        <h3>@Model.Name</h3>
-                        <p>$ @Model.DisplayPrice</p>
-                        <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
-                        <div class="btn_form">
-                            <a id="btn-add-to-cart" href="#">Add to cart</a>
+                    @if (Model.PromotionPercent > 0)
+                    {
+                        <div class="details-left-info">
+                            <h3>@Model.Name</h3>
+                            <p>
+                                $@(Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) * Model.PromotionPercent / 100))
+                                <span>Save: $@(Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) * Model.PromotionPercent / 100))) (-@Model.PromotionPercent%)</span>
+                            </p>
+                            <h5><strike>$ @Model.DisplayPrice</strike></h5>
+                            <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
+                            <div class="btn_form">
+                                <a id="btn-add-to-cart" href="#">Add to cart</a>
+                            </div>
+                            <div class="flower-type">
+                                <p>Author  ::@Model.AuthorName</p>
+                                <p>Bacode  ::@Model.Barcode</p>
+                            </div>
+                            <h5>Description  ::</h5>
+                            <p class="desc">@Model.Summary</p>
                         </div>
-                        <div class="flower-type">
-                            <p>Author  ::@Model.AuthorName</p>
-                            <p>Bacode  ::@Model.Barcode</p>
+                    }
+                    else
+                    {
+                        <div class="details-left-info">
+                            <h3>@Model.Name</h3>
+
+                            <p>$ @Model.DisplayPrice</p>
+                            <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
+                            <div class="btn_form">
+                                <a id="btn-add-to-cart" href="#">Add to cart</a>
+                            </div>
+                            <div class="flower-type">
+                                <p>Author  ::@Model.AuthorName</p>
+                                <p>Bacode  ::@Model.Barcode</p>
+                            </div>
+                            <h5>Description  ::</h5>
+                            <p class="desc">@Model.Summary</p>
                         </div>
-                        <h5>Description  ::</h5>
-                        <p class="desc">@Model.Summary</p>
-                    </div>
+                    }
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -136,11 +161,11 @@
                 <div class="col-md-3">
                     <div class="thumbnail">
 
-                        <a href="@Url.Action("Detail", "Product",new { @id = item.Id} )">
-                            <img src="@Url.Content("~/ImagePD/"+item.ImagePath)" />
+                        <a href="@Url.Action("Detail", "Product", new { @id = item.Id })">
+                            <img src="@Url.Content("~/ImagePD/" + item.ImagePath)" />
                         </a>
                         <div class="caption">
-                            <a href="@Url.Action("Detail", "Product",new { @id = item.Id } )"><h5>@item.NameProduct</h5></a>
+                            <a href="@Url.Action("Detail", "Product", new { @id = item.Id })"><h5>@item.NameProduct</h5></a>
                             <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
                         </div>
 
@@ -157,16 +182,16 @@
 <script type="text/javascript">
         $(document).ready(function () {
             $('#btn-add-to-cart').click(function () {
-                var id = "@Model.Id";
-                var quantity = $('#quantity').val();
+        var id = "@Model.Id";
+        var quantity = $('#quantity').val();
                 $.ajax({
-                    type: "POST",
+            type: "POST",
                     url: '/Cart/AddItems',
                     data: { Id: id, Quantity: quantity },
                     success: function (data) {
-                        alert("Add to cart successfully")
+                alert("Add to cart successfully")
                     }
-                });
-            });
         });
+    });
+});
 </script>

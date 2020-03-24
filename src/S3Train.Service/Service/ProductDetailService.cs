@@ -28,6 +28,7 @@ namespace S3Train.Service
                     Summary = n.Summary,
                     Barcode = n.Barcode,
                     ReleaseYear = n.ReleaseYear,
+                    UpdatedDate = n.UpdatedDate,
                     Publisher = new PublisherDTO
                     {
                         NamePublisher = n.Publisher.NamePublisher
@@ -46,9 +47,9 @@ namespace S3Train.Service
                     }).ToList(),
                 }).SingleOrDefault();
 
-            var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
+                var listAuthorId = productDetail.Author.Select(q => q.AuthorId);
 
-            productDetail.RelatedProduct = DbContext.Author_Products.Include("Product")
+                productDetail.RelatedProduct = DbContext.Author_Products.Include("Product")
                 .Where(q => listAuthorId.Contains(q.AuthorId) && q.ProductId!= id).Select(n => new ProductDTO {
                     ProductId = n.Product.Id,
                     NameProduct = n.Product.NameProduct,
