@@ -6,10 +6,10 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace S3Train.Contract
-//{
-//    public interface IUserService : IGenenicServiceBaseUser<ApplicationUser>
-//    {
-//        IList<ApplicationUser> GetUserItems(string Id);
-//    }
-//}
+namespace S3Train.Contract
+{
+    public interface IUserService
+    {
+        IList<ApplicationUser> GetUserItems(string Id);
+    }
+}
