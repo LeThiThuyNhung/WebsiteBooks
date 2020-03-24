@@ -29,6 +29,7 @@ namespace S3Train.Service
                     Barcode = n.Barcode,
                     ReleaseYear = n.ReleaseYear,
                     UpdatedDate = n.UpdatedDate,
+                    Amount = n.Amount,
                     Publisher = new PublisherDTO
                     {
                         NamePublisher = n.Publisher.NamePublisher

@@ -10,7 +10,7 @@ namespace S3Train.Web.Models
     public class CartViewModel
     {
         public ProductDTO Products { get; set; }
-        public int Amount { get; set; }
+        public int Quantity { get; set; }
        
     }
 }

@@ -41,6 +41,7 @@ namespace S3Train.Web.Controllers
                         NamePublisher = prodDetail.Publisher.NamePublisher,
                         CategoryName = prodDetail.Category.CategoryName,
                         UpdatedDate = prodDetail.UpdatedDate,
+                        Amount = prodDetail.Amount,
                         PromotionPercent = prodDetail.Promotion.FirstOrDefault().PromotionPercent,
                         AuthorName = String.Join(", ", prodDetail.Author.Select(x => x.NameAuthor)),
                         RelatedProduct = prodDetail.RelatedProduct.Select(q => new ProductViewModel
@@ -69,6 +70,7 @@ namespace S3Train.Web.Controllers
                     NamePublisher = prodDetail.Publisher.NamePublisher,
                     CategoryName = prodDetail.Category.CategoryName,
                     UpdatedDate = prodDetail.UpdatedDate,
+                    Amount = prodDetail.Amount,
                     AuthorName = String.Join(", ", prodDetail.Author.Select(x => x.NameAuthor)),
                     RelatedProduct = prodDetail.RelatedProduct.Select(q => new ProductViewModel
                     {

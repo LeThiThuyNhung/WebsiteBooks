@@ -30,7 +30,9 @@
                                 <span>Save: $@(Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) - (Convert.ToDouble(Model.Price) * Model.PromotionPercent / 100))) (-@Model.PromotionPercent%)</span>
                             </p>
                             <h5><strike>$ @Model.DisplayPrice</strike></h5>
-                            <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
+                            <p class="qty">Qty ::</p>
+                            <input min="1" max="@Model.Amount" type="number" id="quantity" name="quantity" value="1" class="form-control input-small quantity">
+                            <input class="amount" value="@Model.Amount" type="hidden" />
                             <div class="btn_form">
                                 <a id="btn-add-to-cart" href="#">Add to cart</a>
                             </div>
@@ -48,7 +50,7 @@
                             <h3>@Model.Name</h3>
 
                             <p>$ @Model.DisplayPrice</p>
-                            <p class="qty">Qty ::</p><input min="1" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
+                            <p class="qty">Qty ::</p><input min="1" max="@Model.Amount" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
                             <div class="btn_form">
                                 <a id="btn-add-to-cart" href="#">Add to cart</a>
                             </div>
@@ -167,6 +169,7 @@
                         <div class="caption">
                             <a href="@Url.Action("Detail", "Product", new { @id = item.Id })"><h5>@item.NameProduct</h5></a>
                             <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
+                            
                         </div>
 
                     </div>
@@ -182,16 +185,25 @@
 <script type="text/javascript">
         $(document).ready(function () {
             $('#btn-add-to-cart').click(function () {
-        var id = "@Model.Id";
-        var quantity = $('#quantity').val();
-                $.ajax({
-            type: "POST",
-                    url: '/Cart/AddItems',
-                    data: { Id: id, Quantity: quantity },
-                    success: function (data) {
+                var id = "@Model.Id";
+                var quantity = $('#quantity').val();
+                    $.ajax({
+                type: "POST",
+                url: '/Cart/AddItems',
+                data: { Id: id, Quantity: quantity },
+                success: function (data) {
                 alert("Add to cart successfully")
-                    }
+                }
+            });
         });
-    });
+
+        $(".quantity").change(function () {
+            var quantityVal = $(".quantity").val();
+            var amountVal = $(".amount").val();
+            if (quantityVal > amountVal) {
+                alert("The quantity is not enough");
+                $(".quantity").val(amountVal);
+            }
+        });
 });
 </script>

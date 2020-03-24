@@ -23,6 +23,7 @@ namespace S3Train.Service
                     ImagePath = n.ImagePath,
                     Price = n.Price,
                     Barcode = n.Barcode,
+                    Amount = n.Amount,
                 }).SingleOrDefault();
             return cart;
         }
