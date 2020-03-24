@@ -23,6 +23,10 @@ namespace S3Train.Service
                     ImagePath = n.ImagePath,
                     Price = n.Price,
                     Barcode = n.Barcode,
+                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO
+                    {
+                        PromotionPercent = x.PromotionPercent
+                    }).ToList(),
                 }).SingleOrDefault();
             return cart;
         }

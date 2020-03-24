@@ -40,28 +40,56 @@ namespace S3Train.Web.Controllers
         {
             var CartItem = _cartService.GetCart(Id);
             var currentCartItems = (List<CartViewModel>)Session[CartSession] ?? new List<CartViewModel>(); ;
-            if (currentCartItems.Exists(x => x.Products.Id == Id))
+            if(CartItem.Promotion.Count() != 0)
             {
-                currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount += Quantity;
+                if (currentCartItems.Exists(x => x.Products.Id == Id))
+                {
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount += Quantity;
+                }
+                else
+                {
+                    currentCartItems.Add(new CartViewModel
+                    {
+                        Products = new ProductDTO
+                        {
+                            Id = Id,
+                            NameProduct = CartItem.NameProduct,
+                            ImagePath = CartItem.ImagePath,
+                            Barcode = CartItem.Barcode,
+                            Price = CartItem.Price,
+                        },
+                        Amount = Quantity,
+                        PromotionPercent = CartItem.Promotion.FirstOrDefault().PromotionPercent
+                    });
+                }
+                Session[CartSession] = currentCartItems;
             }
             else
             {
-                currentCartItems.Add(new CartViewModel
+                if (currentCartItems.Exists(x => x.Products.Id == Id))
                 {
-                    Products = new ProductDTO
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount += Quantity;
+                }
+                else
+                {
+                    currentCartItems.Add(new CartViewModel
                     {
-                        Id = Id,
-                        NameProduct = CartItem.NameProduct,
-                        ImagePath = CartItem.ImagePath,
-                        Barcode = CartItem.Barcode,
-                        Price = CartItem.Price,
+                        Products = new ProductDTO
+                        {
+                            Id = Id,
+                            NameProduct = CartItem.NameProduct,
+                            ImagePath = CartItem.ImagePath,
+                            Barcode = CartItem.Barcode,
+                            Price = CartItem.Price,
+                        },
+                        Amount = Quantity
 
-                    },
-                    Amount = Quantity
-
-                });
+                    });
+                }
+                Session[CartSession] = currentCartItems;
             }
-            Session[CartSession] = currentCartItems;
+            
+            
             return RedirectToAction("MyCart");
         }
 
@@ -90,27 +118,54 @@ namespace S3Train.Web.Controllers
         public ActionResult Buy(Guid Id)
         {
             var CartItem = _cartService.GetCart(Id);
-            var currentCartItems = (List<CartViewModel>)Session[CartSession] ?? new List<CartViewModel>(); ;
-            if (currentCartItems.Exists(x => x.Products.Id == Id))
+            var currentCartItems = (List<CartViewModel>)Session[CartSession] ?? new List<CartViewModel>();
+            if (CartItem.Promotion.Count() != 0)
             {
-                currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount++;
+                if (currentCartItems.Exists(x => x.Products.Id == Id))
+                {
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount++;
+                }
+                else
+                {
+                    currentCartItems.Add(new CartViewModel
+                    {
+                        Products = new ProductDTO
+                        {
+                            Id = Id,
+                            NameProduct = CartItem.NameProduct,
+                            ImagePath = CartItem.ImagePath,
+                            Barcode = CartItem.Barcode,
+                            Price = CartItem.Price,
+
+                        },
+                        Amount = 1,
+                        PromotionPercent = CartItem.Promotion.FirstOrDefault().PromotionPercent
+                    });
+                }
             }
             else
             {
-                currentCartItems.Add(new CartViewModel
+                if (currentCartItems.Exists(x => x.Products.Id == Id))
                 {
-                    Products = new ProductDTO
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount++;
+                }
+                else
+                {
+                    currentCartItems.Add(new CartViewModel
                     {
-                        Id = Id,
-                        NameProduct = CartItem.NameProduct,
-                        ImagePath = CartItem.ImagePath,
-                        Barcode = CartItem.Barcode,
-                        Price = CartItem.Price,
+                        Products = new ProductDTO
+                        {
+                            Id = Id,
+                            NameProduct = CartItem.NameProduct,
+                            ImagePath = CartItem.ImagePath,
+                            Barcode = CartItem.Barcode,
+                            Price = CartItem.Price,
 
-                    },
-                    Amount = 1
+                        },
+                        Amount = 1
 
-                });
+                    });
+                }
             }
             Session[CartSession] = currentCartItems;
             return RedirectToAction("MyCart");
@@ -128,8 +183,6 @@ namespace S3Train.Web.Controllers
                     Cart = cartSession,
                     User = new ApplicationUser
                     {
-                        
-
                         FullName = user.FullName,
                         Address = user.Address,
                         PhoneNumber = user.PhoneNumber,
