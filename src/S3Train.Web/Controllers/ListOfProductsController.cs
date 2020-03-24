@@ -1,5 +1,4 @@
 ﻿using S3Train.Contract;
-using S3Train.Domain;
 using S3Train.DTOs;
 using S3Train.Web.Models;
 using System;
@@ -101,7 +100,7 @@ namespace S3Train.Web.Controllers
             return View(csproducts);
         }
 
-        private static IList<ProductViewModel> GetNewProducts(IList<Product> products, ref int totalRecord, int page = 1, int pagesize = 4)
+        private static IList<ProductViewModel> GetNewProducts(IList<ProductDTO> products, ref int totalRecord, int page = 1, int pagesize = 4)
         {
             var totalPro = products.Select((x) => new ProductViewModel
             {
@@ -117,7 +116,7 @@ namespace S3Train.Web.Controllers
             return model;
         }
 
-        private static IList<CSProductViewModel> GetCSProducts(IList<Product> products, ref int totalRecord, int page = 1, int pagesize = 4)
+        private static IList<CSProductViewModel> GetCSProducts(IList<ProductDTO> products, ref int totalRecord, int page = 1, int pagesize = 4)
         {
             var totalPro = products.Select((x) => new CSProductViewModel
             {

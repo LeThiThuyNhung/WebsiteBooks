@@ -10,6 +10,6 @@ namespace S3Train.Contract
 {
     public interface ICSProductService : IGenenicServiceBase<Product>
     {
-        IList<Product> GetCSProductItems();
+        IList<ProductDTO> GetCSProductItems();
     }
 }

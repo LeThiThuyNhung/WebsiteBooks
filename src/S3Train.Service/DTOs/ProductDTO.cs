@@ -22,6 +22,7 @@ namespace S3Train.DTOs
         public int? Rating { get; set; }
         public int OrderQuantity { get; set; }
         public decimal ToTal { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         public PublisherDTO Publisher  { get; set; }
         public IList<AuthorDTO> Author { get; set; }

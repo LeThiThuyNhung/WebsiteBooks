@@ -490,9 +490,11 @@
     <Content Include="Content\js\jquery-1.11.0.min.js" />
     <Content Include="Content\js\jquery-1.9.0.min.js" />
     <Content Include="Content\js\jquery.flexisel.js" />
+    <Content Include="Content\js\jquery.validate.min.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\simpleCart.min.js" />
     <Content Include="Content\js\site.js" />
+    <Content Include="Content\js\validate.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\TemplateAdmin\calendar.html" />
     <Content Include="Content\TemplateAdmin\chart.html" />

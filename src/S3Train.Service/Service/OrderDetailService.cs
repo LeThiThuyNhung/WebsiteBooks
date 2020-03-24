@@ -18,7 +18,7 @@ namespace S3Train.Service
                 orderDetail.Id = Guid.NewGuid();
                 DbContext.OrderDetails.Add(orderDetail);
                 DbContext.SaveChanges();
-            
+
         }
     }
 }
