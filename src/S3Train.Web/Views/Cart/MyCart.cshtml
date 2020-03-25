@@ -29,13 +29,25 @@ else
                             <img src="@Url.Content("~/ImagePD/"+item.value.Products.ImagePath)" width="100" height="150" />
                         </divError>
                         <div class="cart-item-info">
-                            <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
-                            <h4>$@(Convert.ToDouble(item.value.Products.Price) - (Convert.ToDouble(item.value.Products.Price) * item.value.PromotionPercent / 100))</h4>
-                            <p class="qty">Qty ::</p>
-                            <input min="1" max="@item.value.Products.Amount" type="number" id="quantity" name="quantity" data-id="@item.value.Products.Id" value="@item.value.Quantity" class="form-control1 input-small quantity">
-                            <input class="price" value="@item.value.Products.Price" type="hidden" />
-                            <input class="amount" value="@item.value.Products.Amount" type="hidden" />
-                            <input class="percent" value="@item.value.Products.Promotion.FirstOrDefault().PromotionPercent" type="hidden" />
+                            @if (item.value.PromotionPercent > 0)
+                            {
+                                <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
+                                <h4>$@(Convert.ToDouble(item.value.Products.Price) - (Convert.ToDouble(item.value.Products.Price) * item.value.PromotionPercent / 100))</h4>
+                                <p class="qty">Qty ::</p>
+                                <input min="1" max="@item.value.Products.Amount" type="number" id="quantity" name="quantity" dataa-id="@item.value.Products.Id" value="@item.value.Quantity" class="form-control1 input-small quantity">
+                                <input class="price" value="@item.value.Products.Price" type="hidden" />
+                                <input class="amount" value="@item.value.Products.Amount" type="hidden" />
+                                <input class="percent" value="@item.value.Products.Promotion.FirstOrDefault().PromotionPercent" type="hidden" />
+                            }
+                            else
+                            {
+                                <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
+                                <h4>$@(Convert.ToDouble(item.value.Products.Price) - (Convert.ToDouble(item.value.Products.Price)))</h4>
+                                <p class="qty">Qty ::</p>
+                                <input min="1" max="@item.value.Products.Amount" type="number" id="quantity" name="quantity" dataa-id="@item.value.Products.Id" value="@item.value.Quantity" class="form-control1 input-small quantity">
+                                <input class="price" value="@item.value.Products.Price" type="hidden" />
+                                <input class="amount" value="@item.value.Products.Amount" type="hidden" />
+                            }
                         </div>
                         <div class="clearfix"></div>
                         <div class="delivery">

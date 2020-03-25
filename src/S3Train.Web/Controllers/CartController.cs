@@ -44,7 +44,7 @@ namespace S3Train.Web.Controllers
             { 
                 if (currentCartItems.Exists(x => x.Products.Id == Id))
                 {
-                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount += Quantity;
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity += Quantity;
                 }
                 else
                 {
@@ -58,18 +58,17 @@ namespace S3Train.Web.Controllers
                             Barcode = CartItem.Barcode,
                             Price = CartItem.Price,
                         },
-                        Amount = Quantity,
+                        Quantity = Quantity,
                         PromotionPercent = CartItem.Promotion.FirstOrDefault().PromotionPercent
                     });
                 }
                 Session[CartSession] = currentCartItems;
-                currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity += Quantity;
             }
             else
             {
                 if (currentCartItems.Exists(x => x.Products.Id == Id))
                 {
-                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount += Quantity;
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity += Quantity;
                 }
                 else
                 {
@@ -124,7 +123,7 @@ namespace S3Train.Web.Controllers
             {
                 if (currentCartItems.Exists(x => x.Products.Id == Id))
                 {
-                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount++;
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity++;
                 }
                 else
                 {
@@ -137,19 +136,19 @@ namespace S3Train.Web.Controllers
                             ImagePath = CartItem.ImagePath,
                             Barcode = CartItem.Barcode,
                             Price = CartItem.Price,
+                            Amount = CartItem.Amount,
 
                         },
-                        Amount = 1,
+                        Quantity = 1,
                         PromotionPercent = CartItem.Promotion.FirstOrDefault().PromotionPercent
                     });
                 }
-                currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity++;
             }
             else
             {
                 if (currentCartItems.Exists(x => x.Products.Id == Id))
                 {
-                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount++;
+                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity++;
                 }
                 else
                 {
@@ -162,6 +161,7 @@ namespace S3Train.Web.Controllers
                             ImagePath = CartItem.ImagePath,
                             Barcode = CartItem.Barcode,
                             Price = CartItem.Price,
+                            Amount = CartItem.Amount,
                         },
                         Quantity = 1
                     });
