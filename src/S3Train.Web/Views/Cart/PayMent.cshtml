@@ -33,7 +33,9 @@
                         <td>$@(Convert.ToDouble(item.Products.Price) - (Convert.ToDouble(item.Products.Price) * item.PromotionPercent / 100))</td>
                         <td>@item.Amount</td>
                         <td>@((Convert.ToDouble(item.Products.Price) - (Convert.ToDouble(item.Products.Price) * item.PromotionPercent / 100)) * item.Amount) </td>
-
+                        <td>@item.Quantity</td>
+                        <td>@item.Products.Price</td>
+                        <td>@(item.Products.Price * item.Quantity) </td>
                     </tr>
                 }
             </table>
@@ -41,18 +43,18 @@
         <div class="clearfix"></div>
         <div class="order-total">
             @{
-                if (@Model.Cart.Sum(m => m.Amount * m.Products.Price) >= 20)
+                if (@Model.Cart.Sum(m => m.Quantity * m.Products.Price) >= 20)
                 {
 
-                    <h5>Total: $@Model.Cart.Sum(m => m.Amount * m.Products.Price)</h5>
+                    <h5>Total: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price)</h5>
                     <h5>Delivery Charges: 0</h5>
-                    <h5>Total payment: $@Model.Cart.Sum(m => m.Amount * m.Products.Price)</h5>
+                    <h5>Total payment: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price)</h5>
                 }
                 else
                 {
-                    <h5>Total: $@Model.Cart.Sum(m => m.Amount * m.Products.Price)</h5>
+                    <h5>Total: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price)</h5>
                     <h5>Delivery Charges: $5</h5>
-                    <h5>Total payment: $@Model.Cart.Sum(m => m.Amount * m.Products.Price + 5)</h5>
+                    <h5>Total payment: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price + 5)</h5>
                 }
             }  <a href="@Url.Action("Order", "Cart", null)" onclick="alert('You have successfully placed an order. Thanks!')">Place Order</a>
         </div>

@@ -27,6 +27,7 @@ namespace S3Train.Service
                     {
                         PromotionPercent = x.PromotionPercent
                     }).ToList(),
+                    Amount = n.Amount,
                 }).SingleOrDefault();
             return cart;
         }
