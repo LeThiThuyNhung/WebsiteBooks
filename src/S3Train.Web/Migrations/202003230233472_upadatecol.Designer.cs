@@ -7,13 +7,13 @@ namespace S3Train.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class O : IMigrationMetadata
+    public sealed partial class upadatecol : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(O));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(upadatecol));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003220950187_O"; }
+            get { return "202003230233472_upadatecol"; }
         }
         
         string IMigrationMetadata.Source

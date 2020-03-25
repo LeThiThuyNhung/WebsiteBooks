@@ -5,9 +5,6 @@
     ViewBag.Title = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
- 
-</style>
 <div class="container">
     <div class="Payment"> 
         <div class="info ">
@@ -28,21 +25,22 @@
                     <th>Quatity</th>
                     <th>Total</th>
                 </tr>
-                
                 @foreach (var item in Model.Cart)
                 {
                     <tr>
-
                         <td><img src="@Url.Content("~/ImagePD/" + item.Products.ImagePath)" /></td>
                         <td>@item.Products.NameProduct</td>
+                        <td>$@(Convert.ToDouble(item.Products.Price) - (Convert.ToDouble(item.Products.Price) * item.PromotionPercent / 100))</td>
+                        <td>@item.Amount</td>
+                        <td>@((Convert.ToDouble(item.Products.Price) - (Convert.ToDouble(item.Products.Price) * item.PromotionPercent / 100)) * item.Amount) </td>
                         <td>@item.Quantity</td>
                         <td>@item.Products.Price</td>
                         <td>@(item.Products.Price * item.Quantity) </td>
-
                     </tr>
                 }
             </table>
-        </div><br />
+        </div>
+        <div class="clearfix"></div>
         <div class="order-total">
             @{
                 if (@Model.Cart.Sum(m => m.Quantity * m.Products.Price) >= 20)

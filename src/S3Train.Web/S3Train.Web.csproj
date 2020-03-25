@@ -421,17 +421,9 @@
     <Compile Include="Migrations\202003200407196_Addcol.Designer.cs">
       <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003220950187_O.cs" />
-    <Compile Include="Migrations\202003220950187_O.Designer.cs">
-      <DependentUpon>202003220950187_O.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003221518400_UpdateCol.cs" />
-    <Compile Include="Migrations\202003221518400_UpdateCol.Designer.cs">
-      <DependentUpon>202003221518400_UpdateCol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003221612488_UpdateCol1.cs" />
-    <Compile Include="Migrations\202003221612488_UpdateCol1.Designer.cs">
-      <DependentUpon>202003221612488_UpdateCol1.cs</DependentUpon>
+    <Compile Include="Migrations\202003230233472_upadatecol.cs" />
+    <Compile Include="Migrations\202003230233472_upadatecol.Designer.cs">
+      <DependentUpon>202003230233472_upadatecol.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1156,6 +1148,8 @@
     <Content Include="Views\Manage\AddAddress.cshtml" />
     <Content Include="Views\Cart\AddAddress.cshtml" />
     <Content Include="Views\Manage\Purchase.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1219,6 +1213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003200407196_Addcol.resx">
       <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003230233472_upadatecol.resx">
+      <DependentUpon>202003230233472_upadatecol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
