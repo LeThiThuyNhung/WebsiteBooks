@@ -41,6 +41,7 @@ namespace S3Train.Web.Controllers
             var CartItem = _cartService.GetCart(Id);
             var currentCartItems = (List<CartViewModel>)Session[CartSession] ?? new List<CartViewModel>(); ;
             if(CartItem.Promotion.Count() != 0)
+            { 
                 if (currentCartItems.Exists(x => x.Products.Id == Id))
                 {
                     currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Amount += Quantity;
@@ -74,6 +75,7 @@ namespace S3Train.Web.Controllers
                 {
                     currentCartItems.Add(new CartViewModel
                     {
+                        Quantity = Quantity,
                         Products = new ProductDTO
                         {
                             Id = Id,
@@ -81,25 +83,11 @@ namespace S3Train.Web.Controllers
                             ImagePath = CartItem.ImagePath,
                             Barcode = CartItem.Barcode,
                             Price = CartItem.Price,
+                            Amount = CartItem.Amount,
                         },
-                        Amount = Quantity
-
                     });
                 }
                 Session[CartSession] = currentCartItems;
-                    Quantity = Quantity,
-                    Products = new ProductDTO
-                    {
-                        Id = Id,
-                        NameProduct = CartItem.NameProduct,
-                        ImagePath = CartItem.ImagePath,
-                        Barcode = CartItem.Barcode,
-                        Price = CartItem.Price,
-                        Amount = CartItem.Amount,
-                    },
-                    
-
-                });
             }
             return RedirectToAction("MyCart");
         }
@@ -175,10 +163,7 @@ namespace S3Train.Web.Controllers
                             Barcode = CartItem.Barcode,
                             Price = CartItem.Price,
                         },
-                        Amount = 1
-                    },
-                    Quantity = 1
-
+                        Quantity = 1
                     });
                 }
             }

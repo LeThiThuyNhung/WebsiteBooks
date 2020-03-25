@@ -35,6 +35,7 @@ else
                             <input min="1" max="@item.value.Products.Amount" type="number" id="quantity" name="quantity" data-id="@item.value.Products.Id" value="@item.value.Quantity" class="form-control1 input-small quantity">
                             <input class="price" value="@item.value.Products.Price" type="hidden" />
                             <input class="amount" value="@item.value.Products.Amount" type="hidden" />
+                            <input class="percent" value="@item.value.Products.Promotion.FirstOrDefault().PromotionPercent" type="hidden" />
                         </div>
                         <div class="clearfix"></div>
                         <div class="delivery">
@@ -120,10 +121,18 @@ else
         $(".cart-item-info").each(function () {
             var price = $(".price");
             var quantity = $(".quantity");
+            var percent = $(".percent");
 
             var priceVal = $(this).find(price).val();
             var quantityVal = parseInt($(this).find(quantity).val());
-            total = priceVal * quantityVal;
+            var percentVal = $(this).find(percent).val();
+            if (percentVal > 0)
+            {
+                total = (priceVal * quantityVal) - (priceVal * quantityVal)*percentVal ;
+            }
+            else
+                total = priceVal * quantityVal
+           
             totalQty = totalQty + quantityVal;
             among += total;
             var fee = 5;
