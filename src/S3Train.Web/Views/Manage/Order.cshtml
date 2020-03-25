@@ -2,6 +2,8 @@
 @using Microsoft.AspNet.Identity;
 @model HomeViewModel
 @{
+    /**/
+
     ViewBag.Title = "Purchase";
     Layout = "~/Views/Shared/_Profile.cshtml";
     var ApplicationUserId = User.Identity.GetUserId();
@@ -17,32 +19,74 @@
 else
 {
 
-    foreach (var item in Model.OrderProViewModel)
-    {
-        <div class="cart-header">
-            <div class="cart-sec">
+        <h2 class="text-danger">My purchase order</h2>
+        <hr />
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    Order#
+                </th>
+                <th>
+                    Date of purchase
+                </th>
+                <th>
+                    Receiver
+                </th>
+                <th>
+                    Total money
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Note
+                </th>
+                <th></th>
+            </tr>
 
-                <divError executing child request class="cart-item cyc">
-                    <img src="@Url.Content("~/ImagePD/" + item.ImagePath)" width="80" height="100" />
-                </divError>
-                <div class="cart-item-info">
-                    <ul>
-                        <li>@item.NameProduct</li>
-                        <li>@item.BarCode</li>
-                        <li>X @item.OrderQuantity</li>
-                        <li class="price">$@item.Price</li>
-                    </ul>
-                </div>
-                <div class="total">
-                    <p>Total: $@item.Total</p>
-                    <p><a id="btn-add-to-cart" style="float:right; background-color:coral; color:white" href="@Url.Action("Detail", "Product", new { @id = item.Id })" class="btn btn-default" role="button">Repurchase</a></p>
-
-                </div>
-                <p class="sta">Status: @item.Status</p>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    }
+            @foreach (var item in Model.OrderProViewModel)
+            {
+                using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.OrderProViewModel.First().Id)
+                    @Html.HiddenFor(model => model.OrderProViewModel.First().DatePayment)
+                    @Html.HiddenFor(model => model.OrderProViewModel.First().Note)
+                    @Html.HiddenFor(model => model.OrderProViewModel.First().TotalMoney)
+                    @Html.HiddenFor(model => model.OrderProViewModel.First().CreatedDate)
+                    @Html.HiddenFor(model => model.OrderProViewModel.First().UpdatedDate)
+                    @Html.HiddenFor(model => model.OrderProViewModel.First().IsActive)
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatePayment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => item.TotalMoney)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Note)
+                        </td>
+                        <td>
+                            @if (item.Status != "Cancel"&& item.Status !="Shipping")
+                            {
+                                <input type="submit" style="float:right; background-color:black; color:white" class="btn btn-default" value="Cancel" />
+                            }
+                            <a style="float:right; background-color:coral; color:white" href="@Url.Action("Purchase", "Manage", new { @Id = item.Id })" class="btn btn-default" role="button">View order</a>
+                        </td>
+                    </tr>
+                }
+            }
+            </table>
+    
     if (ViewBag.TotalPage > 1)
     {
         var pageDisplay = (int)ViewBag.MaxPage;
@@ -51,18 +95,18 @@ else
 
         var startPageIndex = Math.Max(1, curentPage - pageDisplay / 2);
         var endPageIndex = Math.Min(totalPage, curentPage + pageDisplay / 2);
-        var link = Url.Action("Purchase", "Manage");
+        var link = Url.Action("Order", "Manage");
         <nav>
             <ul class="pagination" style="text-align:center">
                 @if (curentPage > ViewBag.First)
-                    {
+                {
                     <li><a href="@link&page=@ViewBag.First" title="First page"><i class="fa fa-angle-double-left"></i></a></li>
                     <li><a href="@link&page=@ViewBag.Pre" title="Previous page"><i class="fa fa-angle-left"></i></a></li>
                 }
                 @for (int i = startPageIndex; i <= endPageIndex; i++)
+                {
+                    if (curentPage == i)
                     {
-                        if (curentPage == i)
-                        {
                         <li><a href="@link?page=@i" class="active" title="Page @i">@i</a></li>
                     }
                     else
@@ -71,7 +115,7 @@ else
                     }
                 }
                 @if (curentPage < totalPage)
-                    {
+                {
                     <li><a href="@link?page=@ViewBag.Next" title="Next page"><i class="fa fa-angle-right"></i></a></li>
                     <li><a href="@link?page=@ViewBag.Last" title="Last page"><i class="fa fa-angle-double-right"></i></a></li>
                 }
@@ -82,7 +126,7 @@ else
     {
         <nav>
             <ul class="pagination">
-                <li><a href="@Url.Action("Purchase", "Manage")?page=1" class="active" title="Page 1">1</a></li>
+                <li><a href="@Url.Action("Order", "Manage")?page=1" class="active" title="Page 1">1</a></li>
             </ul>
         </nav>
     }

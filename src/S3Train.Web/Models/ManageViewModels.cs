@@ -109,7 +109,16 @@ namespace S3Train.Web.Models
         public string NameProduct { get; set; }
         public string BarCode { get; set; }
         public int OrderQuantity { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DatePayment { get; set; }
         public string Status { get; set; }
+        public Guid ProductId { get; set; }
+        public Decimal TotalMoney { get; set; }
+        public string Note { get; set; }
+        public string FullName { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

@@ -93,39 +93,12 @@ namespace S3Train.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Purchase(string ApplicationUserId, int page = 1, int pagesize = 5)
+        public ActionResult Purchase(Guid Id, int page = 1, int pagesize = 5)
         {
-            ApplicationUserId = User.Identity.GetUserId();
             int totalRecord = 0;
             var productsUser = new HomeViewModel
             {
-                OrderProViewModel = GetProductsByUser(_orderService.GetProductsByUserItems(ApplicationUserId), ref totalRecord, page, pagesize)
-            };
-
-            ViewBag.ToTal = totalRecord;
-            ViewBag.Page = page;
-
-            int maxPage = 5;
-            int totalPage = 0;
-            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
-
-            ViewBag.TotalPage = totalPage;
-            ViewBag.MaxPage = maxPage;
-            ViewBag.First = 1;
-            ViewBag.Last = totalPage;
-            ViewBag.Next = page + 1;
-            ViewBag.Pre = page - 1;
-
-            return View(productsUser);
-        }
-
-        public ActionResult Order(string ApplicationUserId, int page = 1, int pagesize = 5)
-        {
-            ApplicationUserId = User.Identity.GetUserId();
-            int totalRecord = 0;
-            var productsUser = new HomeViewModel
-            {
-                OrderProViewModel = GetProductsByUser(_orderService.GetProductsByUserItems(ApplicationUserId), ref totalRecord, page, pagesize)
+                OrderProViewModel = GetProductsByUser(_orderService.GetProductsByUserItems(Id), ref totalRecord, page, pagesize)
             };
 
             ViewBag.ToTal = totalRecord;
@@ -149,15 +122,73 @@ namespace S3Train.Web.Controllers
         {
             var totalProd = proUser.Select(x => new OrderProViewModel
             {
-                Id = x.Id,
+                ProductId = x.Id,
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 Price = x.Price,
                 BarCode = x.Barcode,
                 Total = x.ToTal,
-                OrderQuantity = x.OrderQuantity,
+                OrderQuantity = x.OrderQuantity
+            });
+            var model = totalProd.OrderByDescending(x => x.DatePayment).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            totalRecord = totalProd.Count();
+            return model;
+        }
+
+        public ActionResult Order(string ApplicationUserId, int page = 1, int pagesize = 5)
+        {
+            ApplicationUserId = User.Identity.GetUserId();
+            int totalRecord = 0;
+            var productsUser = new HomeViewModel
+            {
+                OrderProViewModel = GetOrdersByUser(_orderService.GetOrders(ApplicationUserId), ref totalRecord, page, pagesize)
+            };
+
+            ViewBag.ToTal = totalRecord;
+            ViewBag.Page = page;
+
+            int maxPage = 5;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
+
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Pre = page - 1;
+
+            return View(productsUser);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Order([Bind(Include = "Id,DatePayment,Status,Note,TotalMoney,CreatedDate,UpdatedDate,IsActive,ApplicationUserId")] Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                order.Status = "Cancel";
+                order.ApplicationUserId = User.Identity.GetUserId();
+                db.Entry(order).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Order", "Manage");
+            }
+            return View(order);
+        }
+
+        private static IList<OrderProViewModel> GetOrdersByUser(IList<OrderDTO> proUser, ref int totalRecord, int page = 1, int pagesize = 5)
+        {
+            var totalProd = proUser.Select(x => new OrderProViewModel
+            {
+                Id = x.Id,
                 DatePayment = x.DatePayment,
-                Status = x.Status
+                Status = x.Status,
+                Note = x.Note,
+                TotalMoney = x.TotalMoney,
+                FullName = x.FullName,
+                CreatedDate = x.CreatedDate,
+                UpdatedDate = x.UpdatedDate,
+                IsActive = x.IsActive
             });
             var model = totalProd.OrderByDescending(x => x.DatePayment).Skip((page - 1) * pagesize).Take(pagesize).ToList();
             totalRecord = totalProd.Count();

@@ -89,6 +89,7 @@
     <Compile Include="Contract\ISearchProductsForAuthorService.cs" />
     <Compile Include="DTOs\AuthorDTO.cs" />
     <Compile Include="DTOs\CategoryDTO.cs" />
+    <Compile Include="DTOs\OrderDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\PromotionDTO.cs" />
     <Compile Include="DTOs\PublisherDTO.cs" />

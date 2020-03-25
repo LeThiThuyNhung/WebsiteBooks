@@ -29,16 +29,13 @@ else
                     <ul>
                         <li>@item.NameProduct</li>
                         <li>@item.BarCode</li>
-                        <li>X @item.OrderQuantity</li>
                         <li class="price">$@item.Price</li>
                     </ul>
                 </div>
                 <div class="total">
                     <p>Total: $@item.Total</p>
                     <p><a id="btn-add-to-cart" style="float:right; background-color:coral; color:white" href="@Url.Action("Detail", "Product", new { @id = item.Id })" class="btn btn-default" role="button">Repurchase</a></p>
-                    
                 </div>
-                <p class="sta">Status: @item.Status</p>
                 <div class="clearfix"></div>
             </div>
         </div>

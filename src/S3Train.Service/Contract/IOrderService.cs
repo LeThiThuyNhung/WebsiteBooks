@@ -11,6 +11,7 @@ namespace S3Train.Contract
     public interface IOrderService : IGenenicServiceBase<Order>
     {
        Guid InsertOrder(Order order);
-        IList<ProductDTO> GetProductsByUserItems(string ApplicationUserId);
+       IList<ProductDTO> GetProductsByUserItems(Guid Id);
+       IList<OrderDTO> GetOrders(string ApplicationUserId);
     }
 }
