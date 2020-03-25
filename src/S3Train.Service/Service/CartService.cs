@@ -24,6 +24,10 @@ namespace S3Train.Service
                     Price = n.Price,
                     Barcode = n.Barcode,
                     Amount = n.Amount,
+                    Promotion = n.PromotionDetails.Select(x => new PromotionDTO
+                    {
+                        PromotionPercent = x.PromotionPercent
+                    }).ToList(),
                 }).SingleOrDefault();
             return cart;
         }

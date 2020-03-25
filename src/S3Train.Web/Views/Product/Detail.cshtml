@@ -50,7 +50,8 @@
                             <h3>@Model.Name</h3>
 
                             <p>$ @Model.DisplayPrice</p>
-                            <p class="qty">Qty ::</p><input min="1" max="@Model.Amount" type="number" id="quantity" name="quantity" value="1" class="form-control input-small">
+                            <p class="qty">Qty ::</p><input min="1" max="@Model.Amount" type="number" id="quantity" name="quantity" value="1" class="form-control input-small quantity">
+                            <input class="amount" value="@Model.Amount" type="hidden" />
                             <div class="btn_form">
                                 <a id="btn-add-to-cart" href="#">Add to cart</a>
                             </div>
@@ -198,9 +199,9 @@
         });
 
         $(".quantity").change(function () {
-            var quantityVal = $(".quantity").val();
-            var amountVal = $(".amount").val();
-            if (quantityVal > amountVal) {
+            var quantityVal = parseInt($(".quantity").val());
+            var amountVal = parseInt($(".amount").val());
+            if (quantityVal >= amountVal) {
                 alert("The quantity is not enough");
                 $(".quantity").val(amountVal);
             }

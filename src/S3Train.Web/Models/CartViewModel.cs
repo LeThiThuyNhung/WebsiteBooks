@@ -11,6 +11,8 @@ namespace S3Train.Web.Models
     {
         public ProductDTO Products { get; set; }
         public int Quantity { get; set; }
+        public double PromotionPercent { get; set; }
+
        
     }
 }

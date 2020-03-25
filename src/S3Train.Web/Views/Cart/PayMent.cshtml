@@ -6,10 +6,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
- 
+
 </style>
 <div class="container">
-    <div class="Payment"> 
+    <div class="Payment">
         <div class="info ">
             <p>Payment</p>
             <hr />
@@ -28,7 +28,7 @@
                     <th>Quatity</th>
                     <th>Total</th>
                 </tr>
-                
+
                 @foreach (var item in Model.Cart)
                 {
                     <tr>
@@ -43,11 +43,12 @@
                 }
             </table>
         </div><br />
+        <p>Note: <input class="note" type="text" name="txtNote" value="" /></p>
         <div class="order-total">
+
             @{
                 if (@Model.Cart.Sum(m => m.Quantity * m.Products.Price) >= 20)
                 {
-
                     <h5>Total: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price)</h5>
                     <h5>Delivery Charges: 0</h5>
                     <h5>Total payment: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price)</h5>
@@ -58,7 +59,25 @@
                     <h5>Delivery Charges: $5</h5>
                     <h5>Total payment: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price + 5)</h5>
                 }
-            }  <a href="@Url.Action("Order", "Cart", null)" onclick="alert('You have successfully placed an order. Thanks!')">Place Order</a>
+            }  <a id="order-btn" href="#">Place Order</a>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#order-btn').click(function () {
+            var note = $(".note").val()
+            $.ajax({
+                type: "Get",
+                url: '/Cart/Order',
+                data: { Note: note },
+                dateType: "text",
+                success: function (data) {
+                    alert("You have successfully placed an order.thanks!")
+                    window.location.href = "http://localhost:44304/";
+
+                }
+            });
+        });
+    });
+</script>

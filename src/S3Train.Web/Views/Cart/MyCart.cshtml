@@ -27,21 +27,44 @@ else
                         <divError executing child request  class="cart-item cyc">
                             <img src="@Url.Content("~/ImagePD/"+item.value.Products.ImagePath)" width="100" height="150" />
                         </divError>
-                        <div class="cart-item-info">
-                            <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
-                            <h4>$@item.value.Products.Price</h4>
-                            <p class="qty">Qty ::</p>
-                            <input min="1" max="@item.value.Products.Amount" type="number" id="quantity" name="quantity" data-id="@item.value.Products.Id" value="@item.value.Quantity" class="form-control1 input-small quantity">
-                            <input class="price" value="@item.value.Products.Price" type="hidden" />
-                            <input class="amount" value="@item.value.Products.Amount" type="hidden" />
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="delivery">
-                            <p>Total::</p>
-                            <p class="sum-money"></p>
-                            <span>Delivered in 2-3 bussiness days</span>
+                        @if (item.value.PromotionPercent > 0)
+                        {
+                            <div class="cart-item-info">
+                                <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
+                                <h4> $@(Convert.ToDouble(item.value.Products.Price) - (Convert.ToDouble(item.value.Products.Price) * item.value.PromotionPercent / 100))</h4>
+                                <p class="qty">Qty ::</p>
+                                <input min="1" max="@item.value.Products.Amount" type="number" id="quantity" name="quantity" data-id="@item.value.Products.Id" value="@item.value.Quantity" class="form-control1 input-small quantity">
+                                <input class="price" value="@item.value.Products.Price" type="hidden" />
+                                <input class="amount" value="@item.value.Products.Amount" type="hidden" />
+                                <input class="percent" value="@item.value.PromotionPercent" type="hidden" />
+                            </div>
                             <div class="clearfix"></div>
-                        </div>
+                            <div class="delivery">
+                                <p>Total::</p>
+                                <p class="sum-money"></p>
+                                <span>Delivered in 2-3 bussiness days</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="cart-item-info">
+                                <h3>@item.value.Products.NameProduct<span>@item.value.Products.Barcode</span></h3>
+                                <h4>$@item.value.Products.Price</h4>
+                                <p class="qty">Qty ::</p>
+                                <input min="1" max="@item.value.Products.Amount" type="number" id="quantity" name="quantity" data-id="@item.value.Products.Id" value="@item.value.Quantity" class="form-control1 input-small quantity">
+                                <input class="price" value="@item.value.Products.Price" type="hidden" />
+                                <input class="amount" value="@item.value.Products.Amount" type="hidden" />
+                                <input class="percent" value="@item.value.PromotionPercent" type="hidden" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="delivery">
+                                <p>Total::</p>
+                                <p class="sum-money"></p>
+                                <span>Delivered in 2-3 bussiness days</span>
+                                <div class="clearfix"></div>
+                            </div>
+                            }
 
                     </div>
                 </div>
@@ -84,7 +107,7 @@ else
             var amou = $(".amount");
             var quantityVal = parseInt($(this).find(quan).val());
             var amountVal = parseInt($(this).find(amou).val());
-            if (quantityVal > amountVal) {
+            if (quantityVal >= amountVal) {
                 alert("The quantity is not enough");
                 $(this).find(quan).val(amountVal);
             }
@@ -108,17 +131,28 @@ else
         var among = 0;
         var totalQty = 0;
         var total = 0;
+        var fee = 5;
         $(".cart-item-info").each(function () {
             var price = $(".price");
             var quantity = $(".quantity");
+            var percent = $(".percent");
 
             var priceVal = $(this).find(price).val();
             var quantityVal = parseInt($(this).find(quantity).val());
-            total = priceVal * quantityVal;
-            totalQty = totalQty + quantityVal;
-            among += total;
-            var fee = 5;
-            if (total < 20) {
+            var percentVal = parseInt($(this).find(percent).val());
+            if (percentVal > 0)
+            {
+                total = Math.round((priceVal * quantityVal) - (total = priceVal * quantityVal * percentVal / 100));
+            }
+            else
+            {
+                total = priceVal * quantityVal;
+            }
+            
+            totalQty = Math.round(totalQty + quantityVal);
+            among += Math.round(total);
+           
+            if (among  < 20) {
                 $("#ship-fee").html(fee)
                 $(".final").html(among + fee);
             }
