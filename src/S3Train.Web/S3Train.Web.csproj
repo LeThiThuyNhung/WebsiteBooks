@@ -474,6 +474,7 @@
     <Content Include="Content\css\easy-responsive-tabs.css" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\cssAccount\LoginCSS.css" />
+    <Content Include="Content\css\snackbar.css" />
     <Content Include="Content\css\style-responsive.css" />
     <Content Include="Content\css\StyleSheet1.css" />
     <Content Include="Content\css\util.css" />

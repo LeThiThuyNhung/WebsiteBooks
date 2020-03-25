@@ -34,7 +34,7 @@
                             <input min="1" max="@Model.Amount" type="number" id="quantity" name="quantity" value="1" class="form-control input-small quantity">
                             <input class="amount" value="@Model.Amount" type="hidden" />
                             <div class="btn_form">
-                                <a id="btn-add-to-cart" href="#">Add to cart</a>
+                                <a id="btn-add-to-cart" onclick="myFunction()" href="#">Add to cart</a>
                             </div>
                             <div class="flower-type">
                                 <p>Author  ::@Model.AuthorName</p>
@@ -46,22 +46,40 @@
                     }
                     else
                     {
-                        <div class="details-left-info">
-                            <h3>@Model.Name</h3>
+                        if (Model.UpdatedDate == null)
+                        {
+                            <div class="details-left-info">
+                                <h3>@Model.Name</h3>
+                                <p>$ @Model.DisplayPrice</p>
+                                <div class="flower-type">
+                                    <p>Author  ::@Model.AuthorName</p>
+                                    <p>Bacode  ::@Model.Barcode</p>
+                                </div>
+                                <h5>Description  ::</h5>
+                                <p class="desc">@Model.Summary</p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="details-left-info">
+                                <h3>@Model.Name</h3>
 
-                            <p>$ @Model.DisplayPrice</p>
-                            <p class="qty">Qty ::</p><input min="1" max="@Model.Amount" type="number" id="quantity" name="quantity" value="1" class="form-control input-small quantity">
-                            <input class="amount" value="@Model.Amount" type="hidden" />
-                            <div class="btn_form">
-                                <a id="btn-add-to-cart" href="#">Add to cart</a>
+                                <p>$ @Model.DisplayPrice</p>
+                                <p class="qty">Qty ::</p><input min="1" max="@Model.Amount" type="number" id="quantity" name="quantity" value="1" class="form-control input-small quantity">
+                                <input class="amount" value="@Model.Amount" type="hidden" />
+                                <div class="btn_form">
+                                    <a id="btn-add-to-cart" onclick="myFunction()" href="#" >Add to cart</a>
+                                    <div id="snackbar">Add to cart successfully</div>
+                                </div>
+                                <div class="flower-type">
+                                    <p>Author  ::@Model.AuthorName</p>
+                                    <p>Bacode  ::@Model.Barcode</p>
+                                </div>
+                                <h5>Description  ::</h5>
+                                <p class="desc">@Model.Summary</p>
                             </div>
-                            <div class="flower-type">
-                                <p>Author  ::@Model.AuthorName</p>
-                                <p>Bacode  ::@Model.Barcode</p>
-                            </div>
-                            <h5>Description  ::</h5>
-                            <p class="desc">@Model.Summary</p>
-                        </div>
+                        }
+
                     }
                     <div class="clearfix"></div>
                 </div>
@@ -73,7 +91,15 @@
             <div id="horizontalTab">
                 <ul class="resp-tabs-list">
                     <li>Product Detail</li>
-                    <li>Product Reviews</li>
+                    @if (Model.UpdatedDate == null)
+                    {
+
+                    }
+                    else
+                    {
+                        <li>Product Reviews</li>
+                    }
+
                     @*<div class="clear"></div>*@
                 </ul>
                 <div class="resp-tabs-container">
@@ -105,7 +131,11 @@
                         </table>
                     </div>
 
-
+                    @if (Model.UpdatedDate == null)
+                    {
+                    }
+                    else
+                    {
                     <div class="review">
                         <h4>Lorem ipsum Review by <a href="#">Finibus Bonorum</a></h4>
                         <ul>
@@ -142,6 +172,8 @@
                             });
                         </script>
                     </div>
+                    }
+                    
                 </div>
             </div>
         </div>
@@ -169,8 +201,8 @@
                         </a>
                         <div class="caption">
                             <a href="@Url.Action("Detail", "Product", new { @id = item.Id })"><h5>@item.NameProduct</h5></a>
-                            <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a style="float:right" href="#" class="btn btn-default" role="button">Add to card</a></p>
-                            
+                            <p><a class="btn btn-primary" role="button">@item.DisplayPrice</a><a style="float:right"  class="btn btn-default" role="button" onclick="myFunction()">Add to card</a></p>
+                            <div id="snackbar">Add to cart successfully</div>
                         </div>
 
                     </div>
@@ -184,27 +216,35 @@
 </div>
 
 <script type="text/javascript">
-        $(document).ready(function () {
-            $('#btn-add-to-cart').click(function () {
-                var id = "@Model.Id";
-                var quantity = $('#quantity').val();
-                    $.ajax({
-                type: "POST",
-                url: '/Cart/AddItems',
-                data: { Id: id, Quantity: quantity },
-                success: function (data) {
-                alert("Add to cart successfully")
-                }
-            });
-        });
-
-        $(".quantity").change(function () {
-            var quantityVal = parseInt($(".quantity").val());
-            var amountVal = parseInt($(".amount").val());
-            if (quantityVal >= amountVal) {
-                alert("The quantity is not enough");
-                $(".quantity").val(amountVal);
+  
+    $(document).ready(function () {
+        $('#btn-add-to-cart').click(function () {
+            var id = "@Model.Id";
+            var quantity = $('#quantity').val();
+                $.ajax({
+            type: "POST",
+            url: '/Cart/AddItems',
+            data: { Id: id, Quantity: quantity },
+            success: function (data) {
             }
         });
-});
+    });
+
+    $(".quantity").change(function () {
+        var quantityVal = parseInt($(".quantity").val());
+        var amountVal = parseInt($(".amount").val());
+        if (quantityVal >= amountVal) {
+            alert("The quantity is not enough");
+            $(".quantity").val(amountVal);
+        }
+    });
+    });
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+        // Add the "show" class to DIV
+        x.className = "show";
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
 </script>
