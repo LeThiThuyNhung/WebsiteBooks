@@ -119,6 +119,32 @@ namespace S3Train.Web.Controllers
             return View(productsUser);
         }
 
+        public ActionResult Order(string ApplicationUserId, int page = 1, int pagesize = 5)
+        {
+            ApplicationUserId = User.Identity.GetUserId();
+            int totalRecord = 0;
+            var productsUser = new HomeViewModel
+            {
+                OrderProViewModel = GetProductsByUser(_orderService.GetProductsByUserItems(ApplicationUserId), ref totalRecord, page, pagesize)
+            };
+
+            ViewBag.ToTal = totalRecord;
+            ViewBag.Page = page;
+
+            int maxPage = 5;
+            int totalPage = 0;
+            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
+
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+            ViewBag.Next = page + 1;
+            ViewBag.Pre = page - 1;
+
+            return View(productsUser);
+        }
+
         private static IList<OrderProViewModel> GetProductsByUser(IList<ProductDTO> proUser, ref int totalRecord, int page = 1, int pagesize = 5)
         {
             var totalProd = proUser.Select(x => new OrderProViewModel
@@ -130,7 +156,8 @@ namespace S3Train.Web.Controllers
                 BarCode = x.Barcode,
                 Total = x.ToTal,
                 OrderQuantity = x.OrderQuantity,
-                DatePayment = x.DatePayment
+                DatePayment = x.DatePayment,
+                Status = x.Status
             });
             var model = totalProd.OrderByDescending(x => x.DatePayment).Skip((page - 1) * pagesize).Take(pagesize).ToList();
             totalRecord = totalProd.Count();

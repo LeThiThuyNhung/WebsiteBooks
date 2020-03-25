@@ -25,6 +25,7 @@ namespace S3Train.DTOs
         public DateTime? UpdatedDate { get; set; }
         public DateTime DatePayment { get; set; }
         public string UserId { get; set; }
+        public string Status { get; set; }
 
         public PublisherDTO Publisher  { get; set; }
         public IList<AuthorDTO> Author { get; set; }

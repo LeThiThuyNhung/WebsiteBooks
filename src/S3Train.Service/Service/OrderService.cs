@@ -41,7 +41,8 @@ namespace S3Train.Service
                               d.Price,
                               d.OrderQuantity,
                               d.Total,
-                              o.DatePayment
+                              o.DatePayment,
+                              o.Status
                           }).ToList();
             var pro = proUser
                 .Select(n => new ProductDTO
@@ -53,7 +54,8 @@ namespace S3Train.Service
                     Price = n.Price,
                     OrderQuantity = n.OrderQuantity,
                     ToTal = n.Total,
-                    DatePayment = n.DatePayment
+                    DatePayment = n.DatePayment, 
+                    Status = n.Status
                 }).ToList();
 
             return pro;

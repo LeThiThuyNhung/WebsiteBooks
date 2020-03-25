@@ -110,5 +110,6 @@ namespace S3Train.Web.Models
         public string BarCode { get; set; }
         public int OrderQuantity { get; set; }
         public DateTime DatePayment { get; set; }
+        public string Status { get; set; }
     }
 }

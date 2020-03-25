@@ -9,10 +9,10 @@
 
 @if (Model.OrderProViewModel == null || Model.OrderProViewModel.Count == 0)
 {
-<div class="cart-empty">
-    <p>No purchase orders yet</p>
-    <a class="continue" href="@Url.Action("Index", "Home", null)">Buy Now</a>
-</div>
+    <div class="cart-empty">
+        <p>No purchase orders yet</p>
+        <a class="continue" href="@Url.Action("Index", "Home", null)">Buy Now</a>
+    </div>
 }
 else
 {
@@ -36,7 +36,7 @@ else
                 <div class="total">
                     <p>Total: $@item.Total</p>
                     <p><a id="btn-add-to-cart" style="float:right; background-color:coral; color:white" href="@Url.Action("Detail", "Product", new { @id = item.Id })" class="btn btn-default" role="button">Repurchase</a></p>
-                    
+
                 </div>
                 <p class="sta">Status: @item.Status</p>
                 <div class="clearfix"></div>
@@ -57,7 +57,7 @@ else
                 @if (curentPage > ViewBag.First)
                     {
                     <li><a href="@link&page=@ViewBag.First" title="First page"><i class="fa fa-angle-double-left"></i></a></li>
-                        <li><a href="@link&page=@ViewBag.Pre" title="Previous page"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="@link&page=@ViewBag.Pre" title="Previous page"><i class="fa fa-angle-left"></i></a></li>
                 }
                 @for (int i = startPageIndex; i <= endPageIndex; i++)
                     {
@@ -73,7 +73,7 @@ else
                 @if (curentPage < totalPage)
                     {
                     <li><a href="@link?page=@ViewBag.Next" title="Next page"><i class="fa fa-angle-right"></i></a></li>
-                            <li><a href="@link?page=@ViewBag.Last" title="Last page"><i class="fa fa-angle-double-right"></i></a></li>
+                    <li><a href="@link?page=@ViewBag.Last" title="Last page"><i class="fa fa-angle-double-right"></i></a></li>
                 }
             </ul>
         </nav>
@@ -88,21 +88,22 @@ else
     }
 }
 <style>
-    .total{
+    .total {
         float: right
     }
-    .price
-    {
-        float:right
+
+    .price {
+        float: right
     }
+
     nav ul.pagination {
         float: right;
     }
+
     .sta {
         margin-left: -800px;
     }
 </style>
-
 
 
 
