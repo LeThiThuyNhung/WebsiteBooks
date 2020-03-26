@@ -53,6 +53,7 @@ namespace S3Train.Web.Controllers
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 DisplayPrice = $"${x.Price}",
+                UpdatedDate = x.UpdatedDate,
             });
 
             var model = totalPro.OrderBy(x => x.NameProduct).Skip((page - 1) * pagesize).Take(pagesize).ToList();

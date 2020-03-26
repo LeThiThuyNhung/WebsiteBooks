@@ -59,7 +59,8 @@
                     <h5>Delivery Charges: $5</h5>
                     <h5>Total payment: $@Model.Cart.Sum(m => m.Quantity * m.Products.Price + 5)</h5>
                 }
-            }  <a id="order-btn" href="#">Place Order</a>
+            }  <a id="order-btn" href="#" onclick="myFunction()">Place Order</a>
+            <div id="snackbar">You have successfully placed an order.thanks!</div>
         </div>
     </div>
 </div>
@@ -73,11 +74,20 @@
                 data: { Note: note },
                 dateType: "text",
                 success: function (data) {
-                    alert("You have successfully placed an order.thanks!")
                     window.location.href = "http://localhost:44304/";
 
                 }
             });
         });
     });
+    function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        x.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 10000);
+    }
 </script>

@@ -13,5 +13,8 @@ namespace S3Train.Web.Models
         public string DisplayPrice { get; set; }
         public string ImagePath { get; set; }
         public string NameCategory { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public decimal Price { get; set; }
+        public double PromotionPercent { get; set; }
     }
 }

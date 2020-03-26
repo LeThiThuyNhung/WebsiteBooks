@@ -25,10 +25,15 @@ namespace S3Train.Service
                      ImagePath = n.ImagePath,
                      Price = n.Price,
                      Barcode = n.Barcode,
+                     UpdatedDate = n.UpdatedDate,
                      Category = new CategoryDTO
                      {
                          CategoryName = n.Category.NameCategory
                      },
+                     Promotion = n.PromotionDetails.Select(x => new PromotionDTO
+                     {
+                         PromotionPercent = x.PromotionPercent,
+                     }).ToList(),
                  }).ToList();
             return product;
         }

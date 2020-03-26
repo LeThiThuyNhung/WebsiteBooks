@@ -21,12 +21,13 @@ namespace S3Train.Web.Controllers
         // GET: ProductsByCategory
         public ActionResult ProductsByCategory(Guid CategoryId, int page = 1, int pagesize = 4)
         {
+            var pro = _productsByCategory.GetProductsByCategoryItems(CategoryId);
             int totalRecord = 0;
             var productsByCategory = new HomeViewModel
-            {
-                ProductsByCategory = GetBroductsByCategory(_productsByCategory.GetProductsByCategoryItems(CategoryId), ref totalRecord, page, pagesize)
-            };
+                {
+                    ProductsByCategory = GetBroductsByCategory(_productsByCategory.GetProductsByCategoryItems(CategoryId), ref totalRecord, page, pagesize)
 
+                };
             ViewBag.ToTal = totalRecord;
             ViewBag.Page = page;
 
@@ -55,6 +56,9 @@ namespace S3Train.Web.Controllers
                 ProductId = x.ProductId,
                 Barcode = x.Barcode,
                 NameCategory = x.Category.CategoryName,
+                Price = x.Price,
+                UpdatedDate = x.UpdatedDate,
+                //PromotionPercent = x.Promotion.FirstOrDefault().PromotionPercent,
             });
             var model = totalProd.OrderBy(x => x.NameCategory).Skip((page - 1) * pagesize).Take(pagesize).ToList();
             totalRecord = totalProd.Count();

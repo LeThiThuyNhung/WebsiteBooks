@@ -11,5 +11,6 @@ namespace S3Train.Web.Models
         public string NameProduct { get; set; }
         public string ImagePath { get; set; }
         public string DisplayPrice { get; set; }
+        public DateTime? UpdatedDate { get; set; }
     }
 }
