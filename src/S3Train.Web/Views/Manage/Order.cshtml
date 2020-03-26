@@ -46,16 +46,6 @@ else
 
             @foreach (var item in Model.OrderProViewModel)
             {
-                using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(model => model.OrderProViewModel.First().Id)
-                    @Html.HiddenFor(model => model.OrderProViewModel.First().DatePayment)
-                    @Html.HiddenFor(model => model.OrderProViewModel.First().Note)
-                    @Html.HiddenFor(model => model.OrderProViewModel.First().TotalMoney)
-                    @Html.HiddenFor(model => model.OrderProViewModel.First().CreatedDate)
-                    @Html.HiddenFor(model => model.OrderProViewModel.First().UpdatedDate)
-                    @Html.HiddenFor(model => model.OrderProViewModel.First().IsActive)
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Id)
@@ -76,15 +66,11 @@ else
                             @Html.DisplayFor(modelItem => item.Note)
                         </td>
                         <td>
-                            @if (item.Status != "Cancel"&& item.Status !="Shipping")
-                            {
-                                <input type="submit" style="float:right; background-color:black; color:white" class="btn btn-default" value="Cancel" />
-                            }
                             <a style="float:right; background-color:coral; color:white" href="@Url.Action("Purchase", "Manage", new { @Id = item.Id })" class="btn btn-default" role="button">View order</a>
                         </td>
                     </tr>
                 }
-            }
+            
             </table>
     
     if (ViewBag.TotalPage > 1)

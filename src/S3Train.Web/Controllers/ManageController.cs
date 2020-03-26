@@ -93,49 +93,40 @@ namespace S3Train.Web.Controllers
             return View(model);
         }
 
-        public ActionResult Purchase(Guid Id, int page = 1, int pagesize = 5)
+        public ActionResult Purchase(Guid Id)
         {
-            int totalRecord = 0;
             var productsUser = new HomeViewModel
             {
-                OrderProViewModel = GetProductsByUser(_orderService.GetProductsByUserItems(Id), ref totalRecord, page, pagesize)
+                OrderProViewModel = GetProductsByUser(_orderService.GetProductsByUserItems(Id))
             };
-
-            ViewBag.ToTal = totalRecord;
-            ViewBag.Page = page;
-
-            int maxPage = 5;
-            int totalPage = 0;
-            totalPage = (int)Math.Ceiling(((double)totalRecord / (double)pagesize));
-
-            ViewBag.TotalPage = totalPage;
-            ViewBag.MaxPage = maxPage;
-            ViewBag.First = 1;
-            ViewBag.Last = totalPage;
-            ViewBag.Next = page + 1;
-            ViewBag.Pre = page - 1;
 
             return View(productsUser);
         }
 
-        private static IList<OrderProViewModel> GetProductsByUser(IList<ProductDTO> proUser, ref int totalRecord, int page = 1, int pagesize = 5)
+        private static IList<OrderProViewModel> GetProductsByUser(IList<ProductDTO> proUser)
         {
             var totalProd = proUser.Select(x => new OrderProViewModel
             {
-                ProductId = x.Id,
+                ProductId = x.ProductId,
                 ImagePath = x.ImagePath,
                 NameProduct = x.NameProduct,
                 Price = x.Price,
                 BarCode = x.Barcode,
                 Total = x.ToTal,
-                OrderQuantity = x.OrderQuantity
+                OrderQuantity = x.OrderQuantity,
+                Status = x.Status,
+                TotalMoney = x.ToTalMoney,
+                DatePayment = x.DatePayment,
+                CreatedDate = x.CreatedDate,
+                UpdatedDate = x.UpdatedDate,
+                IsActive = x.IsActive,
+                Note = x.Note
             });
-            var model = totalProd.OrderByDescending(x => x.DatePayment).Skip((page - 1) * pagesize).Take(pagesize).ToList();
-            totalRecord = totalProd.Count();
+            var model = totalProd.OrderByDescending(x => x.DatePayment).ToList();
             return model;
         }
 
-        public ActionResult Order(string ApplicationUserId, int page = 1, int pagesize = 5)
+        public ActionResult Order(string ApplicationUserId, int page = 1, int pagesize = 10)
         {
             ApplicationUserId = User.Identity.GetUserId();
             int totalRecord = 0;
@@ -163,7 +154,7 @@ namespace S3Train.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Order([Bind(Include = "Id,DatePayment,Status,Note,TotalMoney,CreatedDate,UpdatedDate,IsActive,ApplicationUserId")] Order order)
+        public ActionResult Purchase([Bind(Include = "Id,DatePayment,Status,Note,TotalMoney,CreatedDate,UpdatedDate,IsActive,ApplicationUserId")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -176,7 +167,7 @@ namespace S3Train.Web.Controllers
             return View(order);
         }
 
-        private static IList<OrderProViewModel> GetOrdersByUser(IList<OrderDTO> proUser, ref int totalRecord, int page = 1, int pagesize = 5)
+        private static IList<OrderProViewModel> GetOrdersByUser(IList<OrderDTO> proUser, ref int totalRecord, int page = 1, int pagesize = 10)
         {
             var totalProd = proUser.Select(x => new OrderProViewModel
             {

@@ -65,7 +65,7 @@ namespace S3Train.Service
                           join d in DbContext.OrderDetails on p.Id equals d.ProductId
                           join o in DbContext.Orders on d.OrderId equals o.Id
                           where o.Id == OrderId
-                           select new
+                          select new
                           {
                               p.Id,
                               p.ImagePath,
@@ -73,19 +73,33 @@ namespace S3Train.Service
                               p.Barcode,
                               d.Price,
                               d.OrderQuantity,
-                              d.Total
+                              d.Total,
+                              o.Status,
+                              o.TotalMoney,
+                              o.CreatedDate,
+                              o.UpdatedDate,
+                              o.IsActive,
+                              o.DatePayment,
+                              o.Note
                           }).ToList();
 
             var pro = proUser
                 .Select(n => new ProductDTO
                 {
-                    Id = n.Id,
+                    ProductId = n.Id,
                     ImagePath = n.ImagePath,
                     NameProduct = n.NameProduct,
                     Barcode = n.Barcode,
                     Price = n.Price,
                     OrderQuantity = n.OrderQuantity,
-                    ToTal = n.Total
+                    ToTal = n.Total,
+                    Status = n.Status,
+                    ToTalMoney = n.TotalMoney,
+                    CreatedDate = n.CreatedDate,
+                    UpdatedDate = n.UpdatedDate,
+                    IsActive = n.IsActive,
+                    DatePayment = n.DatePayment,
+                    Note = n.Note
                 }).ToList();
 
             return pro;

@@ -23,9 +23,13 @@ namespace S3Train.DTOs
         public int OrderQuantity { get; set; }
         public decimal ToTal { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         public DateTime DatePayment { get; set; }
         public string UserId { get; set; }
         public string Status { get; set; }
+        public decimal ToTalMoney { get; set; }
+        public bool IsActive { get; set; }
+        public string Note { get; set; }
 
         public PublisherDTO Publisher  { get; set; }
         public IList<AuthorDTO> Author { get; set; }
