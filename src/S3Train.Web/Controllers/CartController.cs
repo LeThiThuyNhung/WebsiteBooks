@@ -36,7 +36,7 @@ namespace S3Train.Web.Controllers
             return View(cart);
         }
 
-        public RedirectToRouteResult AddItems(Guid Id, int Quantity)
+        public ActionResult AddItems(Guid Id, int Quantity = 1)
         {
             var CartItem = _cartService.GetCart(Id);
             var currentCartItems = (List<CartViewModel>)Session[CartSession] ?? new List<CartViewModel>(); 
@@ -91,7 +91,9 @@ namespace S3Train.Web.Controllers
                 Session[CartSession] = currentCartItems;
             }
             
-            return RedirectToAction("MyCart");
+            return Json(new {
+                status = "success",
+            });
         }
 
         public ActionResult UpdateQuantity(Guid Id, int NewQuan)
@@ -117,67 +119,7 @@ namespace S3Train.Web.Controllers
             return Json(removeCart);
 
         }
-
-        public ActionResult Buy(Guid Id)
-        {
-            var CartItem = _cartService.GetCart(Id);
-            var currentCartItems = (List<CartViewModel>)Session[CartSession] ?? new List<CartViewModel>();
-            if (CartItem.Promotion.Count() != 0)
-            {
-                if (currentCartItems.Exists(x => x.Products.Id == Id))
-                {
-                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity++;
-                }
-                else
-                {
-                    currentCartItems.Add(new CartViewModel
-                    {
-                        Products = new ProductDTO
-                        {
-                            Id = Id,
-                            NameProduct = CartItem.NameProduct,
-                            ImagePath = CartItem.ImagePath,
-                            Barcode = CartItem.Barcode,
-                            Price = CartItem.Price,
-                            Amount = CartItem.Amount,
-
-                        },
-                        Quantity = 1,
-                        PromotionPercent = CartItem.Promotion.FirstOrDefault().PromotionPercent,
-
-                    });
-                }
-                Session[CartSession] = currentCartItems;
-            }
-            else
-            {
-                if (currentCartItems.Exists(x => x.Products.Id == Id))
-                {
-                    currentCartItems.SingleOrDefault(q => q.Products.Id == Id).Quantity++;
-                }
-                else
-                {
-                    currentCartItems.Add(new CartViewModel
-                    {
-                        Products = new ProductDTO
-                        {
-                            Id = Id,
-                            NameProduct = CartItem.NameProduct,
-                            ImagePath = CartItem.ImagePath,
-                            Barcode = CartItem.Barcode,
-                            Price = CartItem.Price,
-                            Amount = CartItem.Amount,
-
-                        },
-                        Quantity = 1,
-
-                    });
-                }
-                Session[CartSession] = currentCartItems;
-            }
-            return RedirectToAction("MyCart");
-        }
-
+        
         public ActionResult PayMent()
         {
             var userId = User.Identity.GetUserId();
@@ -190,8 +132,6 @@ namespace S3Train.Web.Controllers
                     Cart = cartSession,
                     User = new ApplicationUser
                     {
-                        
-
                         FullName = user.FullName,
                         Address = user.Address,
                         PhoneNumber = user.PhoneNumber,

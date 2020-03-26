@@ -5,9 +5,6 @@
     ViewBag.Title = "Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-
-</style>
 <div class="container">
     <div class="Payment">
         <div class="info ">
@@ -28,11 +25,9 @@
                     <th>Quatity</th>
                     <th>Total</th>
                 </tr>
-
                 @foreach (var item in Model.Cart)
                 {
                     <tr>
-
                         <td><img src="@Url.Content("~/ImagePD/" + item.Products.ImagePath)" /></td>
                         <td>@item.Products.NameProduct</td>
                         <td>@item.Quantity</td>
@@ -74,20 +69,10 @@
                 data: { Note: note },
                 dateType: "text",
                 success: function (data) {
-                    window.location.href = "http://localhost:44304/";
+                    window.location.href = "http://localhost:44304/Manage/Order";
 
                 }
             });
         });
     });
-    function myFunction() {
-        // Get the snackbar DIV
-        var x = document.getElementById("snackbar");
-
-        // Add the "show" class to DIV
-        x.className = "show";
-
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 10000);
-    }
 </script>

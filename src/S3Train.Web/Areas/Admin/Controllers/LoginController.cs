@@ -66,7 +66,6 @@ namespace S3Train.Web.Areas.Admin.Controllers
                 if(row != null)
                 {
                     Session["Email"] = l.Email;
-                    TempData["Message"] = "<script>alert('Login successfull!!!')</script>";
                     return RedirectToAction("Index", "HomeAdmin");
                 }
                 else

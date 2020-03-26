@@ -1,35 +1,63 @@
-﻿
+﻿@using S3Train.Web.Models;
+@using Microsoft.AspNet.Identity;
+@model HomeViewModel
 @{
     ViewBag.Title = "Purchase";
     Layout = "~/Views/Shared/_Profile.cshtml";
+    var ApplicationUserId = User.Identity.GetUserId();
 }
 
+@if (Model.OrderProViewModel == null || Model.OrderProViewModel.Count == 0)
+{
+<div class="cart-empty">
+    <p>No purchase orders yet</p>
+    <a class="continue" href="@Url.Action("Index", "Home", null)">Buy Now</a>
+</div>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.OrderProViewModel.First().Id)
+        @Html.HiddenFor(model => model.OrderProViewModel.First().DatePayment)
+        @Html.HiddenFor(model => model.OrderProViewModel.First().Note)
+        @Html.HiddenFor(model => model.OrderProViewModel.First().TotalMoney)
+        @Html.HiddenFor(model => model.OrderProViewModel.First().CreatedDate)
+        @Html.HiddenFor(model => model.OrderProViewModel.First().UpdatedDate)
+        @Html.HiddenFor(model => model.OrderProViewModel.First().IsActive)
+        foreach (var item in Model.OrderProViewModel)
+        {
+        <div class="cart-header">
+            <div class="cart-sec">
 
-
-    @*@foreach (var item in Model)
-        {*@
-    <div class="cart-header">
-        <div class="cart-sec">
-
-            <divError executing child request class="cart-item cyc">
-                <img src="@Url.Content("~/ImagePD/comic1.png"@*+item.value.Products.ImagePath*@ )" width="80" height="100" />
-            </divError>
-            <div class="cart-item-info">
-                <ul>
-                    <li>@*@item.value.Products.NameProduct*@The Oxford Book of American Short Stories</li>
-                    <li>X 5</li>
-                    <li class="price">@*$@item.value.Products.Price*@$12.00</li>
-                </ul>
+                <divError executing child request class="cart-item cyc">
+                    <img src="@Url.Content("~/ImagePD/" + item.ImagePath)" width="80" height="100" />
+                </divError>
+                <div class="cart-item-info">
+                    <ul>
+                        <li>@item.NameProduct</li>
+                        <li>@item.BarCode</li>
+                        <li class="price">$@item.Price</li>
+                    </ul>
+                </div>
+                <div class="total">
+                    <p>Total: $@item.Total</p>
+                    <p><a id="btn-add-to-cart" style="float:right; background-color:coral; color:white" href="@Url.Action("Detail", "Product", new { @id = item.ProductId })" class="btn btn-default" role="button">Repurchase</a></p>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="total">
-                <p>Total:</p>
-            </div>
-            <div class="clearfix"></div>
-
-
         </div>
-    </div>
-    @*  }*@
+        }
+
+    <div class="total">
+    @if (Model.OrderProViewModel.First().Status != "Cancel" && Model.OrderProViewModel.First().Status != "Shipping")
+    {
+        <input type="submit" style="float:right; background-color:black; color:white" class="btn btn-default" value="Cancel" />
+    }</div>
+    <br />
+    }
+}
 <style>
     .total{
         float: right
@@ -37,6 +65,12 @@
     .price
     {
         float:right
+    }
+    nav ul.pagination {
+        float: right;
+    }
+    .sta {
+        margin-left: -800px;
     }
 </style>
 

@@ -1,4 +1,5 @@
 ﻿@using S3Train.Web.Models;
+@using Microsoft.AspNet.Identity;
 @model IList<CartViewModel>
 @{
     ViewBag.Title = "MyCart";
@@ -87,7 +88,15 @@ else
                 <h4 class="last-price">TOTAL</h4>
                 <span class="total final">$</span>
                 <div class="clearfix"></div>
-                <a class="order" href="@Url.Action("PayMent","Cart", null)">PayMent</a>
+                @if (User.Identity.GetUserId() == null)
+                {
+                    <a class="order" href="@Url.Action("SignIn", "Account", null)" onclick="alert('Please login to continue payment')">PayMent</a>
+                }
+                else
+                {
+                    <a class="order" href="@Url.Action("PayMent","Cart", null)">PayMent</a>
+                }
+                
             </div>
       
         </div>
@@ -102,6 +111,7 @@ else
     cal();
     });
     $(".quantity").change(function () {
+        debugger
         $(".cart-item-info").each(function () {
             var quan = $(".quantity");
             var amou = $(".amount");

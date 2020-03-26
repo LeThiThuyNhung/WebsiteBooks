@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System;
-
+using S3Train.DTOs;
 
 namespace S3Train.Web.Models
 {
@@ -97,5 +97,28 @@ namespace S3Train.Web.Models
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+
+    public class OrderProViewModel
+    {
+        public string UserId { get; set; }
+        public decimal Price { get; set; }
+        public decimal Total { get; set; }
+        public Guid Id { get; set; }
+        public string ImagePath { get; set; }
+        public string NameProduct { get; set; }
+        public string BarCode { get; set; }
+        public int OrderQuantity { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DatePayment { get; set; }
+        public string Status { get; set; }
+        public Guid ProductId { get; set; }
+        public Decimal TotalMoney { get; set; }
+        public string Note { get; set; }
+        public string FullName { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }

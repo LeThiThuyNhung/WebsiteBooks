@@ -68,7 +68,7 @@ namespace S3Train.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Error");
+                return PartialView("SignIn");
             }
 
             ApplicationDbContext db = new ApplicationDbContext();
@@ -76,14 +76,14 @@ namespace S3Train.Web.Controllers
             if (user == null)
             {
                 ModelState.AddModelError("CustomerError", "Account does not exist");
-                return PartialView("Login", model);
+                return PartialView("SignIn", model);
             }
             else
             {
                 if (user.EmailConfirmed == false)
                 {
                     ModelState.AddModelError("CustomerError", "The account has not been authenticated");
-                    return PartialView("Login", model);
+                    return PartialView("SignIn", model);
                 }
             }
 
@@ -101,7 +101,58 @@ namespace S3Train.Web.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Password is wrong");
-                    return PartialView("Login");
+                    return PartialView("SignIn");
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult SignIn(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return PartialView("SignIn", returnUrl);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignIn(LoginViewModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("SignIn");
+            }
+
+            ApplicationDbContext db = new ApplicationDbContext();
+            var user = db.Users.SingleOrDefault(m => m.UserName == model.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("CustomerError", "Account does not exist");
+                return PartialView("SignIn", model);
+            }
+            else
+            {
+                if (user.EmailConfirmed == false)
+                {
+                    ModelState.AddModelError("CustomerError", "The account has not been authenticated");
+                    return PartialView("SignIn", model);
+                }
+            }
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Password is wrong");
+                    return View("SignIn");
             }
         }
 
@@ -162,6 +213,48 @@ namespace S3Train.Web.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("SignUp");
+            }
+            else if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FullName = model.Fullname, Address = model.Address, Gender = model.Gender, DateofBirth = model.DateOfBirth, PhoneNumber = model.PhoneNumber };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    //return RedirectToAction("Index", "Home");
+                    //TempData["Message"] = "<script>alert('We have sent authentication information to your email, check your email to perform the authentication.')</script>";
+                    ViewBag.Message = "We have sent authentication information to your email, check your email to perform the authentication.";
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult SignUp()
+        {
+            return PartialView("SignUp");
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignUp(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {

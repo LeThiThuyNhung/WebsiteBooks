@@ -326,11 +326,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApplicationUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\AuthorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Author_ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderDetailsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\PositionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductAdvertisementsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
@@ -421,17 +424,9 @@
     <Compile Include="Migrations\202003200407196_Addcol.Designer.cs">
       <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003220950187_O.cs" />
-    <Compile Include="Migrations\202003220950187_O.Designer.cs">
-      <DependentUpon>202003220950187_O.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003221518400_UpdateCol.cs" />
-    <Compile Include="Migrations\202003221518400_UpdateCol.Designer.cs">
-      <DependentUpon>202003221518400_UpdateCol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003221612488_UpdateCol1.cs" />
-    <Compile Include="Migrations\202003221612488_UpdateCol1.Designer.cs">
-      <DependentUpon>202003221612488_UpdateCol1.cs</DependentUpon>
+    <Compile Include="Migrations\202003230233472_upadatecol.cs" />
+    <Compile Include="Migrations\202003230233472_upadatecol.Designer.cs">
+      <DependentUpon>202003230233472_upadatecol.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -451,6 +446,18 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\ApplicationUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUser\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OrderDetails\Index.cshtml" />
     <None Include="Connected Services\ASPSMSX2\configuration91.svcinfo" />
     <None Include="Connected Services\ASPSMSX2\configuration.svcinfo" />
     <None Include="Connected Services\ASPSMSX2\Reference.svcmap">
@@ -1157,6 +1164,9 @@
     <Content Include="Views\Manage\AddAddress.cshtml" />
     <Content Include="Views\Cart\AddAddress.cshtml" />
     <Content Include="Views\Manage\Purchase.cshtml" />
+    <Content Include="Views\Account\SignIn.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Manage\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -1221,6 +1231,9 @@
     <EmbeddedResource Include="Migrations\202003200407196_Addcol.resx">
       <DependentUpon>202003200407196_Addcol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003230233472_upadatecol.resx">
+      <DependentUpon>202003230233472_upadatecol.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\S3Train.Core\S3Train.Core.csproj">
@@ -1242,6 +1255,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ASPSMSX2\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -42,7 +42,7 @@
             var id = $(this).data("id");
             $.ajax({
                 type: "POST",
-                url: '/Cart/Buy',
+                url: '/Cart/AddItems',
                 data: { Id: id },
                 success: function (data) {
                 }

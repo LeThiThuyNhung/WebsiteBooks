@@ -25,7 +25,7 @@ namespace S3Train.Service
                     ImagePath = x.Product.ImagePath,
                     Price = x.Product.Price,
                     UpdatedDate = x.UpdatedDate,
-                }).ToList();
+                }).Distinct().ToList();
           
             return productSearchForAuthor;
 

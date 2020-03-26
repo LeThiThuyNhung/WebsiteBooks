@@ -16,5 +16,6 @@ namespace S3Train.Web.Models
         public IList<CSProductViewModel> csProducts { get; set; }
         public IList<PromotionProductViewModel> bestSellerProducts { get; set; }
         public IList<ProductsSearchForNameViewModel> productsSearchForName { get; set; }
+        public IList<OrderProViewModel> OrderProViewModel { get; set; }
     }
 }
